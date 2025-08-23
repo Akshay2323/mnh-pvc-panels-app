@@ -484,8 +484,8 @@ export default function Home() {
         </div>
         <div className="footer-bar">
           <div className="container">
-            <span>© 2019 Alpins - Hiking & Outdoor Template Handmade by <a href="https://schiocco.com" target="_blank">schiocco.com</a>.</span>
-            <span><a href="contacts.html">Contact us</a> | <a href="#">Privacy policy</a></span>
+            <span>© 2025 MNHPVCPANLES <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
+            <span><a href="#">Contact us</a> | <a href="#">Privacy policy</a></span>
           </div>
         </div>
 
