@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-css-tags */
 import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
-
+import Link from 'next/link';
 
 export default function Document() {
   return (
@@ -16,26 +16,23 @@ export default function Document() {
         <nav className="menu-classic menu-fixed menu-transparent light align-right" data-menu-anima="fade-in">
           <div className="container">
             <div className="menu-brand">
-              <a href="#">
-                <img className="logo-default scroll-hide" src="assets/mnh-logo__1_-removebg-preview-1.webp" width="280" height="300" alt="logo" style={{ maxHeight: "160%" }}/>
-                <img className="logo-retina scroll-hide" src="assets/mnh-logo__1_-removebg-preview-1.webp"  width="280" height="300" alt="logo" style={{ maxHeight: "160%" }}/>
-                <img className="logo-default scroll-show" src="assets/mnh-logo__1_-removebg-preview-1.webp"  width="180" height="180" alt="logo" style={{ maxHeight: "135%" }}/>
-                <img className="logo-retina scroll-show" src="assets/mnh-logo__1_-removebg-preview-1.webp"  width="280" height="300" alt="logo" style={{ maxHeight: "160%" }}/>
-              </a>
+              <Link href="/">
+                {/* <a> */}
+                <img className="logo-default scroll-hide" src="assets/mnh-logo__1_-removebg-preview-1.webp" width="280" height="300" alt="logo" style={{ maxHeight: "160%" }} />
+                <img className="logo-retina scroll-hide" src="assets/mnh-logo__1_-removebg-preview-1.webp" width="280" height="300" alt="logo" style={{ maxHeight: "160%" }} />
+                <img className="logo-default scroll-show" src="assets/mnh-logo__1_-removebg-preview-1.webp" width="180" height="180" alt="logo" style={{ maxHeight: "135%" }} />
+                <img className="logo-retina scroll-show" src="assets/mnh-logo__1_-removebg-preview-1.webp" width="280" height="300" alt="logo" style={{ maxHeight: "160%" }} />
+                {/* </a> */}
+              </Link>
             </div>
             <i className="menu-btn"></i>
             <div className="menu-cnt">
               <ul id="main-menu">
                 <li className="dropdown">
-                  <a href="#">Home</a>
-                  {/* <ul>
-                    <li><a href="index.html">Main</a></li>
-                    <li><a href="index-2.html">Home two</a></li>
-                    <li><a href="index-3.html">Home three</a></li>
-                  </ul> */}
+                  <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <a href="/about">About</a>
+                  <Link href="/about">About</Link>
                 </li>
                 <li className="dropdown">
                   <a href="#">Manufacturer</a>
@@ -91,10 +88,10 @@ export default function Document() {
               <div className="menu-right">
                 <ul className="lan-menu">
                   <li className="dropdown">
-                    <a href="#"><img src="assets/en.png" />EN </a>
+                    <a href="#"><img src="assets/en.png" alt="English" />EN </a>
                     <ul>
-                      <li><a href="#"><img src="assets/it.png" />IT</a></li>
-                      <li><a href="#"><img src="assets/es.png" />ES</a></li>
+                      <li><a href="#"><img src="assets/it.png" alt="Italian" />IT</a></li>
+                      <li><a href="#"><img src="assets/es.png" alt="Spanish" />ES</a></li>
                     </ul>
                   </li>
                 </ul>
