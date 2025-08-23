@@ -484,7 +484,7 @@ export default function Home() {
         </div>
         <div className="footer-bar">
           <div className="container">
-            <span>© 2025 MNHPVCPANLES <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
+            <span>© 2025 MNHPVCPANLES Developed By <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
             <span><a href="#">Contact us</a> | <a href="#">Privacy policy</a></span>
           </div>
         </div>
