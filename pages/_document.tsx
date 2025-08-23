@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-css-tags */
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
+
 
 export default function Document() {
   return (
@@ -15,10 +17,10 @@ export default function Document() {
           <div className="container">
             <div className="menu-brand">
               <a href="#">
-                <img className="logo-default scroll-hide" src="assets/logo-white-blue.svg" alt="logo" />
-                <img className="logo-retina scroll-hide" src="assets/logo-white-blue.svg" alt="logo" />
-                <img className="logo-default scroll-show" src="assets/logo-white-solid.svg" alt="logo" />
-                <img className="logo-retina scroll-show" src="assets/logo-white-solid.svg" alt="logo" />
+                <img className="logo-default scroll-hide" src="assets/mnh-logo__1_-removebg-preview-1.webp" width="280" height="300" alt="logo" style={{ maxHeight: "160%" }}/>
+                <img className="logo-retina scroll-hide" src="assets/mnh-logo__1_-removebg-preview-1.webp"  width="280" height="300" alt="logo" style={{ maxHeight: "160%" }}/>
+                <img className="logo-default scroll-show" src="assets/mnh-logo__1_-removebg-preview-1.webp"  width="180" height="180" alt="logo" style={{ maxHeight: "135%" }}/>
+                <img className="logo-retina scroll-show" src="assets/mnh-logo__1_-removebg-preview-1.webp"  width="280" height="300" alt="logo" style={{ maxHeight: "160%" }}/>
               </a>
             </div>
             <i className="menu-btn"></i>
@@ -26,15 +28,18 @@ export default function Document() {
               <ul id="main-menu">
                 <li className="dropdown">
                   <a href="#">Home</a>
-                  <ul>
+                  {/* <ul>
                     <li><a href="index.html">Main</a></li>
                     <li><a href="index-2.html">Home two</a></li>
                     <li><a href="index-3.html">Home three</a></li>
-                  </ul>
+                  </ul> */}
+                </li>
+                <li>
+                  <a href="/about">About</a>
                 </li>
                 <li className="dropdown">
-                  <a href="#">Pages</a>
-                  <ul>
+                  <a href="#">Manufacturer</a>
+                  {/* <ul>
                     <li className="dropdown-submenu">
                       <a>About</a>
                       <ul>
@@ -62,17 +67,22 @@ export default function Document() {
                     <li>
                       <a href="elements/components/buttons.html">Elements</a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
                 <li className="dropdown">
-                  <a href="treks.html">Treks</a>
+                  <a href="treks.html">Products</a>
                   <ul>
-                    <li><a href="treks.html">Treks</a></li>
-                    <li><a href="treks-single.html">Single trek</a></li>
+                    <li><a href="treks.html">PVC Wall Panels</a></li>
+                    <li><a href="treks-single.html">UV Sheets</a></li>
+                    <li><a href="treks-single.html">Louvers</a></li>
+                    <li><a href="treks-single.html">Fluted Panels</a></li>
                   </ul>
                 </li>
                 <li>
                   <a href="blog.html">Blog</a>
+                </li>
+                <li>
+                  <a href="blog.html">Gallary</a>
                 </li>
                 <li>
                   <a href="contacts.html">Contacts</a>
@@ -93,7 +103,20 @@ export default function Document() {
           </div>
         </nav>
         <Main />
+
+        {/* Next.js scripts */}
         <NextScript />
+
+        {/* Third-party / custom scripts */}
+        <Script src="/assets/themekit/scripts/jquery.min.js" strategy="beforeInteractive" />
+        <Script src="/assets/themekit/scripts/main.js" strategy="afterInteractive" />
+        <Script src="/assets/themekit/scripts/imagesloaded.min.js" strategy="afterInteractive" />
+        <Script src="/assets/themekit/scripts/glide.min.js" strategy="afterInteractive" />
+        <Script src="/assets/themekit/scripts/magnific-popup.min.js" strategy="afterInteractive" />
+        <Script src="/assets/themekit/scripts/progress.js" strategy="afterInteractive" />
+        <Script src="/assets/themekit/scripts/parallax.min.js" strategy="afterInteractive" />
+        <Script src="/assets/themekit/scripts/tab-accordion.js" strategy="afterInteractive" />
+        <Script src="/assets/themekit/scripts/custom.js" strategy="afterInteractive" />
       </body>
     </Html>
   );

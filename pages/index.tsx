@@ -1,5 +1,5 @@
 // import dynamic from "next/dynamic";
-// const Slider = dynamic(() => import("./components/Slider"), { ssr: false });
+// const About = dynamic(() => import("./components/About"), { ssr: false });
 export default function Home() {
   return (
     <div>
@@ -11,7 +11,7 @@ export default function Home() {
             <hr className="space-sm" />
             <div className="row">
               <div className="col-lg-6">
-                <h1 data-anima={"fade-left"} data-time="2000" className="text-lg text-uppercase text-black">Amazing mountain to explore</h1>
+                <h1 data-anima={"fade-left"} data-time="2000" className="text-lg text-uppercase text-black">Inovative Design</h1>
                 <hr className="space-lg" />
                 <hr className="space-sm hidden-lg" />
                 <ul className="slider width-50" data-options={"type:slider,perView:1"}>
@@ -90,6 +90,8 @@ export default function Home() {
         </section>
         <section className="section-base">
           <div className="container">
+            <hr className="space-lg" />
+            <hr className="space-sm" />
             <div className="row">
               <div className="col-lg-8">
                 <ul className="slider controls-right" data-options="type:carousel,nav:true,perView:2,perViewSm:1,gap:30,controls:out">
@@ -164,7 +166,7 @@ export default function Home() {
               <div className="col-lg-4">
                 <hr className="space-sm visible-sm" />
                 <div className="title">
-                  <h2>Latest trips</h2>
+                  <h2>Our Products</h2>
                   <p>Explore the unexplored world</p>
                 </div>
                 <p>
@@ -180,18 +182,17 @@ export default function Home() {
           <div className="container">
             <div className="title align-center align-left-md">
               <h2>About us</h2>
-              <p>We live for the nature</p>
+              <p>Our Company Profile</p>
             </div>
             <div className="row">
               <div className="col-lg-3">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipiscing elitsed do esectetur adipiscing elitsed do eiusmoiusmod tempor incididunt utlabore et dolore magna aliqua.
-                  Utenim ad minim veniam quis nostrud exercitation ullamco laboris scing elitsed do esectetur adipiscing elite nature.
+                  Our MNH PVC company provides timely assistance to customers and addresses their inquiries effectively. We provide all types of PVC materials of good quality. We assure you that PVC furniture for your home, office, or company will be beneficial, as well as cheap, good, and fast in your price.      
                 </p>
               </div>
               <div className="col-lg-3 no-margin-md">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipiscing el adipiscing sscing elitsed do esectetur adipiscing eliectetur adipiscing elitsed do eiusmoelitsed do eiusmod tempor incididusmod titsed do eiusmod tempore.
+                  Since 2022, we have become a trusted name for premium PVC wall panels, false ceilings, UV marble sheets, and louvers. PVC panels will be useful in furniture like living rooms, bedrooms, kitchen points, and TV units in your home, as well as in all furniture like cabinet points, director rooms, staff rooms, and meeting rooms in the office.
                 </p>
                 <hr className="space-sm" />
                 <a href="about.html" className="btn-text">Read more</a>
@@ -199,30 +200,41 @@ export default function Home() {
               <div className="col-lg-6">
                 <ul className="accordion-list" data-open="1">
                   <li>
-                    <a href="#">Our mountains and our location</a>
+                    <a href="#">Our Experts</a>
                     <div className="content">
                       <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                        Utenim ad minim veniam quis nostrud exercitation.
+                        Our PVC products are made with high-quality and advanced technology. Their materials are renowned for their durability, exquisite finishes, and elegant designs. We don’t just provide PVC panels; we create new experiences that transform spaces with style and functionality.
+                      </p>
+                      <p>
+                        Our team provides you with fast and complete support. We guide customers and save them considerable time by providing solutions to all furniture-related problems.
+                      </p>
+                      <p>
+                        We know that affordability is a major concern for many of our customers. By maintaining strong partnerships with suppliers and operating efficiently, we can provide high-quality products at affordable prices to a wide range of customers.
+                      </p>
+                      <p>
+                        We have set a new benchmark for PVC profiles with highly creative designs. At a time when most customers are preferring PVC, offering those products makes MNH PVC panels stand out among the competitors and suit their needs.
+                      </p>
+                      <p>
+                        Time is a precious commodity for our customers. We make the purchasing process as simple and efficient as possible so that customers can quickly find what they need and receive and use their products on time.
                       </p>
                     </div>
                   </li>
                   <li>
-                    <a href="#">About our treks and trips</a>
+                    <a href="#">Advantages of PVC Panels</a>
                     <div className="content">
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                        Utenim ad minim veniam quis nostrud exercitation .
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <a href="#">About our team and guests</a>
-                    <div className="content">
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                        Utenim ad minim veniam quis nostrud exercitation.
-                      </p>
+                      <ul>
+                        <li>Waterproof</li>
+                        <li>Maintenance-Free</li>
+                        <li>Termite-Proof</li>
+                        <li>Fire Retardant</li>
+                        <li>Lightweight</li>
+                        <li>Easy to Install</li>
+                        <li>Stylish</li>
+                        <li>Durable</li>
+                        <li>Available in Various Designs and Colors</li>
+                      </ul>
+                      <p>Follow us on Instagram: <a href="https://www.instagram.com/mnh_pvc_panel/">https://www.instagram.com/mnh_pvc_panel/</a></p>
+                      <p>Facebook:&nbsp;<a href="https://www.facebook.com/mnhpanels">https://www.facebook.com/mnhpanels</a></p>
                     </div>
                   </li>
                 </ul>
@@ -230,13 +242,14 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="section-slider alpins-slider light section-full-width-left" data-slider-parallax="true" data-interval="0">
+        <section className="section-slider alpins-slider section-full-width-left" data-slider-parallax="true" data-interval="0">
+          
           <div className="background-slider">
-            <div className="active" style={{ backgroundImage: 'url(/assets/long-1.jpg)' }}></div>
-            <div style={{ backgroundImage: "url(/assets/long-2.jpg)" }}></div>
-            <div style={{ backgroundImage: "url(/assets/long-4.jpg)" }}></div>
-            <div style={{ backgroundImage: "url(/assets/long-6.jpg)" }}></div>
-            <div style={{ backgroundImage: "url(/assets/long-7.jpg)" }}></div>
+            <div style={{ backgroundImage: "url(/assets/hd-3.jpg)" }} className="remove-active"></div>
+            <div style={{ backgroundImage: "url(/assets/hd-4.jpg)" }} className="active"></div>
+            <div style={{ backgroundImage: "url(/assets/hd-5.jpg)" }} className="active remove-active"></div>
+            <div style={{ backgroundImage: "url(/assets/hd-6.jpg)" }} className="remove-active"></div>
+            <div style={{ backgroundImage: "url(/assets/hd-7.jpg)" }} className="remove-active"></div>
           </div>
           <div className="container">
             <div className="row">
@@ -478,5 +491,4 @@ export default function Home() {
 
       </footer>
     </div>
-  );
-}
+)}
