@@ -28,7 +28,7 @@ export default function About() {
                                                 Alpins team is the most exprienced and friendly team I ever meet. I will join again and again!
                                             </p>
                                             <div className="thumb-bar">
-                                                <img src="http://via.placeholder.com/450x450" alt="" />
+                                                <img src="/assets/user-1.jpg" alt="" />
                                                 <p>
                                                     <span>Alex Brenson</span>
                                                     <span>Alpinist</span>
@@ -42,7 +42,7 @@ export default function About() {
                                                 The Alpins is something new tha will surprise you with every trip. You will surely enjoy it.
                                             </p>
                                             <div className="thumb-bar">
-                                                <img src="http://via.placeholder.com/450x450" alt="" />
+                                                <img src="/assets/user-2.jpg" alt="" />
                                                 <p>
                                                     <span>Richard Pitt</span>
                                                     <span>Climber</span>
@@ -74,7 +74,7 @@ export default function About() {
                                 <ul className="slider arrows-left" data-options="type:carousel,perView:3,perViewSm:1,focusAt:center,gap:30,arrows:true,controls:out,autoplay:3000">
                                     <li>
                                         <div className="cnt-box cnt-box-top boxed">
-                                            <a href="#" className="img-box"><img src="http://via.placeholder.com/800x500" alt="" /></a>
+                                            <a href="#" className="img-box"><img src="/assets/image-4.jpg" alt="" /></a>
                                             <div className="caption">
                                                 <h2>Treks</h2>
                                                 <p>
@@ -86,7 +86,7 @@ export default function About() {
                                     </li>
                                     <li>
                                         <div className="cnt-box cnt-box-top boxed">
-                                            <a href="#" className="img-box"><img src="http://via.placeholder.com/800x500" alt="" /></a>
+                                            <a href="#" className="img-box"><img src="/assets/image-9.jpg" alt="" /></a>
                                             <div className="caption">
                                                 <h2>Family</h2>
                                                 <p>
@@ -98,7 +98,7 @@ export default function About() {
                                     </li>
                                     <li>
                                         <div className="cnt-box cnt-box-top boxed">
-                                            <a href="#" className="img-box"><img src="http://via.placeholder.com/800x500" alt="" /></a>
+                                            <a href="#" className="img-box"><img src="/assets/image-8.jpg" alt="" /></a>
                                             <div className="caption">
                                                 <h2>Animals</h2>
                                                 <p>
@@ -110,7 +110,7 @@ export default function About() {
                                     </li>
                                     <li>
                                         <div className="cnt-box cnt-box-top boxed">
-                                            <a href="#" className="img-box"><img src="http://via.placeholder.com/800x500" alt="" /></a>
+                                            <a href="#" className="img-box"><img src="/assets/image-6.jpg" alt="" /></a>
                                             <div className="caption">
                                                 <h2>Mountains</h2>
                                                 <p>

@@ -103,17 +103,6 @@ export default function Document() {
 
         {/* Next.js scripts */}
         <NextScript />
-
-        {/* Third-party / custom scripts */}
-        <Script src="/assets/themekit/scripts/jquery.min.js" strategy="beforeInteractive" />
-        <Script src="/assets/themekit/scripts/main.js" strategy="afterInteractive" />
-        <Script src="/assets/themekit/scripts/imagesloaded.min.js" strategy="afterInteractive" />
-        <Script src="/assets/themekit/scripts/glide.min.js" strategy="afterInteractive" />
-        <Script src="/assets/themekit/scripts/magnific-popup.min.js" strategy="afterInteractive" />
-        <Script src="/assets/themekit/scripts/progress.js" strategy="afterInteractive" />
-        <Script src="/assets/themekit/scripts/parallax.min.js" strategy="afterInteractive" />
-        <Script src="/assets/themekit/scripts/tab-accordion.js" strategy="afterInteractive" />
-        <Script src="/assets/themekit/scripts/custom.js" strategy="afterInteractive" />
       </body>
     </Html>
   );
