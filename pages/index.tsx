@@ -88,7 +88,8 @@ export default function Home() {
             <hr className="space-lg" />
           </div>
         </section>
-        <section className="section-base">
+
+        {/* <section className="section-base">
           <div className="container">
             <hr className="space-lg" />
             <hr className="space-sm" />
@@ -177,7 +178,358 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </section> */}
+
+        {/* Product Categories Section */}
+        <section className="section-base">
+          <div className="container">
+            <div className="title align-center">
+              <h2>Our Product Categories</h2>
+              <p>Explore our premium PVC solutions</p>
+            </div>
+
+            {/* PVC Wall Panels */}
+            <div className="category-section">
+              <div className="d-flex align-items-center justify-content-between px-1 mb-3">
+                <h3 className="category-title flex-grow-1">PVC Wall Panels</h3>
+                <a href="#" className="btn view-all-btn">View All</a>
+              </div>
+              <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,animationDuration:600">
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-1.jpg" alt="PVC Wall Panel Design 1" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Modern Wood Finish</h4>
+                      <p>Premium quality wood texture PVC panels</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-2.jpg" alt="PVC Wall Panel Design 2" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Marble Texture</h4>
+                      <p>Elegant marble finish for luxury interiors</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-3.jpg" alt="PVC Wall Panel Design 3" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Stone Pattern</h4>
+                      <p>Natural stone texture for modern spaces</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-4.jpg" alt="PVC Wall Panel Design 4" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Contemporary Design</h4>
+                      <p>Sleek and modern panel designs</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-5.jpg" alt="PVC Wall Panel Design 5" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Textured Finish</h4>
+                      <p>Unique textured patterns for accent walls</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <hr className="space-lg" />
+            </div>
+
+            {/* UV Sheets */}
+            <div className="category-section">
+              <div className="d-flex align-items-center justify-content-between px-1 mb-3">
+                <h3 className="category-title flex-grow-1">UV Sheets</h3>
+                <a href="#" className="btn view-all-btn">View All</a>
+              </div>
+              <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,autoplay:5500,animationDuration:600">
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-6.jpg" alt="UV Sheet Design 1" />
+                    </div>
+                    <div className="product-info">
+                      <h4>High Gloss White</h4>
+                      <p>Premium white UV marble sheets</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-7.jpg" alt="UV Sheet Design 2" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Marble Veining</h4>
+                      <p>Realistic marble patterns with UV coating</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-8.jpg" alt="UV Sheet Design 3" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Colored Variants</h4>
+                      <p>Available in multiple color options</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-9.jpg" alt="UV Sheet Design 4" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Premium Finish</h4>
+                      <p>Ultra-smooth high-gloss surface</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/long-1.jpg" alt="UV Sheet Design 5" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Designer Collection</h4>
+                      <p>Exclusive designer UV sheet patterns</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/hd-3.jpg" alt="UV Sheet Design 6" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Textured UV Sheets</h4>
+                      <p>Textured surface UV marble sheets</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/hd-4.jpg" alt="UV Sheet Design 7" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Matte Finish UV</h4>
+                      <p>Sophisticated matte UV sheet collection</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <hr className="space-lg" />
+            </div>
+
+            {/* Louvers */}
+            <div className="category-section">
+              <div className="d-flex align-items-center justify-content-between px-1 mb-3">
+                <h3 className="category-title flex-grow-1">Louvers</h3>
+                <a href="#" className="btn view-all-btn">View All</a>
+              </div>
+              <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,autoplay:6000,animationDuration:600">
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/long-2.jpg" alt="Louver Design 1" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Fixed Louvers</h4>
+                      <p>Durable fixed louver systems</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/long-4.jpg" alt="Louver Design 2" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Adjustable Louvers</h4>
+                      <p>Flexible ventilation control systems</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/long-6.jpg" alt="Louver Design 3" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Decorative Louvers</h4>
+                      <p>Aesthetic louvers for modern facades</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/long-7.jpg" alt="Louver Design 4" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Weather Resistant</h4>
+                      <p>All-weather louver solutions</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/hd-5.jpg" alt="Louver Design 5" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Custom Sizes</h4>
+                      <p>Made-to-measure louver systems</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-1.jpg" alt="Louver Design 6" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Motorized Louvers</h4>
+                      <p>Automated louver control systems</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-2.jpg" alt="Louver Design 7" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Acoustic Louvers</h4>
+                      <p>Sound-dampening louver solutions</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <hr className="space-lg" />
+            </div>
+
+            {/* Fluted Panels */}
+            <div className="category-section">
+              <div className="d-flex align-items-center justify-content-between px-1 mb-3">
+                <h3 className="category-title flex-grow-1">Fluted Panels</h3>
+                <a href="#" className="btn view-all-btn">View All</a>
+              </div>
+              <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,autoplay:6500,animationDuration:600">
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/hd-4.jpg" alt="Fluted Panel Design 1" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Vertical Flutes</h4>
+                      <p>Classic vertical fluted patterns</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/hd-5.jpg" alt="Fluted Panel Design 2" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Wide Groove</h4>
+                      <p>Bold wide groove fluted designs</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/hd-6.jpg" alt="Fluted Panel Design 3" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Fine Texture</h4>
+                      <p>Subtle fine-textured fluted panels</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/hd-7.jpg" alt="Fluted Panel Design 4" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Modern Flutes</h4>
+                      <p>Contemporary fluted panel designs</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/user-1.jpg" alt="Fluted Panel Design 5" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Custom Patterns</h4>
+                      <p>Bespoke fluted panel solutions</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-3.jpg" alt="Fluted Panel Design 6" />
+                    </div>
+                    <div className="product-info">
+                      <h4>3D Fluted Panels</h4>
+                      <p>Three-dimensional fluted designs</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/image-4.jpg" alt="Fluted Panel Design 7" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Curved Fluted</h4>
+                      <p>Curved fluted panel solutions</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="product-card">
+                    <div className="img-box">
+                      <img src="/assets/long-2.jpg" alt="Fluted Panel Design 8" />
+                    </div>
+                    <div className="product-info">
+                      <h4>Backlit Fluted</h4>
+                      <p>LED-compatible fluted panels</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </section>
+
         <section className="section-base section-color">
           <div className="container">
             <div className="title align-center align-left-md">
@@ -187,7 +539,7 @@ export default function Home() {
             <div className="row">
               <div className="col-lg-3">
                 <p>
-                  Our MNH PVC company provides timely assistance to customers and addresses their inquiries effectively. We provide all types of PVC materials of good quality. We assure you that PVC furniture for your home, office, or company will be beneficial, as well as cheap, good, and fast in your price.      
+                  Our MNH PVC company provides timely assistance to customers and addresses their inquiries effectively. We provide all types of PVC materials of good quality. We assure you that PVC furniture for your home, office, or company will be beneficial, as well as cheap, good, and fast in your price.
                 </p>
               </div>
               <div className="col-lg-3 no-margin-md">
@@ -242,8 +594,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="section-slider alpins-slider section-full-width-left" data-slider-parallax="true" data-interval="0">
-          
+        {/* <section className="section-slider alpins-slider section-full-width-left" data-slider-parallax="true" data-interval="0">
+
           <div className="background-slider">
             <div style={{ backgroundImage: "url(/assets/hd-3.jpg)" }} className="remove-active"></div>
             <div style={{ backgroundImage: "url(/assets/hd-4.jpg)" }} className="active"></div>
@@ -332,7 +684,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         <section className="section-base">
           <div className="container">
             <div className="title align-center">
@@ -491,4 +843,5 @@ export default function Home() {
 
       </footer>
     </div>
-)}
+  )
+}

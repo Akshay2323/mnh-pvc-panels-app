@@ -7,6 +7,7 @@ import "@/styles/content-box.css";
 import "@/styles/contact-form.css";
 import "@/styles/media-box.css";
 import "@/styles/skin2.css";
+import "@/styles/product-categories.css";
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { useState } from 'react';
