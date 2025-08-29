@@ -35,7 +35,7 @@ export default function Document() {
                   <Link href="/about">About</Link>
                 </li>
                 <li className="dropdown">
-                  <Link href="/manufacturer">Manufacturer</Link>
+                  <Link href="/manufacture">Manufacturer</Link>
                   {/* <ul>
                     <li className="dropdown-submenu">
                       <a>About</a>
