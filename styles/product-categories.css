@@ -85,6 +85,9 @@
   color: #2c3e50;
   margin-bottom: 8px;
   line-height: 1.3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .product-info p {
@@ -236,12 +239,12 @@
     padding: 0;
     width: 100%;
   }
-  
+
   .category-section .slider .glide__track {
     padding: 0;
     margin: 0;
   }
-  
+
   .category-section .slider .glide__slides {
     margin: 0;
     padding: 0;

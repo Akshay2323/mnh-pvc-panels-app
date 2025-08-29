@@ -1,0 +1,106 @@
+[
+  {
+    "id": 1,
+    "name": "PVC Wall Panels",
+    "products": [
+      {
+        "id": 1,
+        "name": "MNH 2G Series"
+      },
+      {
+        "id": 2,
+        "name": "MNH 4G Series"
+      },
+      {
+        "id": 3,
+        "name": "MNH 5G Series"
+      },
+      {
+        "id": 4,
+        "name": "MNH Wooden Series"
+      },
+      {
+        "id": 5,
+        "name": "MNH Flowers, White & Combinations"
+      },
+      {
+        "id": 6,
+        "name": "MNH Texture & Marble Series"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "UV Sheets",
+    "products": [
+      {
+        "id": 1,
+        "name": "UV DIGITAL MARBLE SHEET"
+      },
+      {
+        "id": 2,
+        "name": "MNH HD SERIES"
+      },
+      {
+        "id": 3,
+        "name": "MNH GILT SERIES"
+      },
+      {
+        "id": 4,
+        "name": "MNH Texture & Marble Series"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Louvers",
+    "products": [
+      {
+        "id": 1,
+        "name": "12” Charcoal Louvers"
+      },
+      {
+        "id": 2,
+        "name": "MNH 8″ Charcoal Louvers"
+      },
+      {
+        "id": 3,
+        "name": "6″ Charcoal Louvers"
+      },
+      {
+        "id": 4,
+        "name": "17mm WPC Louvers"
+      },
+      {
+        "id": 5,
+        "name": "23mm  WPC Louvers"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Flutted Panels",
+    "products": [
+      {
+        "id": 1,
+        "name": "14-Step Fluted Panels"
+      },
+      {
+        "id": 2,
+        "name": "9 Step Textured Fluted"
+      },
+      {
+        "id": 3,
+        "name": "9-Step Fluted Panels"
+      },
+      {
+        "id": 4,
+        "name": "4-Step Fluted Panels"
+      },
+      {
+        "id": 5,
+        "name": "MNH 8G Series"
+      }
+    ]
+  }
+]

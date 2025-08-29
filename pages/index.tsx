@@ -1,5 +1,6 @@
 // import dynamic from "next/dynamic";
 // const About = dynamic(() => import("./components/About"), { ssr: false });
+import productData from "../data/product.json";
 export default function Home() {
   return (
     <div>
@@ -120,344 +121,32 @@ export default function Home() {
             </div>
 
             {/* PVC Wall Panels */}
-            <div className="category-section">
-              <div className="d-flex align-items-center justify-content-between px-1 mb-3">
-                <h3 className="category-title flex-grow-1">PVC Wall Panels</h3>
-                <a href="#" className="btn view-all-btn">View All</a>
-              </div>
-              <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,animationDuration:600">
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-1.jpg" alt="PVC Wall Panel Design 1" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Modern Wood Finish</h4>
-                      <p>Premium quality wood texture PVC panels</p>
-                    </div>
+            {
+              productData.map((product) => (
+                <div className="category-section" key={product.id}>
+                  <div className="d-flex align-items-center justify-content-between px-1 mb-3">
+                    <h3 className="category-title flex-grow-1">{product.name}</h3>
+                    <a href="#" className="btn view-all-btn">View All</a>
                   </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-2.jpg" alt="PVC Wall Panel Design 2" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Marble Texture</h4>
-                      <p>Elegant marble finish for luxury interiors</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-3.jpg" alt="PVC Wall Panel Design 3" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Stone Pattern</h4>
-                      <p>Natural stone texture for modern spaces</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-4.jpg" alt="PVC Wall Panel Design 4" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Contemporary Design</h4>
-                      <p>Sleek and modern panel designs</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-5.jpg" alt="PVC Wall Panel Design 5" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Textured Finish</h4>
-                      <p>Unique textured patterns for accent walls</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <hr className="space-lg" />
-            </div>
-
-            {/* UV Sheets */}
-            <div className="category-section">
-              <div className="d-flex align-items-center justify-content-between px-1 mb-3">
-                <h3 className="category-title flex-grow-1">UV Sheets</h3>
-                <a href="#" className="btn view-all-btn">View All</a>
-              </div>
-              <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,autoplay:5500,animationDuration:600">
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-6.jpg" alt="UV Sheet Design 1" />
-                    </div>
-                    <div className="product-info">
-                      <h4>High Gloss White</h4>
-                      <p>Premium white UV marble sheets</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-7.jpg" alt="UV Sheet Design 2" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Marble Veining</h4>
-                      <p>Realistic marble patterns with UV coating</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-8.jpg" alt="UV Sheet Design 3" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Colored Variants</h4>
-                      <p>Available in multiple color options</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-9.jpg" alt="UV Sheet Design 4" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Premium Finish</h4>
-                      <p>Ultra-smooth high-gloss surface</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/long-1.jpg" alt="UV Sheet Design 5" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Designer Collection</h4>
-                      <p>Exclusive designer UV sheet patterns</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/hd-3.jpg" alt="UV Sheet Design 6" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Textured UV Sheets</h4>
-                      <p>Textured surface UV marble sheets</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/hd-4.jpg" alt="UV Sheet Design 7" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Matte Finish UV</h4>
-                      <p>Sophisticated matte UV sheet collection</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <hr className="space-lg" />
-            </div>
-
-            {/* Louvers */}
-            <div className="category-section">
-              <div className="d-flex align-items-center justify-content-between px-1 mb-3">
-                <h3 className="category-title flex-grow-1">Louvers</h3>
-                <a href="#" className="btn view-all-btn">View All</a>
-              </div>
-              <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,autoplay:6000,animationDuration:600">
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/long-2.jpg" alt="Louver Design 1" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Fixed Louvers</h4>
-                      <p>Durable fixed louver systems</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/long-4.jpg" alt="Louver Design 2" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Adjustable Louvers</h4>
-                      <p>Flexible ventilation control systems</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/long-6.jpg" alt="Louver Design 3" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Decorative Louvers</h4>
-                      <p>Aesthetic louvers for modern facades</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/long-7.jpg" alt="Louver Design 4" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Weather Resistant</h4>
-                      <p>All-weather louver solutions</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/hd-5.jpg" alt="Louver Design 5" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Custom Sizes</h4>
-                      <p>Made-to-measure louver systems</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-1.jpg" alt="Louver Design 6" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Motorized Louvers</h4>
-                      <p>Automated louver control systems</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-2.jpg" alt="Louver Design 7" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Acoustic Louvers</h4>
-                      <p>Sound-dampening louver solutions</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <hr className="space-lg" />
-            </div>
-
-            {/* Fluted Panels */}
-            <div className="category-section">
-              <div className="d-flex align-items-center justify-content-between px-1 mb-3">
-                <h3 className="category-title flex-grow-1">Fluted Panels</h3>
-                <a href="#" className="btn view-all-btn">View All</a>
-              </div>
-              <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,autoplay:6500,animationDuration:600">
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/hd-4.jpg" alt="Fluted Panel Design 1" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Vertical Flutes</h4>
-                      <p>Classic vertical fluted patterns</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/hd-5.jpg" alt="Fluted Panel Design 2" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Wide Groove</h4>
-                      <p>Bold wide groove fluted designs</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/hd-6.jpg" alt="Fluted Panel Design 3" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Fine Texture</h4>
-                      <p>Subtle fine-textured fluted panels</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/hd-7.jpg" alt="Fluted Panel Design 4" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Modern Flutes</h4>
-                      <p>Contemporary fluted panel designs</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/user-1.jpg" alt="Fluted Panel Design 5" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Custom Patterns</h4>
-                      <p>Bespoke fluted panel solutions</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-3.jpg" alt="Fluted Panel Design 6" />
-                    </div>
-                    <div className="product-info">
-                      <h4>3D Fluted Panels</h4>
-                      <p>Three-dimensional fluted designs</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/image-4.jpg" alt="Fluted Panel Design 7" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Curved Fluted</h4>
-                      <p>Curved fluted panel solutions</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="product-card">
-                    <div className="img-box">
-                      <img src="/assets/long-2.jpg" alt="Fluted Panel Design 8" />
-                    </div>
-                    <div className="product-info">
-                      <h4>Backlit Fluted</h4>
-                      <p>LED-compatible fluted panels</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
+                  <ul className="slider" data-options="type:carousel,nav:true,perView:5,perViewLg:4,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,animationDuration:600">
+                    {
+                      product.products.map((item) => (
+                        <li key={item.id}>
+                          <div className="product-card">
+                            <div className="img-box">
+                              <img src={'/assets/1-1-scaled.jpg'} alt={item.name} />
+                            </div>
+                            <div className="product-info">
+                              <h4>{item.name}</h4>
+                            </div>
+                          </div>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </div>
+              ))
+            }
           </div>
         </section>
 
@@ -619,83 +308,65 @@ export default function Home() {
         <section className="section-base">
           <div className="container">
             <div className="title align-center">
-              <h2>Top service</h2>
-              <p>We provide the best experience</p>
+              <h2>Why you should use our products</h2>
+              <p>We provide the best quality products</p>
             </div>
             <table className="table table-grid table-border table-6-md">
               <tbody>
                 <tr>
                   <td>
                     <div className="icon-box icon-box-top align-center">
-                      <i className="im-foot-2"></i>
+                      <i className="im-dollar-sign"></i>
                       <div className="caption">
-                        <h3>Experienced team</h3>
-                        <p>We always lived inside our amazing nature</p>
+                        <h3>Cost-effective</h3>
+                        <p>Our products are cost-effective and provide long-lasting solutions</p>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div className="icon-box icon-box-top align-center">
-                      <i className="im-icq"></i>
+                      <i className="im-wave-2"></i>
                       <div className="caption">
-                        <h3>Easy joining</h3>
-                        <p>Contact us and in 2 minutes you&apos;re booked</p>
+                        <h3>Water Resistant</h3>
+                        <p>Our products are water-resistant and durable</p>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div className="icon-box icon-box-top align-center">
-                      <i className="im-landscape"></i>
+                      <i className="im-fire-flame2"></i>
                       <div className="caption">
-                        <h3>Expert hikers</h3>
-                        <p>Our mountans teached us everything we know</p>
+                        <h3>Hit Resistant</h3>
+                        <p>Our products are hit-resistant and durable</p>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div className="icon-box icon-box-top align-center">
-                      <i className="im-forest"></i>
+                      <i className="im-medical-sign"></i>
                       <div className="caption">
-                        <h3>Secret locations</h3>
-                        <p>Discover hidden natural places with our tours</p>
+                        <h3>Hygienic</h3>
+                        <p>Our products are hygienic and durable</p>
                       </div>
                     </div>
                   </td>
-                </tr>
-                <tr>
+                  {/* </tr>
+                <tr> */}
                   <td>
                     <div className="icon-box icon-box-top align-center">
-                      <i className="im-flag-4"></i>
+                      <i className="im-david-star"></i>
                       <div className="caption">
-                        <h3>Europe locations</h3>
-                        <p>We provide trips on varous europe countries</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="icon-box icon-box-top align-center">
-                      <i className="im-map2"></i>
-                      <div className="caption">
-                        <h3>Visit us</h3>
-                        <p>We are in the north of italy near the mountains</p>
+                        <h3>Versatility</h3>
+                        <p>Our products are versatile and durable</p>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div className="icon-box icon-box-top align-center">
-                      <i className="im-globe"></i>
+                      <i className="im-ear"></i>
                       <div className="caption">
-                        <h3>United States</h3>
-                        <p>Once a year join us to the other part of the world</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="icon-box icon-box-top align-center">
-                      <i className="im-rainbow-2"></i>
-                      <div className="caption">
-                        <h3>Great waterfall</h3>
-                        <p>Our excursions will bring you to great waterfalls</p>
+                        <h3>Sound Resistant</h3>
+                        <p>Our products are sound-resistant and durable</p>
                       </div>
                     </div>
                   </td>
@@ -704,7 +375,7 @@ export default function Home() {
             </table>
           </div>
         </section>
-        <section className="section-base section-color">
+        {/* <section className="section-base section-color">
           <div className="container">
             <div className="title align-center">
               <h2>Newsletter</h2>
@@ -736,21 +407,21 @@ export default function Home() {
               </div>
             </form>
           </div>
-        </section>
+        </section> */}
       </main>
       <footer className="light">
         <div className="container">
           <div className="row">
             <div className="col-lg-4">
-              <h3>Alpins</h3>
-              <p>Somewhere between the bottom of the climb and the summit is the answer to the mystery why we climb.</p>
+              <h3>MNH</h3>
+              <p>At MNH, we offer exceptional service, competitive pricing, and timely delivery. Explore our high-quality products and services, and contact us for any inquiries or personalized support!</p>
             </div>
             <div className="col-lg-4">
               <h3>Contacts</h3>
               <ul className="icon-list icon-line">
-                <li>San Pellegrino, BG, Italy</li>
-                <li>hello@example.com</li>
-                <li>02 123 333 444</li>
+                <li>Vill. Bharo, Channo-Nabha Road, Distt. Sangrur (Pb.)</li>
+                <li>mnhpvcpanels@gmail.com</li>
+                <li>+91 7696676559</li>
               </ul>
             </div>
             <div className="col-lg-4">
@@ -761,13 +432,13 @@ export default function Home() {
                 <a className="google"><i className="icon-google"></i></a>
               </div>
               <hr className="space-sm" />
-              <p>Subscribe to our newsletter of follow us on the social channels to stay tuned.</p>
+              <p>Follow us on the social channels to stay tuned.</p>
             </div>
           </div>
         </div>
         <div className="footer-bar">
           <div className="container">
-            <span>© 2025 MNHPVCPANLES Developed By <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
+            <span>© 2025 MNHPVC PANELS Developed By <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
             <span><a href="#">Contact us</a> | <a href="#">Privacy policy</a></span>
           </div>
         </div>
