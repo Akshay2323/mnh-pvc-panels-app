@@ -300,11 +300,11 @@ COLOR 3
 nav.active .menu-btn,
 .menu-transparent .menu-cnt > ul > li:hover > a,
 .list-nav a:hover {
-  color: #3081c8;
+  color: #f06522;
 }
 
 .light .dropdown > ul > li:not(:hover) > a {
-  color: #3081c8 !important;
+  color: #f06522 !important;
 }
 
 .btn:not(.btn-border):hover,
@@ -316,14 +316,14 @@ nav.active .menu-btn,
 .lan-menu > li:hover > a,
 .glide__bullets > button:hover,
 .glide__bullets > button.glide__bullet--active {
-  background-color: #3081c8;
+  background-color: #f06522;
 }
 
 .icon-links-button a:hover,
 .pagination li.page:hover a,
 .pagination li.page.active a {
-  background-color: #3081c8;
-  border-color: #3081c8;
+  background-color: #f06522;
+  border-color: #f06522;
 }
 
 .btn:hover,
@@ -331,7 +331,7 @@ nav.active .menu-btn,
 .input-select:focus,
 .input-textarea:focus,
 .search-bar input[type="text"]:focus {
-  border-color: #3081c8;
+  border-color: #f06522;
 }
 
 /*

@@ -1,16 +1,17 @@
-import '@/styles/globals.css';
 import "@/styles/bootstrap-grid.css";
-import "@/styles/style.css";
-import "@/styles/glide.css";
-import "@/styles/magnific-popup.css";
-import "@/styles/content-box.css";
 import "@/styles/contact-form.css";
+import "@/styles/content-box.css";
+import "@/styles/glide.css";
+import '@/styles/globals.css';
+import "@/styles/magnific-popup.css";
 import "@/styles/media-box.css";
-import "@/styles/skin2.css";
 import "@/styles/product-categories.css";
+import "@/styles/style.css";
+import "@/styles/skin2.css";
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { useState } from 'react';
+import { ReduxProvider } from '../store/ReduxProvider';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [jQueryLoaded, setJQueryLoaded] = useState(false);
@@ -37,7 +38,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <Script src="/scripts/contact-form/contact-form.js" strategy="afterInteractive" />
         </>
       )}
-      <Component {...pageProps} />
+      <ReduxProvider>
+        <Component {...pageProps} />
+      </ReduxProvider>
     </>
   );
 }
