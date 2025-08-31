@@ -836,6 +836,8 @@ nav:not(.menu-transparent) .menu-cnt > ul > li:hover > a {
 
 .logo-retina {
   display: none !important;
+  object-fit: contain;
+  max-height: 100%;
 }
 
 @media (min-resolution: 192dpi) and (min-width: 994px),
@@ -868,6 +870,11 @@ body > nav .menu-brand > a {
 body > nav .menu-brand img {
   max-height: 100%;
   display: block;
+  object-fit: contain;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .menu-btn {
