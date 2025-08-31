@@ -85,7 +85,7 @@ export default function Document() {
                   <a href="contacts.html">Contacts</a>
                 </li>
               </ul>
-              <div className="menu-right">
+              {/* <div className="menu-right">
                 <ul className="lan-menu">
                   <li className="dropdown">
                     <a href="#"><img src="assets/en.png" alt="English" />EN </a>
@@ -95,7 +95,7 @@ export default function Document() {
                     </ul>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </nav>

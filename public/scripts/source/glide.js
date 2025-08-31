@@ -3705,6 +3705,7 @@
             breakpoints["575"] = { perView: options["perViewXs"] }
         }
         options["breakpoints"] = breakpoints;
+        console.log(options);
         var glide = new Glide($(this)[0], options);
         glide.mount();
         if ($.isFunction($.fn.magnificPopup)) {
@@ -3717,7 +3718,7 @@
         }
         if (!isEmpty(anima)) {
             $(this).css("opacity", 0).showAnima(anima, "complete");
-        }  
+        }
         if (!isEmpty(id)) {
             glide_instances[id] = glide;
         }
@@ -3742,7 +3743,7 @@
             arrows = '<div class="glide__arrows" data-glide-el="controls"><button class="glide__arrow glide__arrow--left" data-glide-dir="<"></button><button class="glide__arrow glide__arrow--right" data-glide-dir=">"></button></div>';
         }
         if (isEmpty(external_classes)) external_classes = ""; else external_classes = " " + external_classes;
-        if (isEmpty(attributes)) attributes = ""; 
+        if (isEmpty(attributes)) attributes = "";
         if (!isEmpty(options)) {
             if (options.indexOf("nav:true") > -1) {
                 controls = '<div class="glide__bullets" data-glide-el="controls[nav]">';
@@ -3774,4 +3775,4 @@
             return glide_instances[id];
         }
     }
-}(jQuery)); 
+}(jQuery));
