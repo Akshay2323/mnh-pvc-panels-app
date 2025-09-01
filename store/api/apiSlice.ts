@@ -8,7 +8,9 @@ import {
   HomeScreenContentResp,
   PaginationParam,
   UserContactParam,
-  UserContactResp
+  UserContactResp,
+  ManufacturerContentResp,
+  PvcWallContentResp,
 } from '../../utils/app.model';
 
 // Create our API slice
@@ -23,7 +25,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ['hHomeScreenContent', 'AboutUsContent', 'ContactContent', 'CommonContent'],
+  tagTypes: ['hHomeScreenContent', 'AboutUsContent', 'ContactContent', 'CommonContent', 'ManufacturerContent', 'PvcWallContent'],
   endpoints: (builder) => ({
     // Home Screen Content
     homeScreenContent: builder.query<HomeScreenContentResp, void>({
@@ -37,6 +39,16 @@ export const apiSlice = createApi({
       providesTags: ['AboutUsContent'],
     }),
 
+    // Manufacturer Content
+    manufacturerContent: builder.query<ManufacturerContentResp, void>({
+      query: () => 'webSettings/manufacturerContent',
+      providesTags: ['ManufacturerContent'],
+    }),
+    // PVC Wall Content
+    pvcWallContent: builder.query<PvcWallContentResp, void>({
+      query: () => 'webSettings/pvcWallContent',
+      providesTags: ['PvcWallContent'],
+    }),
     // Contact Content
     contactContent: builder.query<ContactContentResp, void>({
       query: () => 'webSettings/contactContent',
@@ -77,6 +89,8 @@ export const apiSlice = createApi({
 export const {
   useHomeScreenContentQuery,
   useAboutUsContentQuery,
+  useManufacturerContentQuery,
+  usePvcWallContentQuery,
   useContactContentQuery,
   useCommonContentQuery,
   useSendContactMutation,

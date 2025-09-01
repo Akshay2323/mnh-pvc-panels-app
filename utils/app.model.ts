@@ -256,3 +256,22 @@ export enum BLOG_MEDIA_TYPE {
     IMAGE = "image",
     VIDEO = "video",
 }
+export class ManufacturerContentResp {
+    status: boolean = false;
+    data: ManufacturerContentData = new ManufacturerContentData();
+    message: string = ''
+}
+export class ManufacturerContentData {
+    manufacturerContent: ManufacturerContent = new ManufacturerContent();
+    keywords: Keywords = new Keywords();
+}
+export class PvcWallContentResp {
+    status: boolean = false;
+    data: PvcWallContentData = new PvcWallContentData();
+    message: string = ''
+}
+export class PvcWallContentData {
+    pvcWallContent: PvcWallContent = new PvcWallContent();
+    keywords: Keywords = new Keywords();
+}
+
