@@ -44,15 +44,15 @@ class MyDocument extends Document<MyDocumentProps> {
           <link rel="stylesheet" href="/media/icons/iconsmind/line-icons.min.css" />
         </Head>
         <body className="page-main">
-          <div id="preloader"></div>
+          {/* <div id="preloader"></div> */}
           <nav className="menu-classic menu-fixed menu-transparent light align-right" data-menu-anima="fade-in">
             <div className="container">
               <div className="menu-brand">
                 <Link href="/">
-                  <img className="logo-default scroll-hide" src="assets/mnh-logo__1_-removebg-preview-1.webp" alt="logo" />
-                  <img className="logo-retina scroll-hide" src="assets/mnh-logo__1_-removebg-preview-1.webp" alt="logo" />
-                  <img className="logo-default scroll-show" src="assets/mnh-logo__1_-removebg-preview-1.webp" alt="logo" />
-                  <img className="logo-retina scroll-show" src="assets/mnh-logo__1_-removebg-preview-1.webp" alt="logo" />
+                  <img className="logo-default scroll-hide" src="assets/app-logo.webp" alt="logo" />
+                  <img className="logo-retina scroll-hide" src="assets/app-logo.webp" alt="logo" />
+                  <img className="logo-default scroll-show" src="assets/app-logo.webp" alt="logo" />
+                  <img className="logo-retina scroll-show" src="assets/app-logo.webp" alt="logo" />
                 </Link>
               </div>
               <i className="menu-btn"></i>
