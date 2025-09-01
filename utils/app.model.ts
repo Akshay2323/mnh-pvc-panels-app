@@ -32,6 +32,53 @@ export class ContactResp {
     message: string = ''
 }
 
+export class Branch {
+    id?: string = "";
+    name?: string = "";
+    city: string = "";
+    address: string = "";
+    orderNo: number = 0;
+    imagePath: string = "";
+    createdAt: any;
+    updatedAt: any;
+}
+
+export class BranchResp {
+    status: boolean = false;
+    data: Branch = new Branch();
+    message: string = ''
+}
+
+export class Client {
+    id?: string = "";
+    orderNo: number = 0;
+    imagePath: string = "";
+    createdAt: any;
+    updatedAt: any;
+}
+
+export class ClientResp {
+    status: boolean = false;
+    data: Client = new Client();
+    message: string = ''
+}
+
+export class Specification {
+    id?: string = "";
+    name?: string = "";
+    description?: string = "";
+    iconName?: string = "";
+    orderNo: number | null = null;
+    createdAt: any;
+    updatedAt: any;
+}
+
+export class SpecificationResp {
+    status: boolean = false;
+    data: Specification = new Specification();
+    message: string = ''
+}
+
 export class HomeScreenContentResp {
     status: boolean = false;
     data: HomeScreenContent = new HomeScreenContent();
@@ -39,11 +86,34 @@ export class HomeScreenContentResp {
 }
 
 export class HomeScreenContent {
-    // aboutUs: AboutUs = new AboutUs();
-    // contact: Contact = new Contact();
     keywords: Keywords = new Keywords();
-    // menu: Menu[] = [];
-    // socialLinks: SocialLink[] = [];
+    categories: ProductCategory[] = [];
+    branches: Branch[] = [];
+    clients: Client[] = [];
+    specifications: Specification[] = [];
+    aboutUs: AboutUs = new AboutUs();
+    manufacturerContent: ManufacturerContent = new ManufacturerContent();
+    pvcWallContent: PvcWallContent = new PvcWallContent();
+}
+
+export class ManufacturerContent {
+    id?: string = "";
+    content?: string = "";
+    sortContent?: string = "";
+    title?: string = "";
+    imagePath: string = "";
+    createdAt: any;
+    updatedAt: any;
+}
+
+export class PvcWallContent {
+    id?: string = "";
+    content?: string = "";
+    sortContent?: string = "";
+    title?: string = "";
+    imagePath: string = "";
+    createdAt: any;
+    updatedAt: any;
 }
 
 export class AboutUsContentResp {

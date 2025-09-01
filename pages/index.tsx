@@ -1,11 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
-// import dynamic from "next/dynamic";
-// const About = dynamic(() => import("./components/About"), { ssr: false });
+import Link from "next/link";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useHomeScreenContentQuery } from "../store/api/apiSlice";
+import Loader from "./components/Loader";
 
-import productData from "../data/product.json";
-import clientData from "../data/clients.json";
-import infrastructureData from "../data/infrastructure.json";
 export default function Home() {
+
+  const { data: homeScreenData, isLoading, error } = useHomeScreenContentQuery();
+  console.log("🚀 ~ Home ~ error:", error)
+  console.log("🚀 ~ Home ~ isLoading:", isLoading)
+  if (isLoading) {
+    return <Loader size="medium" />;
+  }
+  if (error) {
+    console.error('Error loading content:', error);
+    return <div>Error loading content. Please try again later.</div>;
+  }
   return (
     <main>
       <section className="video-container">
@@ -21,19 +35,65 @@ export default function Home() {
             <h2>Our Products Categories</h2>
             <p>Explore our premium PVC solutions</p>
           </div>
-          <div
-            className="slider"
-            data-options="type:carousel,arrows:true,perView:4,perViewLg:3,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,animationDuration:600,rewind:false,bound:false">
-            {
-              productData.map((item) => (
-                <div key={item.id} className="category-box">
-                  <img src={'/assets/long-9.jpg'} alt={item.name} />
-                  <div className="category-content">
-                    <h3 className="title">{item.name}</h3>
+          <div className="category-slider">
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={15}
+              slidesPerView={'auto'}
+              centeredSlides={true}
+              loop={false}
+              navigation
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1.2,
+                  centeredSlides: true,
+                  spaceBetween: 15
+                },
+                480: {
+                  slidesPerView: 1.5,
+                  centeredSlides: false
+                },
+                640: {
+                  slidesPerView: 2,
+                  centeredSlides: false
+                },
+                768: {
+                  slidesPerView: 2.5,
+                  centeredSlides: false
+                },
+                1024: {
+                  slidesPerView: 3,
+                  centeredSlides: false
+                },
+                1280: {
+                  slidesPerView: 4,
+                  centeredSlides: false
+                }
+              }}
+            >
+              {homeScreenData?.data?.categories?.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <div className="category-box">
+                    <img
+                      src={item.imagePath || '/assets/long-9.jpg'}
+                      alt={item.name}
+                      className="category-image"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = '/assets/long-9.jpg';
+                      }}
+                    />
+                    <div className="category-content">
+                      <h3 className="title">{item.name}</h3>
+                    </div>
                   </div>
-                </div>
-              ))
-            }
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </section>
@@ -45,58 +105,35 @@ export default function Home() {
             <p>Our Company Profile</p>
           </div>
           <div className="row">
-            <div className="col-lg-3">
+            <div className="col-lg-4">
               <p>
-                Our MNH PVC company provides timely assistance to customers and addresses their inquiries effectively. We provide all types of PVC materials of good quality. We assure you that PVC furniture for your home, office, or company will be beneficial, as well as cheap, good, and fast in your price.
+                {homeScreenData?.data?.aboutUs?.sortContent}
               </p>
             </div>
-            <div className="col-lg-3 no-margin-md">
-              <p>
-                Since 2022, we have become a trusted name for premium PVC wall panels, false ceilings, UV marble sheets, and louvers. PVC panels will be useful in furniture like living rooms, bedrooms, kitchen points, and TV units in your home, as well as in all furniture like cabinet points, director rooms, staff rooms, and meeting rooms in the office.
-              </p>
-              <hr className="space-sm" />
-              <a href="about.html" className="btn-text">Read more</a>
-            </div>
-            <div className="col-lg-6">
+            <div className="col-lg-8">
               <ul className="accordion-list" data-open="1">
-                <li>
-                  <a href="#">Our Experts</a>
-                  <div className="content">
-                    <p>
-                      Our PVC products are made with high-quality and advanced technology. Their materials are renowned for their durability, exquisite finishes, and elegant designs. We don’t just provide PVC panels; we create new experiences that transform spaces with style and functionality.
-                    </p>
-                    <p>
-                      Our team provides you with fast and complete support. We guide customers and save them considerable time by providing solutions to all furniture-related problems.
-                    </p>
-                    <p>
-                      We know that affordability is a major concern for many of our customers. By maintaining strong partnerships with suppliers and operating efficiently, we can provide high-quality products at affordable prices to a wide range of customers.
-                    </p>
-                    <p>
-                      We have set a new benchmark for PVC profiles with highly creative designs. At a time when most customers are preferring PVC, offering those products makes MNH PVC panels stand out among the competitors and suit their needs.
-                    </p>
-                    <p>
-                      Time is a precious commodity for our customers. We make the purchasing process as simple and efficient as possible so that customers can quickly find what they need and receive and use their products on time.
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <a href="#">Advantages of PVC Panels</a>
-                  <div className="content">
-                    <ul>
-                      <li>Waterproof</li>
-                      <li>Maintenance-Free</li>
-                      <li>Termite-Proof</li>
-                      <li>Fire Retardant</li>
-                      <li>Lightweight</li>
-                      <li>Easy to Install</li>
-                      <li>Stylish</li>
-                      <li>Durable</li>
-                      <li>Available in Various Designs and Colors</li>
-                    </ul>
-                    <p>Follow us on Instagram: <a href="https://www.instagram.com/mnh_pvc_panel/">https://www.instagram.com/mnh_pvc_panel/</a></p>
-                    <p>Facebook:&nbsp;<a href="https://www.facebook.com/mnhpanels">https://www.facebook.com/mnhpanels</a></p>
-                  </div>
-                </li>
+                {
+                  homeScreenData?.data?.manufacturerContent?.title && (
+                    <li>
+                      <a href="#">{homeScreenData?.data?.manufacturerContent?.title}</a>
+                      <div className="content">
+                        <p>{homeScreenData?.data?.manufacturerContent?.sortContent}</p>
+                        <Link href="/manufacturer">Read More</Link>
+                      </div>
+                    </li>
+                  )
+                }
+                {
+                  homeScreenData?.data?.pvcWallContent?.title && (
+                    <li>
+                      <a href="#">{homeScreenData?.data?.pvcWallContent?.title}</a>
+                      <div className="content">
+                        <p>{homeScreenData?.data?.pvcWallContent?.sortContent}</p>
+                        <Link href="/pvc-wall">Read More</Link>
+                      </div>
+                    </li>
+                  )
+                }
               </ul>
             </div>
           </div>
@@ -110,13 +147,11 @@ export default function Home() {
             <p>Trusted by leading brands for innovative PVC solutions.</p>
           </div>
           <div className="client-details">
-            {
-              clientData.map((item) => (
-                <div key={item.id} className="client-box">
-                  <img src={item.img} alt={item.name} />
-                </div>
-              ))
-            }
+            {homeScreenData?.data?.clients?.map((item) => (
+              <div key={item.id} className="client-box">
+                <img src={item.imagePath || '/assets/long-9.jpg'} alt={'MNH PVC Panel clients'} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -127,21 +162,67 @@ export default function Home() {
             <h2>Strengthening Connections Nationwide</h2>
             <p>Stocking at strategic hotspots to ensure timely delivery everywhere.</p>
           </div>
-          <div
-            className="slider"
-            data-options="type:carousel,arrows:true,perView:4,perViewLg:3,perViewMd:3,perViewSm:2,perViewXs:1,gap:15,controls:out,animationDuration:600,rewind:false,bound:false">
-            {
-              infrastructureData.map((item) => (
-                <div key={item.id} className="category-box">
-                  <img src={'/assets/long-9.jpg'} alt={item.name} />
-                  <div className="category-content">
-                    <h3 className="title">{item.name}</h3>
-                    <h3 className="sub-title">{item.city}</h3>
-                    <p className="sub-title address">{item.address}</p>
+          <div className="category-slider">
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={15}
+              slidesPerView={'auto'}
+              centeredSlides={true}
+              loop={false}
+              navigation
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1.2,
+                  centeredSlides: true,
+                  spaceBetween: 15
+                },
+                480: {
+                  slidesPerView: 1.5,
+                  centeredSlides: false
+                },
+                640: {
+                  slidesPerView: 2,
+                  centeredSlides: false
+                },
+                768: {
+                  slidesPerView: 2.5,
+                  centeredSlides: false
+                },
+                1024: {
+                  slidesPerView: 3,
+                  centeredSlides: false
+                },
+                1280: {
+                  slidesPerView: 4,
+                  centeredSlides: false
+                }
+              }}
+            >
+              {homeScreenData?.data?.branches?.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <div className="category-box">
+                    <img
+                      src={item.imagePath || '/assets/long-9.jpg'}
+                      alt={item.name}
+                      className="category-image"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = '/assets/long-9.jpg';
+                      }}
+                    />
+                    <div className="category-content">
+                      <h3 className="title">{item.name}</h3>
+                      <h3 className="sub-title">{item.city}</h3>
+                      <p className="sub-title address">{item.address}</p>
+                    </div>
                   </div>
-                </div>
-              ))
-            }
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </section>
@@ -155,62 +236,17 @@ export default function Home() {
           <table className="table table-grid table-border table-6-md">
             <tbody>
               <tr>
-                <td>
-                  <div className="icon-box icon-box-top align-center">
-                    <i className="im-dollar-sign"></i>
-                    <div className="caption">
-                      <h3>Cost-effective</h3>
-                      <p>Our products are cost-effective and provide long-lasting solutions</p>
+                {homeScreenData?.data?.specifications?.map((item) => (
+                  <td key={item.id}>
+                    <div className="icon-box icon-box-top align-center">
+                      <i className={item.iconName}></i>
+                      <div className="caption">
+                        <h3>{item.name}</h3>
+                        <p>{item.description}</p>
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="icon-box icon-box-top align-center">
-                    <i className="im-wave-2"></i>
-                    <div className="caption">
-                      <h3>Water Resistant</h3>
-                      <p>Our products are water-resistant and durable</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="icon-box icon-box-top align-center">
-                    <i className="im-fire-flame2"></i>
-                    <div className="caption">
-                      <h3>Hit Resistant</h3>
-                      <p>Our products are hit-resistant and durable</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="icon-box icon-box-top align-center">
-                    <i className="im-medical-sign"></i>
-                    <div className="caption">
-                      <h3>Hygienic</h3>
-                      <p>Our products are hygienic and durable</p>
-                    </div>
-                  </div>
-                </td>
-                {/* </tr>
-                <tr> */}
-                <td>
-                  <div className="icon-box icon-box-top align-center">
-                    <i className="im-david-star"></i>
-                    <div className="caption">
-                      <h3>Versatility</h3>
-                      <p>Our products are versatile and durable</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="icon-box icon-box-top align-center">
-                    <i className="im-ear"></i>
-                    <div className="caption">
-                      <h3>Sound Resistant</h3>
-                      <p>Our products are sound-resistant and durable</p>
-                    </div>
-                  </div>
-                </td>
+                  </td>
+                ))}
               </tr>
             </tbody>
           </table>
