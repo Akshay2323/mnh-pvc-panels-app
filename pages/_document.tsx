@@ -82,6 +82,17 @@ class MyDocument extends Document<MyDocumentProps> {
               </div>
             </div>
           </nav>
+          <header className="header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="/assets/hd-10.jpg" data-offset="0">
+            <div className="container">
+                <h1>The blog</h1>
+                <h2>Enjoy a day on the top dont have a price</h2>
+                <ol className="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ol>
+            </div>
+        </header>
           <Main />
           <NextScript />
           <footer className="light">
