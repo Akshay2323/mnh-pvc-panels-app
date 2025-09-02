@@ -1,17 +1,7 @@
 export default function Blog() {
     return (
-        <div><header className="header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="http://via.placeholder.com/1920x1080" data-offset="0">
-        <div className="container">
-            <h1>The blog</h1>
-            <h2>Enjoy a day on the top dont have a price</h2>
-            <ol className="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">Blog</a></li>
-            </ol>
-        </div>
-    </header>
-    <main>
+        <div>
+    <main>     
         <section className="section-base section-color">
             <div className="container">
                 <div className="row">
@@ -25,7 +15,7 @@ export default function Blog() {
                                                 <span>01</span>
                                                 <span>JAN 2020</span>
                                             </div>
-                                            <img src="http://via.placeholder.com/800x500" alt="" />
+                                            <img src="assets/image-3.jpg" alt="image"  />
                                         </a>
                                         <div className="caption">
                                             <h2>Content box</h2>
@@ -47,7 +37,7 @@ export default function Blog() {
                                                 <span>09</span>
                                                 <span>JAN 2020</span>
                                             </div>
-                                            <img src="http://via.placeholder.com/800x500" alt="" />
+                                            <img src="assets/image-4.jpg" alt="image"  />
                                         </a>
                                         <div className="caption">
                                             <h2>Content box</h2>
@@ -69,7 +59,7 @@ export default function Blog() {
                                                 <span>20</span>
                                                 <span>JAN 2020</span>
                                             </div>
-                                            <img src="http://via.placeholder.com/800x500" alt="" />
+                                            <img src="assets/image-5.jpg" alt="image"  />
                                         </a>
                                         <div className="caption">
                                             <h2>Content box</h2>
@@ -91,7 +81,7 @@ export default function Blog() {
                                                 <span>10</span>
                                                 <span>FEB 2020</span>
                                             </div>
-                                            <img src="http://via.placeholder.com/800x500" alt="" />
+                                            <img src="assets/image-6.jpg" alt="image"  />
                                         </a>
                                         <div className="caption">
                                             <h2>Content box</h2>
@@ -113,7 +103,7 @@ export default function Blog() {
                                                 <span>25</span>
                                                 <span>FEB 2020</span>
                                             </div>
-                                            <img src="http://via.placeholder.com/800x500" alt="" />
+                                            <img src="assets/image-7.jpg" alt="image"  />
                                         </a>
                                         <div className="caption">
                                             <h2>Content box</h2>
@@ -175,28 +165,28 @@ export default function Blog() {
                             <ul>
                                 <li>
                                     <a href="#">
-                                        <img src="http://via.placeholder.com/450x450" alt="" />
+                                        <img src="assets/square-1.jpg" alt="image"  />
                                         <span>February 12, 2020</span>
                                         The last summer days
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <img src="http://via.placeholder.com/450x450" alt="" />
+                                        <img src="assets/square-2.jpg" alt="image"  />
                                         <span>February 25, 2020</span>
                                         Travels
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <img src="http://via.placeholder.com/450x450" alt="" />
+                                        <img src="assets/square-3.jpg" alt="image" />
                                         <span>April 19, 2020</span>
                                         People and kids
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <img src="http://via.placeholder.com/450x450" alt="" />
+                                        <img src="assets/square-4.jpg" alt="image" />
                                         <span>April 20, 2020</span>
                                         Animals and nature
                                     </a>

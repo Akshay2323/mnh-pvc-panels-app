@@ -2,7 +2,7 @@ export default function About() {
     return (
         <div>
             <main>
-                <section className="section-base">
+                <section className="section-base section-color">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-4">
@@ -21,14 +21,14 @@ export default function About() {
                             </div>
                             <div className="col-lg-4">
                                 <hr className="space-xs height-10" />
-                                <ul className="slider" data-options="type:slider,perView:1,autoplay:3000">
-                                    <li>
+                                <div className="slider glide glide--ltr glide--slider glide--swipeable" data-options="type:slider,perView:1,autoplay:3000"><div data-glide-el="track" className="glide__track"><ul className="glide__slides">
+                                    <li className="glide__slide">
                                         <div className="cnt-box cnt-box-testimonials-bubble">
                                             <p>
                                                 Alpins team is the most exprienced and friendly team I ever meet. I will join again and again!
                                             </p>
                                             <div className="thumb-bar">
-                                                <img src="/assets/user-1.jpg" alt="" />
+                                                <img src="assets/user-1.jpg" alt="df" />
                                                 <p>
                                                     <span>Alex Brenson</span>
                                                     <span>Alpinist</span>
@@ -36,13 +36,13 @@ export default function About() {
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
+                                    <li className="glide__slide glide__slide--active">
                                         <div className="cnt-box cnt-box-testimonials-bubble">
                                             <p>
                                                 The Alpins is something new tha will surprise you with every trip. You will surely enjoy it.
                                             </p>
                                             <div className="thumb-bar">
-                                                <img src="/assets/user-2.jpg" alt="" />
+                                                <img src="assets/user-2.jpg" alt="asd" />
                                                 <p>
                                                     <span>Richard Pitt</span>
                                                     <span>Climber</span>
@@ -50,7 +50,7 @@ export default function About() {
                                             </div>
                                         </div>
                                     </li>
-                                </ul>
+                                </ul></div></div>
                             </div>
                         </div>
                     </div>
@@ -184,43 +184,7 @@ export default function About() {
                         </ul>
                     </div>
                 </section>
-
             </main>
-            <footer className="light">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-4">
-                            <h3>Alpins</h3>
-                            <p>Somewhere between the bottom of the climb and the summit is the answer to the mystery why we climb.</p>
-                        </div>
-                        <div className="col-lg-4">
-                            <h3>Contacts</h3>
-                            <ul className="icon-list icon-line">
-                                <li>San Pellegrino, BG, Italy</li>
-                                <li>hello@example.com</li>
-                                <li>02 123 333 444</li>
-                            </ul>
-                        </div>
-                        <div className="col-lg-4">
-                            <div className="icon-links icon-social icon-links-grid social-colors">
-                                <a className="facebook"><i className="icon-facebook"></i></a>
-                                <a className="twitter"><i className="icon-twitter"></i></a>
-                                <a className="instagram"><i className="icon-instagram"></i></a>
-                                <a className="google"><i className="icon-google"></i></a>
-                            </div>
-                            <hr className="space-sm" />
-                            <p>Subscribe to our newsletter of follow us on the social channels to stay tuned.</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="footer-bar">
-                    <div className="container">
-                        <span>© 2025 MNHPVCPANLES Developed By <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
-                        <span><a href="#">Contact us</a> | <a href="#">Privacy policy</a></span>
-                    </div>
-                </div>
-
-            </footer>
         </div>
     )
 }
