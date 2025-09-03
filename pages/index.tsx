@@ -11,8 +11,6 @@ import Loader from "./components/Loader";
 export default function Home() {
 
   const { data: homeScreenData, isLoading, error } = useHomeScreenContentQuery();
-  console.log("🚀 ~ Home ~ error:", error)
-  console.log("🚀 ~ Home ~ isLoading:", isLoading)
   if (isLoading) {
     return <Loader size="medium" />;
   }

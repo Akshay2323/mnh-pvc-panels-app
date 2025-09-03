@@ -136,6 +136,7 @@ export class ContactContentResp {
 export class ContactContent {
     contact: Contact = new Contact();
     keywords: Keywords = new Keywords();
+    socialLinks: SocialLink[] = [];
 }
 
 export class Keywords {
