@@ -5,19 +5,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useHomeScreenContentQuery } from "../store/api/apiSlice";
-import Loader from "./components/Loader";
+import { GetStaticProps } from "next";
+import { HomeScreenContent } from "@/utils/app.model";
+import { getHomeDetails } from "@/utils/api";
 
-export default function Home() {
+export default function Home(homeScreenData: HomeScreenContent) {
 
-  const { data: homeScreenData, isLoading, error } = useHomeScreenContentQuery();
-  if (isLoading) {
-    return <Loader size="medium" />;
-  }
-  if (error) {
-    console.error('Error loading content:', error);
-    return <div>Error loading content. Please try again later.</div>;
-  }
   return (
     <main>
       <section className="video-container">
@@ -73,7 +66,7 @@ export default function Home() {
                 }
               }}
             >
-              {homeScreenData?.data?.categories?.map((item) => (
+              {homeScreenData?.categories?.map((item) => (
                 <SwiperSlide key={item.id}>
                   <div className="category-box">
                     <img
@@ -105,28 +98,28 @@ export default function Home() {
           <div className="row">
             <div className="col-lg-4">
               <p>
-                {homeScreenData?.data?.aboutUs?.sortContent}
+                {homeScreenData?.aboutUs?.sortContent}
               </p>
             </div>
             <div className="col-lg-8">
               <ul className="accordion-list" data-open="1">
                 {
-                  homeScreenData?.data?.manufacturerContent?.title && (
+                  homeScreenData?.manufacturerContent?.title && (
                     <li>
-                      <a href="#">{homeScreenData?.data?.manufacturerContent?.title}</a>
+                      <a href="#">{homeScreenData?.manufacturerContent?.title}</a>
                       <div className="content">
-                        <p>{homeScreenData?.data?.manufacturerContent?.sortContent}</p>
+                        <p>{homeScreenData?.manufacturerContent?.sortContent}</p>
                         <Link href="/manufacturer">Read More</Link>
                       </div>
                     </li>
                   )
                 }
                 {
-                  homeScreenData?.data?.pvcWallContent?.title && (
+                  homeScreenData?.pvcWallContent?.title && (
                     <li>
-                      <a href="#">{homeScreenData?.data?.pvcWallContent?.title}</a>
+                      <a href="#">{homeScreenData?.pvcWallContent?.title}</a>
                       <div className="content">
-                        <p>{homeScreenData?.data?.pvcWallContent?.sortContent}</p>
+                        <p>{homeScreenData?.pvcWallContent?.sortContent}</p>
                         <Link href="/pvc-wall">Read More</Link>
                       </div>
                     </li>
@@ -145,7 +138,7 @@ export default function Home() {
             <p>Trusted by leading brands for innovative PVC solutions.</p>
           </div>
           <div className="client-details">
-            {homeScreenData?.data?.clients?.map((item) => (
+            {homeScreenData?.clients?.map((item) => (
               <div key={item.id} className="client-box">
                 <img src={item.imagePath || '/assets/long-9.jpg'} alt={'MNH PVC Panel clients'} />
               </div>
@@ -200,7 +193,7 @@ export default function Home() {
                 }
               }}
             >
-              {homeScreenData?.data?.branches?.map((item) => (
+              {homeScreenData?.branches?.map((item) => (
                 <SwiperSlide key={item.id}>
                   <div className="category-box">
                     <img
@@ -234,7 +227,7 @@ export default function Home() {
           <table className="table table-grid table-border table-6-md">
             <tbody>
               <tr>
-                {homeScreenData?.data?.specifications?.map((item) => (
+                {homeScreenData?.specifications?.map((item) => (
                   <td key={item.id}>
                     <div className="icon-box icon-box-top align-center">
                       <i className={item.iconName}></i>
@@ -253,3 +246,24 @@ export default function Home() {
     </main>
   )
 }
+
+export const getStaticProps: GetStaticProps<HomeScreenContent> = async () => {
+  try {
+    const response = await getHomeDetails();
+    const data = response.status ? response.data : new HomeScreenContent();
+
+    return {
+      props: {
+        ...data,
+      },
+      revalidate: 60, // Revalidate every 60 seconds
+    };
+  } catch (error) {
+    console.error('Error fetching home screen data:', error);
+    return {
+      props: {
+        ...new HomeScreenContent(),
+      },
+    };
+  }
+};

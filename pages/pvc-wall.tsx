@@ -1,23 +1,38 @@
-import { usePvcWallContentQuery } from "@/store/api/apiSlice";
-import Loader from "./components/Loader";
+import { GetStaticProps } from "next";
+import { getPvcWallDetails } from "@/utils/api";
+import { PvcWallContentData } from "@/utils/app.model";
 
-export default function About() {
-    const { data: pvcWallData, isLoading, error } = usePvcWallContentQuery();
-    if (isLoading) {
-        return <Loader size="medium" />;
-    }
-    if (error) {
-        console.error('Error loading content:', error);
-        return <div>Error loading content. Please try again later.</div>;
-    }
+export default function PVCWall(pvcWallData: PvcWallContentData) {
+
     return (
         <main>
             <hr className="section-base" />
             <section className="section-base">
                 <div className="container">
-                    <div dangerouslySetInnerHTML={{ __html: pvcWallData?.data?.pvcWallContent?.content || '' }} />
+                    <div dangerouslySetInnerHTML={{ __html: pvcWallData?.pvcWallContent?.content || '' }} />
                 </div>
             </section>
         </main>
     )
 }
+
+export const getStaticProps: GetStaticProps<PvcWallContentData> = async () => {
+    try {
+        const response = await getPvcWallDetails();
+        const data = response.status ? response.data : new PvcWallContentData();
+
+        return {
+            props: {
+                ...data,
+            },
+            revalidate: 60, // Revalidate every 60 seconds
+        };
+    } catch (error) {
+        console.error('Error fetching pvc wall data:', error);
+        return {
+            props: {
+                ...new PvcWallContentData(),
+            },
+        };
+    }
+};

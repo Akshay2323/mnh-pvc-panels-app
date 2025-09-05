@@ -1,23 +1,37 @@
-import { useAboutUsContentQuery } from "@/store/api/apiSlice";
-import Loader from "./components/Loader";
+import { getAboutUsDetails } from "@/utils/api";
+import { AboutUsContent } from "@/utils/app.model";
+import { GetStaticProps } from "next";
 
-export default function About() {
-    const { data: aboutUsData, isLoading, error } = useAboutUsContentQuery();
-    if (isLoading) {
-        return <Loader size="medium" />;
-    }
-    if (error) {
-        console.error('Error loading content:', error);
-        return <div>Error loading content. Please try again later.</div>;
-    }
+
+export default function About(aboutUsData: AboutUsContent) {
     return (
         <main>
             <hr className="section-base" />
             <section className="section-base">
                 <div className="container">
-                    <div dangerouslySetInnerHTML={{ __html: aboutUsData?.data?.aboutUs?.content || '' }} />
+                    <div dangerouslySetInnerHTML={{ __html: aboutUsData?.aboutUs?.content || '' }} />
                 </div>
             </section>
         </main>
     )
 }
+export const getStaticProps: GetStaticProps<AboutUsContent> = async () => {
+    try {
+        const response = await getAboutUsDetails();
+        const data = response.status ? response.data : new AboutUsContent();
+
+        return {
+            props: {
+                ...data,
+            },
+            revalidate: 60, // Revalidate every 60 seconds
+        };
+    } catch (error) {
+        console.error('Error fetching about us data:', error);
+        return {
+            props: {
+                ...new AboutUsContent(),
+            },
+        };
+    }
+};

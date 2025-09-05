@@ -1,33 +1,36 @@
-import { useContactContentQuery, useSendContactMutation } from "@/store/api/apiSlice";
 import Loader from "./components/Loader";
 import { SOCIAL_ICONS } from "@/utils/app.constants";
 import { useState } from "react";
+import { GetStaticProps } from "next";
+import { getContactDetails, sendContact } from "@/utils/api";
+import { ContactContent } from "@/utils/app.model";
 
-export default function About() {
-    const { data: contactContentData, isLoading, error } = useContactContentQuery();
+export default function Contact(contactContentData: ContactContent) {
+    // const { data: contactContentData, isLoading, error } = useContactContentQuery();
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [phone, setPhone] = useState<string>("");
     const [message, setMessage] = useState<string>("");
     const [success, setSuccess] = useState<boolean>(false);
     const [errorSend, setErrorSend] = useState<boolean>(false);
-    const [sendContact, { isLoading: isSending }] = useSendContactMutation();
-    if (isLoading) {
-        return <Loader size="medium" />;
-    }
-    if (error) {
-        console.error('Error loading content:', error);
-        return <div>Error loading content. Please try again later.</div>;
-    }
+    const [isSending, setIsSending] = useState<boolean>(false);
+    // if (isLoading) {
+    //     return <Loader size="medium" />;
+    // }
+    // if (error) {
+    //     console.error('Error loading content:', error);
+    //     return <div>Error loading content. Please try again later.</div>;
+    // }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
+            setIsSending(true);
             await sendContact({
                 name,
                 email,
                 phoneNo: phone,
                 message,
-            }).unwrap();
+            });
             setName("");
             setEmail("");
             setPhone("");
@@ -38,6 +41,7 @@ export default function About() {
             console.error(error);
             setErrorSend(true);
         } finally {
+            setIsSending(false);
             setTimeout(() => {
                 setSuccess(false);
                 setErrorSend(false);
@@ -55,7 +59,7 @@ export default function About() {
                                 <h2>Write us</h2>
                                 <p>Contact us from here</p>
                             </div>
-                            <form onSubmit={handleSubmit} className="form-box form-ajax" method="post" data-email="example@domain.com">
+                            <form className="form-box form-ajax">
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <p>Name</p>
@@ -75,7 +79,7 @@ export default function About() {
                                 {
                                     isSending && <Loader size="small" />
                                 }
-                                <button className="btn btn-sm" disabled={isSending} type="submit">
+                                <button className="btn btn-sm" disabled={isSending} onClick={handleSubmit} type="submit">
                                     Send messagge
                                 </button>
                                 <div className="success-box" style={{ display: success ? "block" : "none" }}>
@@ -92,16 +96,16 @@ export default function About() {
                                 <p>Information</p>
                             </div>
                             <ul className="text-list text-list-line">
-                                <li><b>Address</b><hr /><p>{contactContentData?.data?.contact?.address}</p></li>
+                                <li><b>Address</b><hr /><p>{contactContentData?.contact?.address}</p></li>
                                 {/* <li><b>Web</b><hr /><p>{contactContentData?.data?.contact?.website}</p></li> */}
-                                <li><b>Email</b><hr /><p>{contactContentData?.data?.contact?.email}</p></li>
-                                <li><b>Phone</b><hr /><p>{contactContentData?.data?.contact?.phoneNo}</p></li>
+                                <li><b>Email</b><hr /><p>{contactContentData?.contact?.email}</p></li>
+                                <li><b>Phone</b><hr /><p>{contactContentData?.contact?.phoneNo}</p></li>
                                 {/* <li><b>Skype</b><hr /><p>{contactContentData?.data?.contact?.skype}</p></li> */}
                             </ul>
                             <hr className="space-sm" />
                             <div className="icon-links icon-social icon-links-grid social-colors-hover">
                                 {
-                                    contactContentData?.data?.socialLinks?.map((item) => (
+                                    contactContentData?.socialLinks?.map((item) => (
                                         <a className={item.key}
                                             target="_blank"
                                             href={item.link}
@@ -120,3 +124,25 @@ export default function About() {
         </main>
     )
 }
+
+
+export const getStaticProps: GetStaticProps<ContactContent> = async () => {
+    try {
+        const response = await getContactDetails();
+        const data = response.status ? response.data : new ContactContent();
+
+        return {
+            props: {
+                ...data,
+            },
+            revalidate: 60, // Revalidate every 60 seconds
+        };
+    } catch (error) {
+        console.error('Error fetching contact data:', error);
+        return {
+            props: {
+                ...new ContactContent(),
+            },
+        };
+    }
+};
