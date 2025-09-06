@@ -218,19 +218,19 @@ export class BlogResp {
 
 export class BlogDetailsResp {
     status: boolean = false;
-    data: {
-        blogDetail: Blog;
-        footer: Footer;
-    } = {
-            blogDetail: new Blog(),
-            footer: new Footer()
-        };
+    data: BlogDetails = new BlogDetails();
     message: string = ''
 }
+
+export class BlogDetails {
+    blogDetail: Blog = new Blog();
+    keywords: Keywords = new Keywords();
+}
+
 export class BlogData {
     blogs: Blog[] = [];
-    blogBanner: string = "";
-    footer: Footer = new Footer();
+    category: ProductCategory[] = [];
+    keywords: Keywords = new Keywords();
     totalRecord: number = 0;
     totalPages: number = 0;
 }
@@ -247,6 +247,7 @@ export class Blog {
     title?: string = "";
     sortDescription?: string = "";
     description?: string = "";
+    productCategory: ProductCategory = new ProductCategory();
     type: BLOG_MEDIA_TYPE = BLOG_MEDIA_TYPE.IMAGE;
     media: string = "";
     createdAt: any;

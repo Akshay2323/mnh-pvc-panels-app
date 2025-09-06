@@ -38,14 +38,14 @@
 }
 
 .paginationButton.active {
-  background-color: #4299e1;
-  border-color: #4299e1;
+  background-color: #f06522;
+  border-color: #f06522;
   color: white;
 }
 
 .paginationButton.active:hover {
-  background-color: #3182ce;
-  border-color: #3182ce;
+  background-color: #f06522;
+  border-color: #f06522;
 }
 
 /* Responsive adjustments */
@@ -77,7 +77,7 @@
   }
 
   .paginationButton.active {
-    background-color: #4299e1;
-    border-color: #4299e1;
+    background-color: #f06522;
+    border-color: #f06522;
   }
 }

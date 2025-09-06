@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useState } from 'react';
 import Loader from "./components/Loader";
 
+const maxLimit = 20;
 interface ProductPageProps {
     initialData: {
         products: ProductGallery[];
@@ -31,9 +32,9 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
 
         setIsLoading(true);
         try {
-            const response = await getProductGallery(page, 20, '');
+            const response = await getProductGallery(page, maxLimit, '');
             if (response.status && response.data) {
-                setProducts(prevProducts => [...prevProducts, ...(response.data?.products || [])]);
+                setProducts(response.data?.products || []);
                 setPagination({
                     currentPage: page,
                     totalPages: response.data.totalPages || 1,
@@ -106,9 +107,7 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
 
 export const getStaticProps = async () => {
     try {
-        const page = 1;
-        const limit = 20;
-        const response = await getProductGallery(page, limit, '');
+        const response = await getProductGallery(1, maxLimit, '');
 
         if (!response.status || !response.data) {
             return {
@@ -122,7 +121,7 @@ export const getStaticProps = async () => {
                     products: response.data.products || [],
                     totalRecords: response.data.totalRecord || 0,
                     totalPages: response.data.totalPages || 1,
-                    currentPage: page,
+                    currentPage: 1,
                 },
             },
             revalidate: 60,

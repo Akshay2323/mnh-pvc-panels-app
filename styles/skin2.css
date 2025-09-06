@@ -1608,6 +1608,8 @@ button.btn-text {
 
 .cnt-box.boxed .img-box {
   box-shadow: none;
+  height: auto;
+  /* min-height: 240px; */
 }
 
 .cnt-box.boxed,

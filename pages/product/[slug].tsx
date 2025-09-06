@@ -35,7 +35,11 @@ export default function ProductPage({ initialData, slug }: ProductPageProps) {
         try {
             const response = await getProductsByCategory(slug, page, 20, '');
             if (response.status && response.data) {
-                setProducts(prevProducts => [...prevProducts, ...(response.data?.products || [])]);
+                if (page === 1) {
+                    setProducts(response.data?.products || []);
+                } else {
+                    setProducts(prevProducts => [...prevProducts, ...(response.data?.products || [])]);
+                }
                 setPagination({
                     currentPage: page,
                     totalPages: response.data.totalPages || 1,

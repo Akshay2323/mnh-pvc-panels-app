@@ -3,7 +3,10 @@ import axios, { AxiosResponse } from 'axios';
 import {
     AboutUsContent,
     AboutUsContentResp,
-    CategoryData,
+    BlogData,
+    BlogDetails,
+    BlogDetailsResp,
+    BlogResp,
     CategoryResp,
     ContactContent,
     ContactContentResp,
@@ -177,14 +180,14 @@ export const getAllBlogDetails = async (
     page: number = 1,
     limit: number = 10,
     search?: string,
-    category?: string): Promise<ContactContentResp> => {
+    categoryId?: string): Promise<BlogResp> => {
     try {
-        const response = await api.get<ContactContentResp>('/blogs/activeBlogDetails', {
+        const response = await api.get<BlogResp>('/blogs/activeBlogDetails', {
             params: {
                 page,
                 limit,
                 search,
-                category,
+                categoryId,
             },
         });
         return response.data;
@@ -192,7 +195,7 @@ export const getAllBlogDetails = async (
         return {
             status: false,
             message: error?.message || 'Failed to fetch blog content',
-            data: new ContactContent(),
+            data: new BlogData(),
         };
     }
 };
@@ -221,20 +224,16 @@ export const getProductGallery = async (
 };
 
 
-// export const getProductDetails = async (categoryId: string): Promise<ContactContentResp> => {
-//     try {
-//         const response = await api.get<ContactContentResp>('/blogs/activeBlogDetails', {
-//             params: {
-//                 categoryId,
-//             },
-//         });
-//         return response.data;
-//     } catch (error: any) {
-//         return {
-//             status: false,
-//             message: error?.message || 'Failed to fetch blog content',
-//             data: new ContactContent(),
-//         };
-//     }
-// };
+export const getBlogDetailsById = async (blogId: string): Promise<BlogDetailsResp> => {
+    try {
+        const response = await api.get<BlogDetailsResp>('/blogs/' + blogId);
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch blog content',
+            data: new BlogDetails(),
+        };
+    }
+};
 
