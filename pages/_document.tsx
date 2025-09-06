@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-css-tags */
 import { SOCIAL_ICONS } from "@/utils/app.constants";
 import { CommonContent, CommonContentResp } from "@/utils/app.model";
@@ -10,6 +9,7 @@ import React, { Fragment } from "react";
 
 interface MyDocumentProps extends DocumentInitialProps {
   commonContent: CommonContent;
+  currentPath: string;
 }
 
 class MyDocument extends Document<MyDocumentProps> {
@@ -29,15 +29,17 @@ class MyDocument extends Document<MyDocumentProps> {
     } catch (err) {
       console.error("Error fetching common content:", err);
     }
+    const currentPath = ctx.asPath || ctx.pathname;
 
     return {
       ...initialProps,
       commonContent,
+      currentPath,
     };
   }
 
   render() {
-    const { commonContent } = this.props as MyDocumentProps;
+    const { commonContent, currentPath } = this.props as MyDocumentProps;
     return (
       <Html lang="en">
         <Head>
@@ -46,7 +48,7 @@ class MyDocument extends Document<MyDocumentProps> {
         </Head>
         <body className="page-main">
           {/* <div id="preloader"></div> */}
-          <nav className="menu-classic menu-fixed menu-transparent light align-right" data-menu-anima="fade-in">
+          <nav className={`menu-classic menu-fixed ${currentPath === "/" ? "menu-transparent light" : ""} align-right`} data-menu-anima="fade-in">
             <div className="container">
               <div className="menu-brand">
                 <Link href="/">
@@ -78,10 +80,6 @@ class MyDocument extends Document<MyDocumentProps> {
                     layout="fill"
                     objectFit="contain"
                   />
-                  {/* <img className="logo-default scroll-hide" src="assets/app-logo.webp" alt="logo" />
-                  <img className="logo-retina scroll-hide" src="assets/app-logo.webp" alt="logo" />
-                  <img className="logo-default scroll-show" src="assets/app-logo.webp" alt="logo" />
-                  <img className="logo-retina scroll-show" src="assets/app-logo.webp" alt="logo" /> */}
                 </Link>
               </div>
               <i className="menu-btn"></i>
