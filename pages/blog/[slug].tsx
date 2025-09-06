@@ -46,51 +46,63 @@ export default function BlogPage(blogData: BlogDetails) {
     }
 
     return (
-        <main>
-            <section className="section-base ">
+        <>
+            <header className="header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="http://via.placeholder.com/1920x1080" data-offset="0">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-lg-8">
-                            {
-                                blogData?.blogDetail?.type == BLOG_MEDIA_TYPE.VIDEO ? <YouTube
-                                    ref={(ref) => {
-                                        if (ref) {
-                                            videoRefs.current = ref;
-                                        }
-                                    }}
-                                    videoId={extractYouTubeId(blogData?.blogDetail?.media)}
-                                    opts={youtubeOptions}
-                                    style={{ height: 'auto', width: '100%', position: 'relative' }}
-                                    onReady={(event) => {
-                                        // Pause video on initial load
-                                        event.target.pauseVideo();
-                                    }}
-                                /> :
-                                    <div className="blog-detail-image" >
-                                        <Image src={blogData?.blogDetail?.thumbnail || "/assets/app-logo.webp"} alt={blogData?.blogDetail?.title || ""} layout="fill"
-                                            objectFit="contain" />
-                                    </div>
+                    <h1>{blogData?.blogDetail?.title}</h1>
+                    <h2>{blogData?.blogDetail?.sortDescription}</h2>
+                    <ol className="breadcrumb">
+                        <li><Link href="index.html">Home</Link></li>
+                        <li><Link href="/blog">Blog</Link></li>
+                        <li><Link href="#">{blogData?.blogDetail?.title}</Link></li>
+                    </ol>
+                </div>
+            </header>
+            <main>
+                <section className="section-base ">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                {
+                                    blogData?.blogDetail?.type == BLOG_MEDIA_TYPE.VIDEO ? <YouTube
+                                        ref={(ref) => {
+                                            if (ref) {
+                                                videoRefs.current = ref;
+                                            }
+                                        }}
+                                        videoId={extractYouTubeId(blogData?.blogDetail?.media)}
+                                        opts={youtubeOptions}
+                                        style={{ height: 'auto', width: '100%', position: 'relative' }}
+                                        onReady={(event) => {
+                                            // Pause video on initial load
+                                            event.target.pauseVideo();
+                                        }}
+                                    /> :
+                                        <div className="blog-detail-image" >
+                                            <Image src={blogData?.blogDetail?.thumbnail || "/assets/app-logo.webp"} alt={blogData?.blogDetail?.title || ""} layout="fill"
+                                                objectFit="contain" />
+                                        </div>
 
-                            }
-                            {/* <img src="http://via.placeholder.com/800x500" alt="" /> */}
-                            <hr className="space-sm" />
-                            <div className="icon-links icon-links-grid icon-social social-colors">
-                                <Link href={"#"} data-social="share-facebook" className="facebook"><i className="icon-facebook"></i></Link>
-                                <Link href={"#"} data-social="share-twitter" className="twitter"><i className="icon-twitter"></i></Link>
-                                <Link href={"#"} data-social="share-linkedin" className="linkedin"><i className="icon-linkedin"></i></Link>
-                                <Link href={"#"} data-social="share-google" className="google"><i className="icon-google"></i></Link>
-                            </div>
-                            <hr className="space-sm" />
-                            <p className='blog-detail-sort-description'>{blogData?.blogDetail?.sortDescription}</p>
-                            <div dangerouslySetInnerHTML={{ __html: blogData?.blogDetail?.description || '' }} />
+                                }
+                                {/* <img src="http://via.placeholder.com/800x500" alt="" /> */}
+                                <hr className="space-sm" />
+                                <div className="icon-links icon-links-grid icon-social social-colors">
+                                    <Link href={"#"} data-social="share-facebook" className="facebook"><i className="icon-facebook"></i></Link>
+                                    <Link href={"#"} data-social="share-twitter" className="twitter"><i className="icon-twitter"></i></Link>
+                                    <Link href={"#"} data-social="share-linkedin" className="linkedin"><i className="icon-linkedin"></i></Link>
+                                    <Link href={"#"} data-social="share-google" className="google"><i className="icon-google"></i></Link>
+                                </div>
+                                <hr className="space-sm" />
+                                <p className='blog-detail-sort-description'>{blogData?.blogDetail?.sortDescription}</p>
+                                <div dangerouslySetInnerHTML={{ __html: blogData?.blogDetail?.description || '' }} />
 
-                            {/* <div className="list-nav">
+                                {/* <div className="list-nav">
                                 <a href="#">Previous post</a>
                                 <a className="list-archive" href="#"></a>
                                 <a href="#">Next post</a>
                             </div> */}
-                        </div>
-                        <div className="col-lg-4">
+                            </div>
+                            {/* <div className="col-lg-4">
                             <form className="form-box">
                                 <div className="input-text-btn">
                                     <input className="input-text" type="text" placeholder="Search ..." /><input type="submit" value="Search" className="btn" />
@@ -163,11 +175,12 @@ export default function BlogPage(blogData: BlogDetails) {
                             <h3>Twitter</h3>
                             <hr className="space-sm" />
                             <div className="social-feed social-feed-tw social-slider" data-social-id="twitter" data-options="count:8,arrows:true,nav:true,controls:out,type:carousel,perView:1"></div>
+                        </div> */}
                         </div>
                     </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            </main>
+        </>
     );
 }
 
