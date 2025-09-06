@@ -4,6 +4,7 @@ import { SOCIAL_ICONS } from "@/utils/app.constants";
 import { CommonContent, CommonContentResp } from "@/utils/app.model";
 import { NAV_ITEMS_KEYS } from "@/utils/navigation";
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from "next/document";
+import Image from "next/image";
 import Link from 'next/link';
 import React, { Fragment } from "react";
 
@@ -49,10 +50,38 @@ class MyDocument extends Document<MyDocumentProps> {
             <div className="container">
               <div className="menu-brand">
                 <Link href="/">
-                  <img className="logo-default scroll-hide" src="assets/app-logo.webp" alt="logo" />
+                  <Image
+                    className="logo-default scroll-hide"
+                    src="/assets/app-logo.webp"
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <Image
+                    className="logo-retina scroll-hide"
+                    src="/assets/app-logo.webp"
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <Image
+                    className="logo-default scroll-show"
+                    src="/assets/app-logo.webp"
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <Image
+                    className="logo-retina scroll-show"
+                    src="/assets/app-logo.webp"
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  {/* <img className="logo-default scroll-hide" src="assets/app-logo.webp" alt="logo" />
                   <img className="logo-retina scroll-hide" src="assets/app-logo.webp" alt="logo" />
                   <img className="logo-default scroll-show" src="assets/app-logo.webp" alt="logo" />
-                  <img className="logo-retina scroll-show" src="assets/app-logo.webp" alt="logo" />
+                  <img className="logo-retina scroll-show" src="assets/app-logo.webp" alt="logo" /> */}
                 </Link>
               </div>
               <i className="menu-btn"></i>

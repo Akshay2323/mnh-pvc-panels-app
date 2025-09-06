@@ -6,7 +6,6 @@ import { getContactDetails, sendContact } from "@/utils/api";
 import { ContactContent } from "@/utils/app.model";
 
 export default function Contact(contactContentData: ContactContent) {
-    // const { data: contactContentData, isLoading, error } = useContactContentQuery();
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [phone, setPhone] = useState<string>("");
@@ -14,13 +13,6 @@ export default function Contact(contactContentData: ContactContent) {
     const [success, setSuccess] = useState<boolean>(false);
     const [errorSend, setErrorSend] = useState<boolean>(false);
     const [isSending, setIsSending] = useState<boolean>(false);
-    // if (isLoading) {
-    //     return <Loader size="medium" />;
-    // }
-    // if (error) {
-    //     console.error('Error loading content:', error);
-    //     return <div>Error loading content. Please try again later.</div>;
-    // }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {

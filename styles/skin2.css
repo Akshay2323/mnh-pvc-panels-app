@@ -1134,7 +1134,7 @@ body > nav.menu-side .menu-cnt > ul > li:hover > a {
 .menu-subtitle .lan-menu > li > a,
 .menu-subtitle .menu-cnt > ul > li > a,
 .menu-subtitle .menu-cnt .menu-right {
-  height: 95px;
+  height: 100%;
   line-height: 95px;
 }
 
@@ -1240,6 +1240,10 @@ body > header:not(.header-base) > .container {
 
 .header-base + main > section:not(.section-base):first-child {
   margin-top: 100px;
+}
+
+.mt50 {
+  margin-top: 50px;
 }
 
 body > header .breadcrumb {
@@ -2325,7 +2329,7 @@ Medium devices (tablets, less than 992px)
   .menu-fixed.scroll-menu .menu-cnt > ul > li > a,
   .menu-fixed.scroll-menu .menu-brand,
   body > nav.scroll-menu .lan-menu > li > a {
-    height: 56px;
+    height: 100%;
     line-height: 56px;
     padding-bottom: 0;
   }

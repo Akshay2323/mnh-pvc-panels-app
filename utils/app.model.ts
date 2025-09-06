@@ -275,4 +275,60 @@ export class PvcWallContentData {
     pvcWallContent: PvcWallContent = new PvcWallContent();
     keywords: Keywords = new Keywords();
 }
+export class CategoryResp {
+    status: boolean = false;
+    data: CategoryData[] = [];
+    message: string = ''
+}
+export class CategoryData {
+    id: string = "";
+    name: string = "";
+    description: string = "";
+    imagePath: string = "";
+    orderNo: number = 0;
+}
+
+export class Product {
+    id: string = "";
+    name: string = "";
+    description: string = "";
+    thumbImage: string = "";
+    pdfUrl: string = "";
+    productCategory: ProductCategory = new ProductCategory();
+    orderNo: number = 0;
+}
+export class ProductData {
+    products: Product[] = [];
+    keywords: Keywords = new Keywords();
+    totalRecord: number = 0;
+    totalPages: number = 0;
+}
+
+export class ProductResp {
+    status: boolean = false;
+    data: ProductData = new ProductData();
+    message: string = ''
+}
+
+
+export class ProductGallery {
+    id: string = "";
+    name: string = "";
+    description: string = "";
+    thumbImage: string = "";
+    pdfUrl: string = "";
+    orderNo: number = 0;
+}
+export class ProductGalleryData {
+    products: ProductGallery[] = [];
+    keywords: Keywords = new Keywords();
+    totalRecord: number = 0;
+    totalPages: number = 0;
+}
+
+export class ProductGalleryResp {
+    status: boolean = false;
+    data: ProductGalleryData = new ProductGalleryData();
+    message: string = ''
+}
 

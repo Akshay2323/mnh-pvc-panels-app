@@ -3,12 +3,18 @@ import axios, { AxiosResponse } from 'axios';
 import {
     AboutUsContent,
     AboutUsContentResp,
+    CategoryData,
+    CategoryResp,
     ContactContent,
     ContactContentResp,
     HomeScreenContent,
     HomeScreenContentResp,
     ManufacturerContentData,
     ManufacturerContentResp,
+    ProductData,
+    ProductGalleryData,
+    ProductGalleryResp,
+    ProductResp,
     PvcWallContentData,
     PvcWallContentResp,
     UserContactParam,
@@ -129,4 +135,106 @@ export const sendContact = async (param: UserContactParam): Promise<UserContactR
     }
 };
 
+export const productCategory = async (): Promise<CategoryResp> => {
+    try {
+        const response = await api.get<CategoryResp>('/productCategory/active');
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product category',
+            data: [],
+        };
+    }
+};
+
+export const getProductsByCategory = async (
+    categoryId: string,
+    page: number = 1,
+    limit: number = 10,
+    search?: string
+): Promise<ProductResp> => {
+    try {
+        const response = await api.get<ProductResp>('/product/getProductsByCategory', {
+            params: {
+                page,
+                limit,
+                search,
+                id: categoryId,
+            },
+        });
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product content',
+            data: new ProductData(),
+        };
+    }
+};
+
+export const getAllBlogDetails = async (
+    page: number = 1,
+    limit: number = 10,
+    search?: string,
+    category?: string): Promise<ContactContentResp> => {
+    try {
+        const response = await api.get<ContactContentResp>('/blogs/activeBlogDetails', {
+            params: {
+                page,
+                limit,
+                search,
+                category,
+            },
+        });
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch blog content',
+            data: new ContactContent(),
+        };
+    }
+};
+export const getProductGallery = async (
+    page: number = 1,
+    limit: number = 10,
+    search?: string,
+    category?: string): Promise<ProductGalleryResp> => {
+    try {
+        const response = await api.get<ProductGalleryResp>('/productGallery/activeGalleryProducts', {
+            params: {
+                page,
+                limit,
+                search,
+                category,
+            },
+        });
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product gallery content',
+            data: new ProductGalleryData(),
+        };
+    }
+};
+
+
+// export const getProductDetails = async (categoryId: string): Promise<ContactContentResp> => {
+//     try {
+//         const response = await api.get<ContactContentResp>('/blogs/activeBlogDetails', {
+//             params: {
+//                 categoryId,
+//             },
+//         });
+//         return response.data;
+//     } catch (error: any) {
+//         return {
+//             status: false,
+//             message: error?.message || 'Failed to fetch blog content',
+//             data: new ContactContent(),
+//         };
+//     }
+// };
 

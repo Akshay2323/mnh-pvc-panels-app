@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     AES_IV: process.env.NEXT_PUBLIC_AES_IV
   },
   images: {
-    domains: ['mnhpvcpanels.com', 'localhost:3000'],
+    domains: ['mnhpvcpanels.com', 'localhost:3000', 'localhost'],
   },
 };
 

@@ -865,6 +865,7 @@ body > nav .menu-brand {
 
 body > nav .menu-brand > a {
   height: 100%;
+  width: 200px;
 }
 
 body > nav .menu-brand img {
@@ -1742,7 +1743,7 @@ SUBTITLE - NAVIGATION MENU
 .menu-subtitle .search-box-menu > i,
 .menu-subtitle .menu-brand,
 .menu-subtitle .lan-menu > li > a {
-  height: 70px;
+  height: 100%;
   line-height: 70px;
 }
 
@@ -1873,7 +1874,7 @@ ICON - NAVIGATION MENU
   .menu-icon-top .menu-cnt .menu-right,
   .menu-icon-top .menu-brand,
   .menu-icon-top .lan-menu > li > a {
-    height: 80px;
+    height: 100%;
     line-height: 80px;
   }
 
@@ -3793,6 +3794,7 @@ IMAGE BOX - COMPONENT
   display: block;
   border-radius: 3px;
   transition: all 0.5s;
+  height: 100%;
 }
 
 .img-box:before {
@@ -4401,6 +4403,7 @@ ALBUM - CONTAINER
 
 .album-box {
   position: relative;
+  height: 240px;
 }
 
 .album-box .caption {
