@@ -4,13 +4,15 @@ import { getProductsByCategory, productCategory } from "@/utils/api";
 import { GetStaticPaths } from "next";
 import Loader from "../../components/Loader";
 import Pagination from "@/components/Pagination";
-import { Product } from '@/utils/app.model';
+import { Keywords, Product } from '@/utils/app.model';
 import Image from 'next/image';
 import Link from 'next/link';
+import SEO from '@/components/SEO';
 
 interface ProductPageProps {
     initialData: {
         products: Product[];
+        keywords: Keywords;
         totalRecords: number;
         totalPages: number;
         currentPage: number;
@@ -77,6 +79,14 @@ export default function ProductPage({ initialData, slug }: ProductPageProps) {
 
     return (
         <main>
+
+            <SEO
+                title={
+                    initialData?.products?.[0]?.productCategory?.name || initialData?.keywords?.title || "Products"}
+                description={initialData?.products?.[0]?.productCategory?.description || initialData?.keywords?.description || "Products Page"}
+                keywords={initialData?.keywords?.keywords?.split(",") || []}
+                image={initialData?.products?.[0]?.productCategory?.imagePath || initialData?.keywords?.imagePath}
+            />
             <section className="section-base mt50">
                 <div className="container">
                     <div className="title align-center align-left-md">
@@ -149,6 +159,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
             props: {
                 initialData: {
                     products: response.data.products || [],
+                    keywords: response.data.keywords || {},
                     totalRecords: response.data.totalRecord || 0,
                     totalPages: response.data.totalPages || 1,
                     currentPage: page,

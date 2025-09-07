@@ -1,5 +1,5 @@
 import { getAllBlogDetails } from "@/utils/api";
-import { Blog, BLOG_MEDIA_TYPE, ProductCategory } from "@/utils/app.model";
+import { Blog, BLOG_MEDIA_TYPE, Keywords, ProductCategory } from "@/utils/app.model";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,11 +9,13 @@ import Pagination from "@/components/Pagination";
 import { format } from "date-fns";
 import YouTube, { YouTubePlayer } from "react-youtube";
 import { extractYouTubeId } from "@/utils/common";
+import SEO from "@/components/SEO";
 
 const maxLimit = 10;
 interface BlogPageProps {
     initialData: {
         blogs: Blog[];
+        keywords: Keywords;
         category: ProductCategory[];
         totalRecords: number;
         totalPages: number;
@@ -79,17 +81,13 @@ export default function BlogPage({ initialData }: BlogPageProps) {
     // }
     return (
         <div>
-            <header className="header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="http://via.placeholder.com/1920x1080" data-offset="0">
-                <div className="container">
-                    <h1>The blog</h1>
-                    <h2>Enjoy a day on the top dont have a price</h2>
-                    <ol className="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#">Pages</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ol>
-                </div>
-            </header>
+            <SEO
+                title={
+                    initialData?.keywords.title || "Blog"}
+                description={initialData?.keywords.description || "Blog Page"}
+                keywords={initialData?.keywords.keywords?.split(",") || []}
+                image={initialData?.keywords.imagePath}
+            />
             <main>
                 <section className="section-base section-color">
                     <div className="container">
@@ -265,6 +263,7 @@ export const getStaticProps = async () => {
             props: {
                 initialData: {
                     blogs: response.data.blogs || [],
+                    keywords: response.data.keywords || new Keywords(),
                     category: response.data.category || [],
                     totalRecords: response.data.totalRecord || 0,
                     totalPages: response.data.totalPages || 1,

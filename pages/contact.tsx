@@ -4,6 +4,7 @@ import { useState } from "react";
 import { GetStaticProps } from "next";
 import { getContactDetails, sendContact } from "@/utils/api";
 import { ContactContent } from "@/utils/app.model";
+import SEO from "@/components/SEO";
 
 export default function Contact(contactContentData: ContactContent) {
     const [name, setName] = useState<string>("");
@@ -42,6 +43,13 @@ export default function Contact(contactContentData: ContactContent) {
     };
     return (
         <main>
+            <SEO
+                title={
+                    contactContentData?.keywords.title || "Contact"}
+                description={contactContentData?.keywords.description || "Contact Page"}
+                keywords={contactContentData?.keywords.keywords?.split(",") || []}
+                image={contactContentData?.keywords.imagePath}
+            />
             <section className="section-base">
                 <div className="container">
                     <hr className="space" />

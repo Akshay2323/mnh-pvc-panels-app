@@ -2,12 +2,19 @@
 import { GetStaticProps } from "next";
 import { ManufacturerContentData } from "@/utils/app.model";
 import { getManufacturerDetails } from "@/utils/api";
+import SEO from "@/components/SEO";
 
 export default function Manufaturer(manufacturerData: ManufacturerContentData) {
 
     return (
         <main>
-            <hr className="section-base" />
+            <SEO
+                title={
+                    manufacturerData?.keywords.title || "Manufacturer"}
+                description={manufacturerData?.keywords.description || "Manufacturer Page"}
+                keywords={manufacturerData?.keywords.keywords?.split(",") || []}
+                image={manufacturerData?.keywords.imagePath}
+            />
             <section className="section-base">
                 <div className="container">
                     <div dangerouslySetInnerHTML={{ __html: manufacturerData?.manufacturerContent?.content || '' }} />

@@ -1,15 +1,17 @@
 import Pagination from "@/components/Pagination";
 import { getProductGallery } from "@/utils/api";
-import { ProductGallery } from '@/utils/app.model';
+import { Keywords, ProductGallery } from '@/utils/app.model';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from 'react';
 import Loader from "../components/Loader";
+import SEO from "@/components/SEO";
 
 const maxLimit = 20;
 interface ProductPageProps {
     initialData: {
+        keywords: Keywords;
         products: ProductGallery[];
         totalRecords: number;
         totalPages: number;
@@ -72,6 +74,13 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
 
     return (
         <main>
+            <SEO
+                title={
+                    initialData?.keywords.title || "Gallery"}
+                description={initialData?.keywords.description || "Gallery Page"}
+                keywords={initialData?.keywords.keywords?.split(",") || []}
+                image={initialData?.keywords.imagePath}
+            />
             <section className="section-base mt50">
                 <div className="container">
                     <div className="title align-center align-left-md">
@@ -119,6 +128,7 @@ export const getStaticProps = async () => {
             props: {
                 initialData: {
                     products: response.data.products || [],
+                    keywords: response.data.keywords || {},
                     totalRecords: response.data.totalRecord || 0,
                     totalPages: response.data.totalPages || 1,
                     currentPage: 1,

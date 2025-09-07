@@ -8,11 +8,19 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { GetStaticProps } from "next";
 import { HomeScreenContent } from "@/utils/app.model";
 import { getHomeDetails } from "@/utils/api";
+import SEO from "@/components/SEO";
 
 export default function Home(homeScreenData: HomeScreenContent) {
 
   return (
     <main>
+      <SEO
+        title={
+          homeScreenData?.keywords.title || "Home"}
+        description={homeScreenData?.keywords.description || "Home Page"}
+        keywords={homeScreenData?.keywords.keywords?.split(",") || []}
+        image={homeScreenData?.keywords.imagePath}
+      />
       <section className="video-container">
         <video autoPlay muted loop playsInline className="responsive-video">
           <source src="/assets/MNH-Full-intro-Video-V2.mp4" type="video/mp4" />

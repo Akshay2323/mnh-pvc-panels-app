@@ -1,12 +1,18 @@
 import { getAboutUsDetails } from "@/utils/api";
 import { AboutUsContent } from "@/utils/app.model";
 import { GetStaticProps } from "next";
-
+import SEO from "../components/SEO";
 
 export default function About(aboutUsData: AboutUsContent) {
     return (
         <main>
-            <hr className="section-base" />
+            <SEO
+                title={
+                    aboutUsData?.keywords.title || "About"}
+                description={aboutUsData?.keywords.description || "About Page"}
+                keywords={aboutUsData?.keywords.keywords?.split(",") || []}
+                image={aboutUsData?.keywords.imagePath}
+            />
             <section className="section-base">
                 <div className="container">
                     <div dangerouslySetInnerHTML={{ __html: aboutUsData?.aboutUs?.content || '' }} />

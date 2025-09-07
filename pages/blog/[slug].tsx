@@ -10,6 +10,7 @@ import YouTube, { YouTubePlayer } from "react-youtube";
 import Loader from "../../components/Loader";
 import PageHeader from '../../components/PageHeader';
 import React from "react";
+import SEO from "@/components/SEO";
 
 const youtubeOptions = {
     width: '100%',
@@ -49,6 +50,13 @@ export default function BlogPage(blogData: BlogDetails) {
 
     return (
         <React.Fragment>
+            <SEO
+                title={
+                    blogData?.blogDetail?.title || blogData?.keywords.title || "Blog"}
+                description={blogData?.blogDetail?.sortDescription || blogData?.keywords.description || "Blog Page"}
+                keywords={blogData?.keywords.keywords?.split(",") || []}
+                image={blogData?.blogDetail?.thumbnail || blogData?.keywords.imagePath}
+            />
             <PageHeader
                 title={blogData?.blogDetail?.title || ''}
                 description={blogData?.blogDetail?.sortDescription}
