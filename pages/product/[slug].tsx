@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from "next/router";
 import { getProductsByCategory, productCategory } from "@/utils/api";
 import { GetStaticPaths } from "next";
-import Loader from "../components/Loader";
+import Loader from "../../components/Loader";
 import Pagination from "@/components/Pagination";
 import { Product } from '@/utils/app.model';
 import Image from 'next/image';

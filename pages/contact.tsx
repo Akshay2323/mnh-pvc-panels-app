@@ -1,4 +1,4 @@
-import Loader from "./components/Loader";
+import Loader from "../components/Loader";
 import { SOCIAL_ICONS } from "@/utils/app.constants";
 import { useState } from "react";
 import { GetStaticProps } from "next";

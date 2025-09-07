@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import Loader from "./components/Loader";
+import Loader from "../components/Loader";
 import Pagination from "@/components/Pagination";
 import { format } from "date-fns";
 import YouTube, { YouTubePlayer } from "react-youtube";

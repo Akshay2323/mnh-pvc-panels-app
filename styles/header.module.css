@@ -1,0 +1,163 @@
+@keyframes anima-header {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.headerBase {
+  background-color: #fff;
+  padding-top: 100px;
+  margin-top: 120px;
+  top: -25px;
+  margin-bottom: -25px;
+}
+
+.headerBase h1 {
+  font-size: 40px;
+  line-height: 50px;
+  font-weight: 900;
+  text-transform: uppercase;
+  animation: anima-header 4s;
+  margin: 0;
+  color: #13304a;
+}
+
+.headerBase h2 {
+  max-width: 700px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
+  animation: anima-header 4s;
+  position: relative;
+  display: inline-block;
+  margin: 20px 0 0 0;
+  color: #13304a;
+  line-height: 30px;
+}
+
+.headerBase h2:after,
+.headerBase h2:before {
+  content: "";
+  position: absolute;
+  height: 6px;
+  width: 1500px;
+  top: 12px;
+  border-radius: 3px;
+  background-color: #f06522;
+}
+
+.headerBase h2:before {
+  left: calc(100% + 30px);
+}
+
+.headerBase h2:after {
+  right: calc(100% + 30px);
+}
+
+/* .headerBase + main > section:not(.section-base):first-child {
+  margin-top: 100px;
+} */
+
+.headerBase .breadcrumb {
+  position: absolute;
+  right: 15px;
+  top: 0;
+  margin-top: 0;
+  bottom: 50px;
+  opacity: 0;
+  transition: all 0.5s;
+  list-style: none;
+  display: flex;
+  margin: 20px 0 0 0;
+  padding: 0;
+}
+
+.headerBase:hover .breadcrumb {
+  right: 35px;
+  opacity: 1;
+}
+
+.headerBase .breadcrumb,
+.headerBase.align-center .breadcrumb {
+  margin-top: 35px;
+}
+
+.headerBase .breadcrumb li a:after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 11px;
+  border-radius: 3px;
+  margin-top: -6px;
+  opacity: 0.6;
+  top: 50%;
+  transform: rotate(25deg);
+  right: -3px;
+  background-color: #f06522;
+}
+
+.headerBase .breadcrumb li {
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.headerBase .breadcrumb li a {
+  padding-right: 25px;
+  margin-right: 25px;
+  transition: color 0.5s;
+  font-size: 10px;
+  line-height: 34px;
+  text-transform: uppercase;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  color: #f06522;
+}
+
+.headerBase .breadcrumb li:last-child a {
+  font-weight: 700;
+}
+
+.headerBase .light .breadcrumb li a:after {
+  background: #fff;
+}

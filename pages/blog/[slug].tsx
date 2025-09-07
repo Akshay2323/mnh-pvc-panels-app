@@ -7,7 +7,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 import YouTube, { YouTubePlayer } from "react-youtube";
-import Loader from "../components/Loader";
+import Loader from "../../components/Loader";
+import PageHeader from '../../components/PageHeader';
+import React from "react";
 
 const youtubeOptions = {
     width: '100%',
@@ -30,7 +32,7 @@ export default function BlogPage(blogData: BlogDetails) {
     if (!blogData?.blogDetail?.id) {
         return (
             <main>
-                <section className="section-base mt50">
+                <section className="section-base">
                     <div className="container">
                         <div className="title align-center align-left-md">
                             <h2>Blogs</h2>
@@ -46,20 +48,17 @@ export default function BlogPage(blogData: BlogDetails) {
     }
 
     return (
-        <>
-            <header className="header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="http://via.placeholder.com/1920x1080" data-offset="0">
-                <div className="container">
-                    <h1>{blogData?.blogDetail?.title}</h1>
-                    <h2>{blogData?.blogDetail?.sortDescription}</h2>
-                    <ol className="breadcrumb">
-                        <li><Link href="index.html">Home</Link></li>
-                        <li><Link href="/blog">Blog</Link></li>
-                        <li><Link href="#">{blogData?.blogDetail?.title}</Link></li>
-                    </ol>
-                </div>
-            </header>
+        <React.Fragment>
+            <PageHeader
+                title={blogData?.blogDetail?.title || ''}
+                description={blogData?.blogDetail?.sortDescription}
+                breadcrumbs={[
+                    { label: 'Blog', href: '/blog' },
+                    { label: 'Post', href: '' }
+                ]}
+            />
             <main>
-                <section className="section-base ">
+                <section className="section-base">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
@@ -180,7 +179,7 @@ export default function BlogPage(blogData: BlogDetails) {
                     </div>
                 </section>
             </main>
-        </>
+        </React.Fragment>
     );
 }
 
@@ -218,8 +217,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
 
         return {
             props: {
-                blogDetail: response.data.blogDetail || [],
-                keywords: response.data.keywords || [],
+                ...response.data,
             },
             revalidate: 60,
         };
