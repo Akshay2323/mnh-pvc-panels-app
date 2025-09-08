@@ -3,13 +3,14 @@ import { Blog, BLOG_MEDIA_TYPE, Keywords, ProductCategory } from "@/utils/app.mo
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Loader from "../components/Loader";
 import Pagination from "@/components/Pagination";
 import { format } from "date-fns";
 import YouTube, { YouTubePlayer } from "react-youtube";
 import { extractYouTubeId } from "@/utils/common";
 import SEO from "@/components/SEO";
+import PageHeader from "@/components/PageHeader";
 
 const maxLimit = 10;
 interface BlogPageProps {
@@ -72,15 +73,8 @@ export default function BlogPage({ initialData }: BlogPageProps) {
         return <Loader />;
     }
 
-    // if (!blogs || blogs.length === 0) {
-    //     return (
-    //         <main>
-
-    //         </main>
-    //     );
-    // }
     return (
-        <div>
+        <React.Fragment>
             <SEO
                 title={
                     initialData?.keywords.title || "Blog"}
@@ -88,8 +82,15 @@ export default function BlogPage({ initialData }: BlogPageProps) {
                 keywords={initialData?.keywords.keywords?.split(",") || []}
                 image={initialData?.keywords.imagePath}
             />
+            <PageHeader
+                title={"Blog"}
+                description={"Explore ideas, trends & inspirations"}
+                breadcrumbs={[
+                    { label: 'Blog', href: '/blog' },
+                ]}
+            />
             <main>
-                <section className="section-base section-color">
+                <section className="section-base">
                     <div className="container">
 
                         <div className="row">
@@ -244,7 +245,8 @@ export default function BlogPage({ initialData }: BlogPageProps) {
                         </div>
                     </div>
                 </section>
-            </main></div>
+            </main>
+        </React.Fragment>
     )
 }
 

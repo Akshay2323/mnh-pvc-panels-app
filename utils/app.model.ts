@@ -301,6 +301,7 @@ export class Product {
 export class ProductData {
     products: Product[] = [];
     keywords: Keywords = new Keywords();
+    category: ProductCategory = new ProductCategory();
     totalRecord: number = 0;
     totalPages: number = 0;
 }

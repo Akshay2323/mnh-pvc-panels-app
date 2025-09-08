@@ -18,7 +18,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, description, breadcrumbs
                 <h1>{title}</h1>
                 {description && (
                     <h2>
-                        {description.length > 40 ? `${description.substring(0, 40)}...` : description}
+                        {description}
+                        {/* {description.length > 40 ? `${description.substring(0, 40)}...` : description} */}
                     </h2>
                 )}
                 <ol className={styles.breadcrumb}>

@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import { useState } from 'react';
 import Loader from "../components/Loader";
 import SEO from "@/components/SEO";
+import React from "react";
+import PageHeader from "@/components/PageHeader";
 
 const maxLimit = 20;
 interface ProductPageProps {
@@ -59,9 +61,9 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
             <main>
                 <section className="section-base mt50">
                     <div className="container">
-                        <div className="title align-center align-left-md">
+                        {/* <div className="title align-center align-left-md">
                             <h2>Gallery</h2>
-                        </div>
+                        </div> */}
                         <div className="error-container">
                             <h1>No Products Found</h1>
                             <p>There are no products available in this category.</p>
@@ -73,7 +75,7 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
     }
 
     return (
-        <main>
+        <React.Fragment>
             <SEO
                 title={
                     initialData?.keywords.title || "Gallery"}
@@ -81,36 +83,55 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
                 keywords={initialData?.keywords.keywords?.split(",") || []}
                 image={initialData?.keywords.imagePath}
             />
-            <section className="section-base mt50">
-                <div className="container">
-                    <div className="title align-center align-left-md">
-                        <h2>Gallery</h2>
-                    </div>
-                    <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
-                        <div className="album-list">
-                            {products.map((product) => (
-                                <div key={product.id} className="album-box">
-                                    <Link href={product.pdfUrl} target="_blank" className="img-box img-scale">
-                                        <Image src={product.thumbImage} alt={product.name} layout="fill"
-                                            objectFit="contain" />
-                                    </Link>
-                                    <div className="caption">
-                                        <h3>{product.name}</h3>
+            <PageHeader
+                title={"Gallery"}
+                description={"Discover our collection of designs"}
+                breadcrumbs={[
+                    { label: 'Gallery', href: '/gallery' },
+                ]}
+            />
+            <main>
+                {
+                    (!products || products.length === 0) ? (
+                        <section className="section-base">
+                            <div className="container">
+                                <div className="error-container">
+                                    <h1>No Products Found</h1>
+                                    <p>There are no products available in this category.</p>
+                                </div>
+                            </div>
+                        </section>
+                    ) : (
+                        <section className="section-base">
+                            <div className="container">
+                                <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
+                                    <div className="album-list">
+                                        {products.map((product) => (
+                                            <div key={product.id} className="album-box">
+                                                <Link href={product.pdfUrl} target="_blank" className="img-box img-scale">
+                                                    <Image src={product.thumbImage} alt={product.name} layout="fill"
+                                                        objectFit="contain" />
+                                                </Link>
+                                                <div className="caption">
+                                                    <h3>{product.name}</h3>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                    <Pagination
-                        currentPage={pagination.currentPage}
-                        totalPages={pagination.totalPages}
-                        onPageChange={handlePageChange}
-                        isLoading={isLoading}
-                        className="mt-5"
-                    />
-                </div>
-            </section>
-        </main>
+                                <Pagination
+                                    currentPage={pagination.currentPage}
+                                    totalPages={pagination.totalPages}
+                                    onPageChange={handlePageChange}
+                                    isLoading={isLoading}
+                                    className="mt-5"
+                                />
+                            </div>
+                        </section>
+                    )
+                }
+            </main>
+        </React.Fragment>
     );
 }
 

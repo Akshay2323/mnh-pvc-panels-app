@@ -1,11 +1,13 @@
 import { getAboutUsDetails } from "@/utils/api";
 import { AboutUsContent } from "@/utils/app.model";
 import { GetStaticProps } from "next";
+import React from "react";
 import SEO from "../components/SEO";
+import PageHeader from "@/components/PageHeader";
 
 export default function About(aboutUsData: AboutUsContent) {
     return (
-        <main>
+        <React.Fragment>
             <SEO
                 title={
                     aboutUsData?.keywords.title || "About"}
@@ -13,12 +15,21 @@ export default function About(aboutUsData: AboutUsContent) {
                 keywords={aboutUsData?.keywords.keywords?.split(",") || []}
                 image={aboutUsData?.keywords.imagePath}
             />
-            <section className="section-base">
-                <div className="container">
-                    <div dangerouslySetInnerHTML={{ __html: aboutUsData?.aboutUs?.content || '' }} />
-                </div>
-            </section>
-        </main>
+            <PageHeader
+                title={"About Us"}
+                description={"Crafting style with lasting strength"}
+                breadcrumbs={[
+                    { label: 'About', href: '/about' },
+                ]}
+            />
+            <main>
+                <section className="section-base">
+                    <div className="container">
+                        <div dangerouslySetInnerHTML={{ __html: aboutUsData?.aboutUs?.content || '' }} />
+                    </div>
+                </section>
+            </main>
+        </React.Fragment>
     )
 }
 export const getStaticProps: GetStaticProps<AboutUsContent> = async () => {

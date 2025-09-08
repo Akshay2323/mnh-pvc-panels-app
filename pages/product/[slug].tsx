@@ -4,15 +4,17 @@ import { getProductsByCategory, productCategory } from "@/utils/api";
 import { GetStaticPaths } from "next";
 import Loader from "../../components/Loader";
 import Pagination from "@/components/Pagination";
-import { Keywords, Product } from '@/utils/app.model';
+import { Keywords, Product, ProductCategory } from '@/utils/app.model';
 import Image from 'next/image';
 import Link from 'next/link';
 import SEO from '@/components/SEO';
+import PageHeader from '@/components/PageHeader';
 
 interface ProductPageProps {
     initialData: {
         products: Product[];
         keywords: Keywords;
+        category: ProductCategory;
         totalRecords: number;
         totalPages: number;
         currentPage: number;
@@ -59,65 +61,72 @@ export default function ProductPage({ initialData, slug }: ProductPageProps) {
         return <Loader />;
     }
 
-    if (!products || products.length === 0) {
-        return (
-            <main>
-                <section className="section-base mt50">
-                    <div className="container">
-                        <div className="title align-center align-left-md">
-                            <h2>{products?.[0]?.productCategory?.name}</h2>
-                        </div>
-                        <div className="error-container">
-                            <h1>No Products Found</h1>
-                            <p>There are no products available in this category.</p>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        );
-    }
+    // if (!products || products.length === 0) {
+    //     return (
+    //         <main>
+
+    //         </main>
+    //     );
+    // }
 
     return (
-        <main>
-
+        <React.Fragment>
             <SEO
                 title={
-                    initialData?.products?.[0]?.productCategory?.name || initialData?.keywords?.title || "Products"}
-                description={initialData?.products?.[0]?.productCategory?.description || initialData?.keywords?.description || "Products Page"}
+                    initialData?.category?.name || initialData?.keywords?.title || "Products"}
+                description={initialData?.category?.description || initialData?.keywords?.description || "Products Page"}
                 keywords={initialData?.keywords?.keywords?.split(",") || []}
-                image={initialData?.products?.[0]?.productCategory?.imagePath || initialData?.keywords?.imagePath}
+                image={initialData?.category?.imagePath || initialData?.keywords?.imagePath}
             />
-            <section className="section-base mt50">
-                <div className="container">
-                    <div className="title align-center align-left-md">
-                        <h2>{products?.[0]?.productCategory?.name}</h2>
-                    </div>
-                    <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
-                        <div className="album-list">
-                            {products.map((product) => (
-                                <div key={product.id} className="album-box">
-                                    <Link href={product.pdfUrl} target="_blank" className="img-box img-scale">
-                                        <Image src={product.thumbImage} alt={product.name} layout="fill"
-                                            objectFit="contain" />
-                                    </Link>
-                                    <div className="caption">
-                                        <h3>{product.name}</h3>
+            <PageHeader
+                title={initialData?.category?.name || ''}
+                description={initialData?.category?.description || `High-quality ${initialData?.category?.name} for your home and office.`}
+                breadcrumbs={[
+                    { label: initialData?.category?.name || 'Product', href: '' }
+                ]}
+            />
+            <main>
+                {
+                    (!products || products.length === 0) ? (
+                        <section className="section-base mt50">
+                            <div className="container">
+                                <div className="error-container">
+                                    <h1>No Products Found</h1>
+                                    <p>There are no products available in this category.</p>
+                                </div>
+                            </div>
+                        </section>
+                    ) : (
+                        <section className="section-base mt50">
+                            <div className="container">
+                                <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
+                                    <div className="album-list">
+                                        {products.map((product) => (
+                                            <div key={product.id} className="album-box">
+                                                <Link href={product.pdfUrl} target="_blank" className="img-box img-scale">
+                                                    <Image src={product.thumbImage} alt={product.name} layout="fill"
+                                                        objectFit="contain" />
+                                                </Link>
+                                                <div className="caption">
+                                                    <h3>{product.name}</h3>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div dangerouslySetInnerHTML={{ __html: products?.[0]?.productCategory?.description || '' }}></div>
-                    <Pagination
-                        currentPage={pagination.currentPage}
-                        totalPages={pagination.totalPages}
-                        onPageChange={handlePageChange}
-                        isLoading={isLoading}
-                        className="mt-5"
-                    />
-                </div>
-            </section>
-        </main>
+                                <div dangerouslySetInnerHTML={{ __html: products?.[0]?.productCategory?.description || '' }}></div>
+                                <Pagination
+                                    currentPage={pagination.currentPage}
+                                    totalPages={pagination.totalPages}
+                                    onPageChange={handlePageChange}
+                                    isLoading={isLoading}
+                                    className="mt-5"
+                                />
+                            </div>
+                        </section>
+                    )}
+            </main>
+        </React.Fragment>
     );
 }
 
@@ -160,6 +169,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
                 initialData: {
                     products: response.data.products || [],
                     keywords: response.data.keywords || {},
+                    category: response.data.category || {},
                     totalRecords: response.data.totalRecord || 0,
                     totalPages: response.data.totalPages || 1,
                     currentPage: page,

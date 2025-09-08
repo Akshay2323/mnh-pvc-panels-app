@@ -2,11 +2,13 @@ import { GetStaticProps } from "next";
 import { getPvcWallDetails } from "@/utils/api";
 import { PvcWallContentData } from "@/utils/app.model";
 import SEO from "@/components/SEO";
+import React from "react";
+import PageHeader from "@/components/PageHeader";
 
 export default function PVCWall(pvcWallData: PvcWallContentData) {
 
     return (
-        <main>
+        <React.Fragment>
             <SEO
                 title={
                     pvcWallData?.keywords.title || "PVC Wall"}
@@ -14,12 +16,21 @@ export default function PVCWall(pvcWallData: PvcWallContentData) {
                 keywords={pvcWallData?.keywords.keywords?.split(",") || []}
                 image={pvcWallData?.keywords.imagePath}
             />
-            <section className="section-base">
-                <div className="container">
-                    <div dangerouslySetInnerHTML={{ __html: pvcWallData?.pvcWallContent?.content || '' }} />
-                </div>
-            </section>
-        </main>
+            <PageHeader
+                title={"PVC Wall"}
+                description={"Stylish walls with lasting strength"}
+                breadcrumbs={[
+                    { label: 'PVC Wall', href: '/pvc-wall' },
+                ]}
+            />
+            <main>
+                <section className="section-base">
+                    <div className="container">
+                        <div dangerouslySetInnerHTML={{ __html: pvcWallData?.pvcWallContent?.content || '' }} />
+                    </div>
+                </section>
+            </main>
+        </React.Fragment>
     )
 }
 
