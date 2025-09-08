@@ -63,6 +63,7 @@ export default function SEO({
         <Head>
             {/* Primary Meta Tags */}
             <title>{pageTitle}</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <meta name="title" content={pageTitle} />
             <meta name="description" content={description} />
             <meta name="keywords" content={[...defaultKeywords, ...keywords].join(', ')} />

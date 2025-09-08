@@ -43,6 +43,7 @@ class MyDocument extends Document<MyDocumentProps> {
     return (
       <Html lang="en">
         <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="/media/icons/iconsmind/line-icons.min.css" />
         </Head>
