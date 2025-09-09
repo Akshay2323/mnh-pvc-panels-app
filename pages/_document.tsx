@@ -112,6 +112,7 @@ class MyDocument extends Document<MyDocumentProps> {
           </nav>
           <Main />
           <NextScript />
+          <i className="scroll-top-btn scroll-top show" style={{ opacity: 1 }}></i>
           <footer className="light">
             <div className="container">
               <div className="row">

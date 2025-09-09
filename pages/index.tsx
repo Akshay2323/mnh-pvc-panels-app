@@ -76,7 +76,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
             >
               {homeScreenData?.categories?.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <div className="category-box">
+                  <Link href={`/product/${item.id}`} className="category-box">
                     <img
                       src={item.imagePath || '/assets/long-9.jpg'}
                       alt={item.name}
@@ -89,7 +89,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
                     <div className="category-content">
                       <h3 className="title">{item.name}</h3>
                     </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               ))}
             </Swiper>
