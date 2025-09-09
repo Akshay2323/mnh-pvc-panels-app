@@ -21,7 +21,9 @@ import {
     PvcWallContentData,
     PvcWallContentResp,
     UserContactParam,
-    UserContactResp
+    UserContactResp,
+    UserQuoteParam,
+    UserQuoteResp
 } from './app.model';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
@@ -134,6 +136,17 @@ export const sendContact = async (param: UserContactParam): Promise<UserContactR
         return {
             status: false,
             message: error?.message || 'Failed to send contact',
+        };
+    }
+};
+export const sendQuote = async (param: UserQuoteParam): Promise<UserQuoteResp> => {
+    try {
+        const response = await api.post<UserQuoteResp>('/quoteContact', param);
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to send quote',
         };
     }
 };

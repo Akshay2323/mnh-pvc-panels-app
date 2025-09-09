@@ -202,6 +202,19 @@ export class UserContactResp {
     status: boolean = false;
     message: string = ''
 }
+export class UserQuoteParam {
+    name: string = "";
+    phoneNo: string = "";
+    email: string = "";
+    category: string = "";
+    state: string = "";
+    message: string = "";
+}
+
+export class UserQuoteResp {
+    status: boolean = false;
+    message: string = ''
+}
 
 export class PaginationParam {
     page: number = 1;

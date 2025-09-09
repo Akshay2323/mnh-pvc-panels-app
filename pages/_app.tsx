@@ -12,6 +12,7 @@ import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { useState, useEffect } from 'react';
 import SEO from '@/components/SEO';
+import FloatingQuoteButton from '@/components/FloatingQuoteButton';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [jQueryLoaded, setJQueryLoaded] = useState(false);
@@ -37,7 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <SEO {...defaultSEOProps} />
+      <SEO {...defaultSEOProps} {...pageProps.seo} />
 
       {/* Load jQuery first */}
       <Script
@@ -62,7 +63,7 @@ export default function App({ Component, pageProps }: AppProps) {
       )}
 
       <Component {...pageProps} />
+      <FloatingQuoteButton />
     </>
   );
 }
-
