@@ -10,6 +10,8 @@ import {
     CategoryResp,
     ContactContent,
     ContactContentResp,
+    FaqContent,
+    FaqResp,
     HomeScreenContent,
     HomeScreenContentResp,
     ManufacturerContentData,
@@ -250,3 +252,15 @@ export const getBlogDetailsById = async (blogId: string): Promise<BlogDetailsRes
     }
 };
 
+export const getFaq = async (): Promise<FaqResp> => {
+    try {
+        const response = await api.get<FaqResp>('/faq/active');
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch manufacturer content',
+            data: new FaqContent(),
+        };
+    }
+};

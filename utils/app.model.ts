@@ -325,7 +325,6 @@ export class ProductResp {
     message: string = ''
 }
 
-
 export class ProductGallery {
     id: string = "";
     name: string = "";
@@ -347,3 +346,22 @@ export class ProductGalleryResp {
     message: string = ''
 }
 
+export class Faq {
+    id?: string = "";
+    title?: string = "";
+    description?: string = "";
+    orderNo?: number | null = null;
+    createdAt: any;
+    updatedAt: any;
+}
+
+export class FaqResp {
+    status: boolean = false;
+    data: FaqContent = new FaqContent();
+    message: string = ''
+}
+
+export class FaqContent {
+    faq: Faq[] = [];
+    keywords: Keywords = new Keywords();
+}

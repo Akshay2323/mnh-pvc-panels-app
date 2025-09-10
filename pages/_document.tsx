@@ -152,8 +152,8 @@ class MyDocument extends Document<MyDocumentProps> {
             </div>
             <div className="footer-bar">
               <div className="container">
-                <span> 2025 MNHPVC PANELS Developed By <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
-                <span><a href="#">Contact us</a> | <a href="#">Privacy policy</a></span>
+                <span> 2025 MNH PVC PANELS Developed By <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
+                <span><Link href="/contact">Contact us</Link> | <Link href="/faq">FAQ</Link></span>
               </div>
             </div>
 

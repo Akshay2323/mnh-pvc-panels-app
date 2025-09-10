@@ -48,7 +48,6 @@ export default function BlogPage({ initialData }: BlogPageProps) {
     const [search, setSearch] = useState('');
 
     const handlePageChange = async (page: number, categoryId: string = '') => {
-        console.log("🚀 ~ handlePageChange ~ page:", page)
         if (page < 1 || page > pagination.totalPages) return;
 
         setIsLoading(true);
