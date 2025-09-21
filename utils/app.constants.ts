@@ -6,7 +6,7 @@ export const LOCAL_IMAGES = {
 export enum SEO_PAGE {
     home = "home",
     aboutUs = "aboutUs",
-    manufacturer = "manufacturer",
+    catalog = "catalog",
     product = "product",
     blog = "blog",
     gallery = "gallery",

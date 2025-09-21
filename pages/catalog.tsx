@@ -78,16 +78,16 @@ export default function CatalogPage({ initialData }: ProductPageProps) {
         <React.Fragment>
             <SEO
                 title={
-                    initialData?.keywords.title || "Catalog"}
-                description={initialData?.keywords.description || "Catalog Page"}
+                    initialData?.keywords.title || "Gallery"}
+                description={initialData?.keywords.description || "Gallery Page"}
                 keywords={initialData?.keywords.keywords?.split(",") || []}
                 image={initialData?.keywords.imagePath}
             />
             <PageHeader
-                title={"Catalog"}
+                title={"Gallery"}
                 description={"Discover our collection of designs"}
                 breadcrumbs={[
-                    { label: 'catelog', href: '/manufacturer' },
+                    { label: 'Gallery', href: '/gallery' },
                 ]}
             />
             <main>

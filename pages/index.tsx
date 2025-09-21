@@ -117,7 +117,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
                       <a href="#">{homeScreenData?.manufacturerContent?.title}</a>
                       <div className="content">
                         <p>{homeScreenData?.manufacturerContent?.sortContent}</p>
-                        <Link href="/manufacturer">Read More</Link>
+                        <Link href="/catalog">Read More</Link>
                       </div>
                     </li>
                   )

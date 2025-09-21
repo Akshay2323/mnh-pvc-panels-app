@@ -10,14 +10,14 @@ export interface NavItem {
 export interface NavKeys {
   home: NavItem;
   about: NavItem;
-  manufacturer: NavItem;
+  catelog: NavItem;
   product: NavItem;
   blog: NavItem;
   gallery: NavItem;
   contact: NavItem;
 }
 
-export const NAV_ITEMS: (keyof NavKeys)[] = ['home', 'about', 'manufacturer', 'product', 'blog', 'gallery', 'contact'];
+export const NAV_ITEMS: (keyof NavKeys)[] = ['home', 'about', 'catelog', 'product', 'blog', 'gallery', 'contact'];
 
 export const NAV_ITEMS_KEYS: any = {
   'home': { key: 'home', label: 'Home', path: '/', activePaths: ['/', '/home'] },
