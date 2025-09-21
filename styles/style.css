@@ -328,6 +328,7 @@ nav.active .menu-btn,
 
 .btn:hover,
 .input-text:focus,
+.input-text2:focus,
 .input-select:focus,
 .input-textarea:focus,
 .search-bar input[type="text"]:focus {
@@ -2600,6 +2601,17 @@ INPUTS - COMPONENT
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-right: none;
+}
+
+.input-text-btn .input-text2 {
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  background: rgb(255, 255, 255);
 }
 
 .input-text-btn .btn {

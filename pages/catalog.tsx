@@ -21,6 +21,17 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
     const [catalogs, setCatalogs] = useState<ProductCatalog[]>(initialData.catalogs);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalPdfUrl, setModalPdfUrl] = useState<string | null>(null);
+    const [search, setSearch] = useState('');
+
+    const handleSearch = (value: string) => {
+        setSearch(value);
+        if (value) {
+            const filteredCatalogs = initialData.catalogs.filter((catalog) => catalog.name.toLowerCase().includes(value?.toLowerCase() || ''));
+            setCatalogs(filteredCatalogs);
+        } else {
+            setCatalogs(initialData.catalogs);
+        }
+    }
 
     if (router.isFallback) {
         return <Loader />;
@@ -63,6 +74,12 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
                     ) : (
                         <section className="section-base">
                             <div className="container">
+                                <form className="form-box">
+                                    <div className="input-text-btn">
+                                        <input className="input-text2" type="text" value={search} onChange={(e) => handleSearch(e.target.value)} placeholder="Search ..." />
+                                    </div>
+                                </form>
+                                <hr className="space-sm" />
                                 <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
                                     <div className="album-list">
                                         {catalogs.map((catalog) => (
