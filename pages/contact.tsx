@@ -142,17 +142,13 @@ export const getStaticProps: GetStaticProps<ContactContent> = async () => {
         const data = response.status ? response.data : new ContactContent();
 
         return {
-            props: {
-                ...data,
-            },
+            props: JSON.parse(JSON.stringify(data)),
             revalidate: 60, // Revalidate every 60 seconds
         };
     } catch (error) {
         console.error('Error fetching contact data:', error);
         return {
-            props: {
-                ...new ContactContent(),
-            },
+            props: JSON.parse(JSON.stringify(new ContactContent())),
         };
     }
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ModalPdfViewer from '../../components/ModalPdfViewer';
 import { useRouter } from "next/router";
 import { getProductsByCategory, productCategory } from "@/utils/api";
 import { GetStaticPaths } from "next";
@@ -6,7 +7,6 @@ import Loader from "../../components/Loader";
 import Pagination from "@/components/Pagination";
 import { Keywords, Product, ProductCategory } from '@/utils/app.model';
 import Image from 'next/image';
-import Link from 'next/link';
 import SEO from '@/components/SEO';
 import PageHeader from '@/components/PageHeader';
 
@@ -23,6 +23,8 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ initialData, slug }: ProductPageProps) {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalPdfUrl, setModalPdfUrl] = useState<string | null>(null);
     const router = useRouter();
     const [products, setProducts] = useState<Product[]>(initialData.products);
     const [pagination, setPagination] = useState({
@@ -103,10 +105,20 @@ export default function ProductPage({ initialData, slug }: ProductPageProps) {
                                     <div className="album-list">
                                         {products.map((product) => (
                                             <div key={product.id} className="album-box">
-                                                <Link href={product.pdfUrl} target="_blank" className="img-box img-scale">
+                                                <div
+                                                    className="img-box img-scale"
+                                                    style={{ cursor: 'pointer' }}
+                                                    onClick={() => {
+                                                        setModalPdfUrl(product.pdfUrl);
+                                                        setModalOpen(true);
+                                                    }}
+                                                >
                                                     <Image src={product.thumbImage} alt={product.name} layout="fill"
                                                         objectFit="contain" />
-                                                </Link>
+                                                    <div className="caption">
+                                                        <h3>{product.name}</h3>
+                                                    </div>
+                                                </div>
                                                 <div className="caption">
                                                     <h3>{product.name}</h3>
                                                 </div>
@@ -126,6 +138,12 @@ export default function ProductPage({ initialData, slug }: ProductPageProps) {
                         </section>
                     )}
             </main>
+            {modalOpen && (
+                <ModalPdfViewer
+                    url={modalPdfUrl}
+                    onClose={() => setModalOpen(false)}
+                />
+            )}
         </React.Fragment>
     );
 }

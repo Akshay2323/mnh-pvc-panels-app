@@ -117,7 +117,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
                       <a href="#">{homeScreenData?.manufacturerContent?.title}</a>
                       <div className="content">
                         <p>{homeScreenData?.manufacturerContent?.sortContent}</p>
-                        <Link href="/catalog">Read More</Link>
+                        <Link href="/manufacturer">Read More</Link>
                       </div>
                     </li>
                   )
@@ -261,17 +261,13 @@ export const getStaticProps: GetStaticProps<HomeScreenContent> = async () => {
     const data = response.status ? response.data : new HomeScreenContent();
 
     return {
-      props: {
-        ...data,
-      },
+      props: JSON.parse(JSON.stringify(data)),
       revalidate: 60, // Revalidate every 60 seconds
     };
   } catch (error) {
     console.error('Error fetching home screen data:', error);
     return {
-      props: {
-        ...new HomeScreenContent(),
-      },
+      props: JSON.parse(JSON.stringify(new HomeScreenContent())),
     };
   }
 };

@@ -365,3 +365,22 @@ export class FaqContent {
     faq: Faq[] = [];
     keywords: Keywords = new Keywords();
 }
+
+export class ProductCatalog {
+    id: string = "";
+    name: string = "";
+    description: string = "";
+    thumbImage: string = "";
+    pdfUrl: string = "";
+    orderNo: number = 0;
+}
+export class ProductCatalogData {
+    catalogs: ProductCatalog[] = [];
+    keywords: Keywords = new Keywords();
+}
+
+export class ProductCatalogResp {
+    status: boolean = false;
+    data: ProductCatalogData = new ProductCatalogData();
+    message: string = ''
+}

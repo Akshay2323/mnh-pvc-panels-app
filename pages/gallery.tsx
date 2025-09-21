@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from 'react';
+import ModalPdfViewer from "../components/ModalPdfViewer";
 import Loader from "../components/Loader";
 import SEO from "@/components/SEO";
 import React from "react";
@@ -22,6 +23,8 @@ interface ProductPageProps {
 }
 
 export default function GalleryPage({ initialData }: ProductPageProps) {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalPdfUrl, setModalPdfUrl] = useState<string | null>(null);
     const router = useRouter();
     const [products, setProducts] = useState<ProductGallery[]>(initialData.products);
     const [pagination, setPagination] = useState({
@@ -104,16 +107,23 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
                     ) : (
                         <section className="section-base">
                             <div className="container">
-                                <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
+                                <div className="album" data-columns-md="2" data-columns-sm="1">
                                     <div className="album-list">
                                         {products.map((product) => (
                                             <div key={product.id} className="album-box">
-                                                <Link href={product.pdfUrl} target="_blank" className="img-box img-scale">
+                                                <div
+                                                    className="img-box img-scale"
+                                                    style={{ cursor: 'pointer' }}
+                                                    onClick={() => {
+                                                        setModalPdfUrl(product.pdfUrl);
+                                                        setModalOpen(true);
+                                                    }}
+                                                >
                                                     <Image src={product.thumbImage} alt={product.name} layout="fill"
                                                         objectFit="contain" />
-                                                </Link>
-                                                <div className="caption">
-                                                    <h3>{product.name}</h3>
+                                                    <div className="caption">
+                                                        <h3>{product.name}</h3>
+                                                    </div>
                                                 </div>
                                             </div>
                                         ))}
@@ -131,6 +141,12 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
                     )
                 }
             </main>
+            {modalOpen && (
+                <ModalPdfViewer
+                    url={modalPdfUrl}
+                    onClose={() => setModalOpen(false)}
+                />
+            )}
         </React.Fragment>
     );
 }

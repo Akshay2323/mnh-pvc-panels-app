@@ -221,9 +221,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
         }
 
         return {
-            props: {
-                ...response.data,
-            },
+            props: JSON.parse(JSON.stringify(response.data)),
             revalidate: 60,
         };
     } catch (error) {

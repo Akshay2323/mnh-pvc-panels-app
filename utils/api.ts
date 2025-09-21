@@ -16,6 +16,8 @@ import {
     HomeScreenContentResp,
     ManufacturerContentData,
     ManufacturerContentResp,
+    ProductCatalogData,
+    ProductCatalogResp,
     ProductData,
     ProductGalleryData,
     ProductGalleryResp,
@@ -261,6 +263,19 @@ export const getFaq = async (): Promise<FaqResp> => {
             status: false,
             message: error?.message || 'Failed to fetch manufacturer content',
             data: new FaqContent(),
+        };
+    }
+};
+
+export const getProductCatalog = async (): Promise<ProductCatalogResp> => {
+    try {
+        const response = await api.get<ProductCatalogResp>('/productCatalog/activeProductCatalogs');
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product catalog content',
+            data: new ProductCatalogData(),
         };
     }
 };

@@ -38,17 +38,13 @@ export const getStaticProps: GetStaticProps<AboutUsContent> = async () => {
         const data = response.status ? response.data : new AboutUsContent();
 
         return {
-            props: {
-                ...data,
-            },
+            props: JSON.parse(JSON.stringify(data)),
             revalidate: 60, // Revalidate every 60 seconds
         };
     } catch (error) {
         console.error('Error fetching about us data:', error);
         return {
-            props: {
-                ...new AboutUsContent(),
-            },
+            props: JSON.parse(JSON.stringify(new AboutUsContent())),
         };
     }
 };

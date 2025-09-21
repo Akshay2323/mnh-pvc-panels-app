@@ -40,17 +40,13 @@ export const getStaticProps: GetStaticProps<PvcWallContentData> = async () => {
         const data = response.status ? response.data : new PvcWallContentData();
 
         return {
-            props: {
-                ...data,
-            },
+            props: JSON.parse(JSON.stringify(data)),
             revalidate: 60, // Revalidate every 60 seconds
         };
     } catch (error) {
         console.error('Error fetching pvc wall data:', error);
         return {
-            props: {
-                ...new PvcWallContentData(),
-            },
+            props: JSON.parse(JSON.stringify(new PvcWallContentData())),
         };
     }
 };
