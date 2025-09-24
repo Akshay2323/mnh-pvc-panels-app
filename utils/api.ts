@@ -269,7 +269,8 @@ export const getFaq = async (): Promise<FaqResp> => {
 
 export const getProductCatalog = async (): Promise<ProductCatalogResp> => {
     try {
-        const response = await api.get<ProductCatalogResp>('/productCatalog/activeProductCatalogs');
+        // const response = await api.get<ProductCatalogResp>('/productCatalog/activeProductCatalogs');
+        const response = await api.get<ProductCatalogResp>('/product/getAllProducts');
         return response.data;
     } catch (error: any) {
         return {
