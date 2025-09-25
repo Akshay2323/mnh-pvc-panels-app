@@ -117,7 +117,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
                       <a href="#">{homeScreenData?.manufacturerContent?.title}</a>
                       <div className="content">
                         <p>{homeScreenData?.manufacturerContent?.sortContent}</p>
-                        <Link href="/manufacturer">Read More</Link>
+                        {/* <Link href="/manufacturer">Read More</Link> */}
                       </div>
                     </li>
                   )
@@ -128,7 +128,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
                       <a href="#">{homeScreenData?.pvcWallContent?.title}</a>
                       <div className="content">
                         <p>{homeScreenData?.pvcWallContent?.sortContent}</p>
-                        <Link href="/pvc-wall">Read More</Link>
+                        {/* <Link href="/pvc-wall">Read More</Link> */}
                       </div>
                     </li>
                   )
