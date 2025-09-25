@@ -84,20 +84,19 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
                                     <div className="album-list">
                                         {catalogs.map((catalog) => (
                                             <div key={catalog.id} className="album-box">
-                                                <div
+                                                <a
+                                                    href={catalog.pdfUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className="img-box img-scale"
                                                     style={{ cursor: 'pointer' }}
-                                                    onClick={() => {
-                                                        setModalPdfUrl(catalog.pdfUrl);
-                                                        setModalOpen(true);
-                                                    }}
                                                 >
                                                     <Image src={catalog.thumbImage} alt={catalog.name} layout="fill"
                                                         objectFit="contain" />
                                                     <div className="caption">
                                                         <h3>{catalog.name}</h3>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </div>
                                         ))}
                                     </div>

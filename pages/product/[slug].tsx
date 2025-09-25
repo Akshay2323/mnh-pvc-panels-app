@@ -105,23 +105,19 @@ export default function ProductPage({ initialData, slug }: ProductPageProps) {
                                     <div className="album-list">
                                         {products.map((product) => (
                                             <div key={product.id} className="album-box">
-                                                <div
+                                                <a
+                                                    href={product.pdfUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className="img-box img-scale"
                                                     style={{ cursor: 'pointer' }}
-                                                    onClick={() => {
-                                                        setModalPdfUrl(product.pdfUrl);
-                                                        setModalOpen(true);
-                                                    }}
                                                 >
                                                     <Image src={product.thumbImage} alt={product.name} layout="fill"
                                                         objectFit="contain" />
                                                     <div className="caption">
                                                         <h3>{product.name}</h3>
                                                     </div>
-                                                </div>
-                                                <div className="caption">
-                                                    <h3>{product.name}</h3>
-                                                </div>
+                                                </a>
                                             </div>
                                         ))}
                                     </div>
