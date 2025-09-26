@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import ModalPdfViewer from '../../components/ModalPdfViewer';
-import { useRouter } from "next/router";
-import { getProductsByCategory, productCategory } from "@/utils/api";
-import { GetStaticPaths } from "next";
-import Loader from "../../components/Loader";
-import Pagination from "@/components/Pagination";
-import { Keywords, Product, ProductCategory } from '@/utils/app.model';
-import Image from 'next/image';
-import SEO from '@/components/SEO';
 import PageHeader from '@/components/PageHeader';
+import SEO from '@/components/SEO';
+import { getProductsByCategory, productCategory } from "@/utils/api";
+import { Keywords, Product, ProductCategory } from '@/utils/app.model';
+import { GetStaticPaths } from "next";
+import Image from 'next/image';
+import { useRouter } from "next/router";
+import React, { Fragment } from 'react';
+import Loader from "../../components/Loader";
 
 interface ProductPageProps {
     initialData: {
@@ -19,57 +17,14 @@ interface ProductPageProps {
         totalPages: number;
         currentPage: number;
     };
-    slug: string;
 }
 
-export default function ProductPage({ initialData, slug }: ProductPageProps) {
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalPdfUrl, setModalPdfUrl] = useState<string | null>(null);
+export default function ProductPage({ initialData }: ProductPageProps) {
     const router = useRouter();
-    const [products, setProducts] = useState<Product[]>(initialData.products);
-    const [pagination, setPagination] = useState({
-        currentPage: initialData.currentPage,
-        totalPages: initialData.totalPages,
-        totalRecords: initialData.totalRecords,
-    });
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handlePageChange = async (page: number) => {
-        if (page < 1 || page > pagination.totalPages || page === pagination.currentPage) return;
-
-        setIsLoading(true);
-        try {
-            const response = await getProductsByCategory(slug, page, 20, '');
-            if (response.status && response.data) {
-                if (page === 1) {
-                    setProducts(response.data?.products || []);
-                } else {
-                    setProducts(prevProducts => [...prevProducts, ...(response.data?.products || [])]);
-                }
-                setPagination({
-                    currentPage: page,
-                    totalPages: response.data.totalPages || 1,
-                    totalRecords: response.data.totalRecord || 0,
-                });
-            }
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     if (router.isFallback) {
         return <Loader />;
     }
-
-    // if (!products || products.length === 0) {
-    //     return (
-    //         <main>
-
-    //         </main>
-    //     );
-    // }
 
     return (
         <React.Fragment>
@@ -82,14 +37,14 @@ export default function ProductPage({ initialData, slug }: ProductPageProps) {
             />
             <PageHeader
                 title={initialData?.category?.name || ''}
-                description={initialData?.category?.description || `High-quality ${initialData?.category?.name} for your home and office.`}
+                description={`High-quality ${initialData?.category?.name} for your home and office.`}
                 breadcrumbs={[
                     { label: initialData?.category?.name || 'Product', href: '' }
                 ]}
             />
             <main>
                 {
-                    (!products || products.length === 0) ? (
+                    (!initialData?.products || initialData?.products.length === 0) ? (
                         <section className="section-base mt50">
                             <div className="container">
                                 <div className="error-container">
@@ -99,47 +54,40 @@ export default function ProductPage({ initialData, slug }: ProductPageProps) {
                             </div>
                         </section>
                     ) : (
-                        <section className="section-base mt50">
-                            <div className="container">
-                                <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
-                                    <div className="album-list">
-                                        {products.map((product) => (
-                                            <div key={product.id} className="album-box">
-                                                <a
-                                                    href={product.pdfUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="img-box img-scale"
-                                                    style={{ cursor: 'pointer' }}
-                                                >
-                                                    <Image src={product.thumbImage} alt={product.name} layout="fill"
-                                                        objectFit="contain" />
-                                                    <div className="caption">
-                                                        <h3>{product.name}</h3>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        ))}
+                        <Fragment>
+                            <section className="section-base mt50">
+                                <div className="container">
+                                    <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
+                                        <div className="album-list">
+                                            {initialData?.products.map((product) => (
+                                                <div key={product.id} className="album-box">
+                                                    <a
+                                                        href={product.pdfUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="img-box img-scale"
+                                                        style={{ cursor: 'pointer' }}
+                                                    >
+                                                        <Image src={product.thumbImage} alt={product.name} layout="fill"
+                                                            objectFit="contain" />
+                                                        <div className="caption">
+                                                            <h3>{product.name}</h3>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                                <div dangerouslySetInnerHTML={{ __html: products?.[0]?.productCategory?.description || '' }}></div>
-                                <Pagination
-                                    currentPage={pagination.currentPage}
-                                    totalPages={pagination.totalPages}
-                                    onPageChange={handlePageChange}
-                                    isLoading={isLoading}
-                                    className="mt-5"
-                                />
-                            </div>
-                        </section>
+                            </section>
+                            <section className="section-base section-color">
+                                <div className="container">
+                                    <div dangerouslySetInnerHTML={{ __html: initialData?.category?.description || '' }}></div>
+                                </div>
+                            </section>
+                        </Fragment>
                     )}
             </main>
-            {modalOpen && (
-                <ModalPdfViewer
-                    url={modalPdfUrl}
-                    onClose={() => setModalOpen(false)}
-                />
-            )}
         </React.Fragment>
     );
 }
@@ -168,9 +116,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }: { params: { slug: string } }) => {
     try {
-        const page = 1;
-        const limit = 20;
-        const response = await getProductsByCategory(params.slug, page, limit, '');
+        const response = await getProductsByCategory(params.slug);
 
         if (!response.status || !response.data) {
             return {
@@ -184,11 +130,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
                     products: response.data.products || [],
                     keywords: response.data.keywords || {},
                     category: response.data.category || {},
-                    totalRecords: response.data.totalRecord || 0,
-                    totalPages: response.data.totalPages || 1,
-                    currentPage: page,
                 },
-                slug: params.slug,
             },
             revalidate: 60,
         };

@@ -169,17 +169,11 @@ export const productCategory = async (): Promise<CategoryResp> => {
 };
 
 export const getProductsByCategory = async (
-    categoryId: string,
-    page: number = 1,
-    limit: number = 10,
-    search?: string
+    categoryId: string
 ): Promise<ProductResp> => {
     try {
         const response = await api.get<ProductResp>('/product/getProductsByCategory', {
             params: {
-                page,
-                limit,
-                search,
                 id: categoryId,
             },
         });
