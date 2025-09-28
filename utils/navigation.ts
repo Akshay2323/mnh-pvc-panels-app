@@ -13,11 +13,11 @@ export interface NavKeys {
   catelog: NavItem;
   product: NavItem;
   blog: NavItem;
-  gallery: NavItem;
+  // gallery: NavItem;
   contact: NavItem;
 }
 
-export const NAV_ITEMS: (keyof NavKeys)[] = ['home', 'about', 'catelog', 'product', 'blog', 'gallery', 'contact'];
+export const NAV_ITEMS: (keyof NavKeys)[] = ['home', 'about', 'catelog', 'product', 'blog', 'contact'];
 
 export const NAV_ITEMS_KEYS: any = {
   'home': { key: 'home', label: 'Home', path: '/', activePaths: ['/', '/home'] },
@@ -25,6 +25,6 @@ export const NAV_ITEMS_KEYS: any = {
   'catalog': { key: 'catalog', label: 'Catalog', path: '/catalog', activePaths: ['/catalog'] },
   'product': { key: 'product', label: 'Product', path: '/product', activePaths: ['/product'] },
   'blog': { key: 'blog', label: 'Blog', path: '/blog', activePaths: ['/blog'] },
-  'gallery': { key: 'gallery', label: 'Gallery', path: '/gallery', activePaths: ['/gallery'] },
+  // 'gallery': { key: 'gallery', label: 'Gallery', path: '/gallery', activePaths: ['/gallery'] },
   'contact': { key: 'contact', label: 'Contact', path: '/contact', activePaths: ['/contact'] },
 };

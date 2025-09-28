@@ -6,6 +6,7 @@ import SEO from "../components/SEO";
 import PageHeader from "@/components/PageHeader";
 
 export default function About(aboutUsData: AboutUsContent) {
+    console.log("🚀 ~ About ~ aboutUsData:", aboutUsData)
     return (
         <React.Fragment>
             <SEO
@@ -26,6 +27,25 @@ export default function About(aboutUsData: AboutUsContent) {
                 <section className="section-base">
                     <div className="container">
                         <div dangerouslySetInnerHTML={{ __html: aboutUsData?.aboutUs?.content || '' }} />
+                    </div>
+                </section>
+                <section className="section-base section-color">
+                    <div className="container">
+                        <div className="title align-center align-left-md">
+                            <h2>FAQ</h2>
+                        </div>
+                        <ul className="accordion-list" data-open="1">
+                            {
+                                aboutUsData?.faqs?.map((item) => (
+                                    <li key={item.id}>
+                                        <a href="#">{item.title}</a>
+                                        <div className="content">
+                                            <p>{item.description}</p>
+                                        </div>
+                                    </li>
+                                ))
+                            }
+                        </ul>
                     </div>
                 </section>
             </main>

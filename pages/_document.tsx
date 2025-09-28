@@ -46,6 +46,7 @@ class MyDocument extends Document<MyDocumentProps> {
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="/media/icons/iconsmind/line-icons.min.css" />
+          <link rel="stylesheet" href="/media/icons/fontawesome/all.css" />
         </Head>
         <body className="page-main">
           {/* <div id="preloader"></div> */}
@@ -94,7 +95,7 @@ class MyDocument extends Document<MyDocumentProps> {
                           <ul>
                             {item.subMenu?.map((subItem) => (
                               <li key={subItem.id}>
-                                <Link href={`/product/${subItem.id}`}>{subItem.name}</Link>
+                                <Link href={`/subcategory/${subItem.id}`}>{subItem.name}</Link>
                               </li>
                             ))}
                           </ul>

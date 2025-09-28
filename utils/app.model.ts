@@ -92,8 +92,9 @@ export class HomeScreenContent {
     clients: Client[] = [];
     specifications: Specification[] = [];
     aboutUs: AboutUs = new AboutUs();
-    manufacturerContent: ManufacturerContent = new ManufacturerContent();
-    pvcWallContent: PvcWallContent = new PvcWallContent();
+    faqs: Faq[] = [];
+    // manufacturerContent: ManufacturerContent = new ManufacturerContent();
+    // pvcWallContent: PvcWallContent = new PvcWallContent();
 }
 
 export class ManufacturerContent {
@@ -124,6 +125,7 @@ export class AboutUsContentResp {
 
 export class AboutUsContent {
     aboutUs: AboutUs = new AboutUs();
+    faqs: Faq[] = [];
     keywords: Keywords = new Keywords();
 }
 
@@ -154,6 +156,7 @@ export class ProductCategory {
     name: string = "";
     description: string = "";
     imagePath: string = "";
+    productCategory: ProductCategory = new ProductCategory();
     orderNo: number = 0;
     createdAt: any;
     updatedAt: any;
@@ -302,6 +305,21 @@ export class CategoryData {
     orderNo: number = 0;
 }
 
+export enum PRODUCT_MEDIA_TYPE {
+    IMAGE = "image",
+    PDF = "pdf",
+}
+
+export class ProductMedia {
+    type: PRODUCT_MEDIA_TYPE = PRODUCT_MEDIA_TYPE.IMAGE;
+    mediaUrl: string = "";
+}
+
+export class ProductSpecification {
+    title: string = "";
+    value: string = "";
+}
+
 export class Product {
     id: string = "";
     name: string = "";
@@ -309,6 +327,9 @@ export class Product {
     thumbImage: string = "";
     pdfUrl: string = "";
     productCategory: ProductCategory = new ProductCategory();
+    productSubCategory: ProductSubCatagory = new ProductSubCatagory();
+    medias: ProductMedia[] = [];
+    specifications: ProductSpecification[] = [];
     orderNo: number = 0;
 }
 export class ProductData {
@@ -383,4 +404,42 @@ export class ProductCatalogResp {
     status: boolean = false;
     data: ProductCatalogData = new ProductCatalogData();
     message: string = ''
+}
+export class ProductSubCatagoryResp {
+    status: boolean = false;
+    data: ProductSubCatagoryData = new ProductSubCatagoryData();
+    message: string = ''
+}
+
+export class ProductSubCatagoryData {
+    subCatagories: ProductSubCatagory[] = [];
+    keywords: Keywords = new Keywords();
+    category: ProductCategory = new ProductCategory();
+}
+
+export class ProductSubCatagory {
+    id: string = "";
+    name: string = "";
+    description: string = "";
+    imagePath: string = "";
+    orderNo: number = 0;
+    productCategory: ProductCategory = new ProductCategory();
+}
+
+export class SubCategoryResp {
+    status: boolean = false;
+    data: ProductSubCatagory[] = [];
+    message: string = ''
+}
+
+
+export class ProductDetailResp {
+    status: boolean = false;
+    data: ProductDetailData = new ProductDetailData();
+    message: string = ''
+}
+
+export class ProductDetailData {
+    productDetail: Product = new Product();
+    keywords: Keywords = new Keywords();
 }

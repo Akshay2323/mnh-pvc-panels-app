@@ -18,12 +18,18 @@ import {
     ManufacturerContentResp,
     ProductCatalogData,
     ProductCatalogResp,
+    ProductCategory,
     ProductData,
+    ProductDetailData,
+    ProductDetailResp,
     ProductGalleryData,
     ProductGalleryResp,
     ProductResp,
+    ProductSubCatagoryData,
+    ProductSubCatagoryResp,
     PvcWallContentData,
     PvcWallContentResp,
+    SubCategoryResp,
     UserContactParam,
     UserContactResp,
     UserQuoteParam,
@@ -168,6 +174,20 @@ export const productCategory = async (): Promise<CategoryResp> => {
     }
 };
 
+export const productSubCategory = async (): Promise<SubCategoryResp> => {
+    try {
+        const response = await api.get<SubCategoryResp>('/productSubCategory/active');
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product sub category',
+            data: [],
+        };
+    }
+};
+
+
 export const getProductsByCategory = async (
     categoryId: string
 ): Promise<ProductResp> => {
@@ -271,6 +291,46 @@ export const getProductCatalog = async (): Promise<ProductCatalogResp> => {
             status: false,
             message: error?.message || 'Failed to fetch product catalog content',
             data: new ProductCatalogData(),
+        };
+    }
+};
+
+export const getProductSubCatagory = async (): Promise<SubCategoryResp> => {
+    try {
+        const response = await api.get<SubCategoryResp>('/productSubCategory/active');
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product catalog content',
+            data: [],
+        };
+    }
+};
+
+export const getProductSubCatagoryByCategory = async (categoryId: string): Promise<ProductSubCatagoryResp> => {
+    try {
+        const response = await api.get<ProductSubCatagoryResp>('/productSubCategory/getSubCategoryByCategory/' + categoryId);
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product catalog content',
+            data: new ProductSubCatagoryData(),
+        };
+    }
+};
+
+export const getProductDetailsById = async (productId: string): Promise<ProductDetailResp> => {
+    try {
+        // const response = await api.get<ProductCatalogResp>('/productCatalog/activeProductCatalogs');
+        const response = await api.get<ProductDetailResp>('/product/' + productId);
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product catalog content',
+            data: new ProductDetailData(),
         };
     }
 };

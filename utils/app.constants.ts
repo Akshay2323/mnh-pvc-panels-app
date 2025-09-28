@@ -8,6 +8,7 @@ export enum SEO_PAGE {
     aboutUs = "aboutUs",
     manufacturer = "manufacturer",
     product = "product",
+    subCategory = "subCategory",
     blog = "blog",
     gallery = "gallery",
     productCatalog = "productCatalog",

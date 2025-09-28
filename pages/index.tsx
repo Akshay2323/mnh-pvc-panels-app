@@ -76,7 +76,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
             >
               {homeScreenData?.categories?.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <Link href={`/product/${item.id}`} className="category-box">
+                  <Link href={`/subcategory/${item.id}`} className="category-box">
                     <img
                       src={item.imagePath || '/assets/long-9.jpg'}
                       alt={item.name}
@@ -112,26 +112,14 @@ export default function Home(homeScreenData: HomeScreenContent) {
             <div className="col-lg-8">
               <ul className="accordion-list" data-open="1">
                 {
-                  homeScreenData?.manufacturerContent?.title && (
-                    <li>
-                      <a href="#">{homeScreenData?.manufacturerContent?.title}</a>
+                  homeScreenData?.faqs?.map((item) => (
+                    <li key={item.id}>
+                      <a href="#">{item.title}</a>
                       <div className="content">
-                        <p>{homeScreenData?.manufacturerContent?.sortContent}</p>
-                        {/* <Link href="/manufacturer">Read More</Link> */}
+                        <p>{item.description}</p>
                       </div>
                     </li>
-                  )
-                }
-                {
-                  homeScreenData?.pvcWallContent?.title && (
-                    <li>
-                      <a href="#">{homeScreenData?.pvcWallContent?.title}</a>
-                      <div className="content">
-                        <p>{homeScreenData?.pvcWallContent?.sortContent}</p>
-                        {/* <Link href="/pvc-wall">Read More</Link> */}
-                      </div>
-                    </li>
-                  )
+                  ))
                 }
               </ul>
             </div>
