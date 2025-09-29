@@ -381,7 +381,7 @@ export default function ProductPage({ initialData }: ProductPageProps) {
             />
             <PageHeader
                 title={initialData?.productDetail?.name || ''}
-                description={`High-quality ${initialData?.productDetail?.name} for your home and office.`}
+                // description={`High-quality ${initialData?.productDetail?.name} for your home and office.`}
                 breadcrumbs={[
                     { label: initialData?.productDetail?.productCategory?.name, href: '/subcategory/' + initialData?.productDetail?.productCategory?.id },
                     { label: initialData?.productDetail?.productSubCategory?.name, href: '/products/' + initialData?.productDetail?.productSubCategory?.id },

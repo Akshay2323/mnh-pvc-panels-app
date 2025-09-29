@@ -63,7 +63,7 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
             />
             <main>
                 {
-                    (!catalogs || catalogs.length === 0) ? (
+                    (!initialData.catalogs || initialData.catalogs.length === 0) ? (
                         <section className="section-base">
                             <div className="container">
                                 <div className="error-container">
@@ -81,26 +81,35 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
                                     </div>
                                 </form>
                                 <hr className="space-sm" />
-                                <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
-                                    <div className="album-list">
-                                        {catalogs.map((catalog) => (
-                                            <div key={catalog.id} className="album-box">
-                                                <Link
-                                                    href={`/product/${catalog.id}`}
-                                                    rel="noopener noreferrer"
-                                                    className="img-box img-scale"
-                                                    style={{ cursor: 'pointer' }}
-                                                >
-                                                    <Image src={catalog.thumbImage} alt={catalog.name} layout="fill"
-                                                        objectFit="contain" />
-                                                    <div className="caption">
-                                                        <h3>{catalog.name}</h3>
+                                {
+                                    (!catalogs || catalogs.length === 0) ? (
+                                        <div className="error-container">
+                                            <h1>No Catalogs Found</h1>
+                                            <p>There are no catalogs available.</p>
+                                        </div>
+                                    ) : (
+                                        <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
+                                            <div className="album-list">
+                                                {catalogs.map((catalog) => (
+                                                    <div key={catalog.id} className="album-box">
+                                                        <Link
+                                                            href={`/product/${catalog.id}`}
+                                                            rel="noopener noreferrer"
+                                                            className="img-box img-scale"
+                                                            style={{ cursor: 'pointer' }}
+                                                        >
+                                                            <Image src={catalog.thumbImage} alt={catalog.name} layout="fill"
+                                                                objectFit="contain" />
+                                                            <div className="caption">
+                                                                <h3>{catalog.name}</h3>
+                                                            </div>
+                                                        </Link>
                                                     </div>
-                                                </Link>
+                                                ))}
                                             </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                        </div>)
+                                }
+
                             </div>
                         </section>
                     )

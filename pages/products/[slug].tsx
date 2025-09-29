@@ -36,7 +36,7 @@ export default function SubCategoryPage({ initialData }: SubCategoryPageProps) {
             />
             <PageHeader
                 title={initialData?.category?.name || ''}
-                description={`High-quality ${initialData?.category?.name} for your home and office.`}
+                // description={`High-quality ${initialData?.category?.name} for your home and office.`}
                 breadcrumbs={[
                     { label: initialData?.category?.productCategory?.name, href: '/subcategory/' + initialData?.category?.productCategory?.id },
                     { label: initialData?.category?.name || 'Product', href: '' }

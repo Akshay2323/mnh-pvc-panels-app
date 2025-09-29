@@ -16,12 +16,12 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, description, breadcrumbs
         <header className={styles.headerBase}>
             <div className={styles.container}>
                 <h1>{title}</h1>
-                {description && (
-                    <h2>
-                        {description}
-                        {/* {description.length > 40 ? `${description.substring(0, 40)}...` : description} */}
-                    </h2>
-                )}
+                {/* {description && ( */}
+                <h2>
+                    {description}
+                    {/* {description.length > 40 ? `${description.substring(0, 40)}...` : description} */}
+                </h2>
+                {/* )} */}
                 <ol className={styles.breadcrumb}>
                     <li><Link href="/">Home</Link></li>
                     {breadcrumbs.map((crumb, index) => (
