@@ -153,7 +153,7 @@ class MyDocument extends Document<MyDocumentProps> {
             </div>
             <div className="footer-bar">
               <div className="container">
-                <span> 2025 MNH PVC PANELS Developed By <a href="http://sktechnotion.com/" target="_blank">SK Technotion</a>.</span>
+                <span>© 2025 MNH PVC PANELS. All rights reserved.</span>
                 <span><Link href="/contact">Contact us</Link> | <Link href="/faq">FAQ</Link></span>
               </div>
             </div>
