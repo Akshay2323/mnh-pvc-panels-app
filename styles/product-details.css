@@ -12,51 +12,81 @@
 
 /* Image Section */
 .product-image-section {
-    display: flex;
-    gap: 1rem;
     margin-bottom: 2rem;
 }
 
-/* Thumbnails */
-.product-thumbnails {
+.product-swiper-container {
+    position: relative;
+}
+
+/* Main Swiper */
+.product-main-swiper {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+}
+
+.product-main-swiper .swiper-slide {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 80px;
-    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.product-main-swiper .swiper-pagination {
+    bottom: 10px;
+}
+
+.product-main-swiper .swiper-pagination-bullet {
+    background: #13304a;
+    opacity: 0.5;
+}
+
+.product-main-swiper .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Thumbnail Swiper */
+.product-thumbs-swiper {
+    width: 100%;
+    height: 80px;
+    margin-top: 1rem;
+}
+
+.product-thumbs-swiper .swiper-slide {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.product-thumbs-swiper .swiper-slide-thumb-active {
+    opacity: 1;
 }
 
 .product-thumb {
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: 70px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+}
+
+.product-thumbs-swiper .swiper-slide-thumb-active .product-thumb {
+    border-color: #13304a;
+    box-shadow: 0 0 0 2px rgba(19, 48, 74, 0.2);
 }
 
 .product-thumb:hover {
     border-color: #13304a;
 }
 
-.product-thumb.active {
-    border-color: #13304a;
-    box-shadow: 0 0 0 2px rgba(19, 48, 74, 0.2);
-}
-
-/* Main Image */
-.product-main-image {
-    flex: 1;
-    position: relative;
-    background: #f8f9fa;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    min-height: 400px;
-    overflow: hidden;
-}
-
+/* Product Image Wrapper */
 .product-image-wrapper {
     position: relative;
     width: 100%;
@@ -64,6 +94,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+.product-image-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.product-image-wrapper:hover .zoom-hint {
+    opacity: 1;
+}
+
+/* Zoom Hint */
+.zoom-hint {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.zoom-hint i {
+    font-size: 10px;
 }
 
 .product-image-placeholder {
@@ -82,13 +144,44 @@
     opacity: 0.5;
 }
 
-/* Image Navigation */
-.product-image-nav {
+/* Custom Navigation Buttons */
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
     position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.swiper-button-prev-custom {
+    left: 10px;
+}
+
+.swiper-button-next-custom {
+    right: 10px;
+}
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.swiper-button-prev-custom i,
+.swiper-button-next-custom i {
+    font-size: 14px;
+    color: #13304a;
 }
 
 .product-nav-btn {
@@ -195,7 +288,7 @@
     margin: 0px;
 }
 .product-specifications .detail-info {
-    margin-top: 20px;
+    margin-top: 30px !important;
 }
 
 .spec-label {
@@ -241,31 +334,38 @@
     }
 }
 
+/* Swiper Overrides */
+.product-main-swiper .swiper-wrapper {
+    align-items: center;
+}
+
+.product-main-swiper .swiper-zoom-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Autoplay pause on hover */
+.product-main-swiper:hover .swiper-wrapper {
+    animation-play-state: paused;
+}
+
+/* Custom scrollbar for thumbnail swiper */
+.product-thumbs-swiper::-webkit-scrollbar {
+    display: none;
+}
+
+.product-thumbs-swiper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 /* Responsive Design */
 @media (max-width: 991px) {
-    .product-image-section {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .product-thumbnails {
-        flex-direction: row;
-        width: auto;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-        order: 2; /* Move thumbnails below main image */
-    }
-
-    .product-main-image {
-        order: 1; /* Keep main image at top */
-    }
-
-    .product-thumb {
-        flex-shrink: 0;
-    }
-
-    .product-main-image {
-        min-height: 300px;
+    .product-main-swiper {
+        height: 300px;
     }
 
     .product-image-wrapper {
@@ -275,6 +375,26 @@
     .product-name {
         font-size: 1.75rem;
     }
+
+    .zoom-modal-content {
+        width: 95vw;
+        height: 95vh;
+    }
+
+    /* .pdf-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    } */
+
+    .pdf-info {
+        width: 100%;
+    }
+
+    .pdf-actions {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -282,17 +402,20 @@
         padding: 1rem 0;
     }
 
-    .product-main-image {
-        min-height: 250px;
+    .product-main-swiper {
+        height: 250px;
     }
 
     .product-image-wrapper {
         height: 250px;
     }
 
-    .product-thumb {
-        width: 60px;
+    .product-thumbs-swiper {
         height: 60px;
+    }
+
+    .product-thumb {
+        height: 55px;
     }
 
     .product-name {
@@ -306,16 +429,38 @@
     .spec-row {
         grid-template-columns: 1fr;
     }
+
+    .swiper-button-prev-custom,
+    .swiper-button-next-custom {
+        width: 35px;
+        height: 35px;
+    }
+
+    .swiper-button-prev-custom {
+        left: 5px;
+    }
+
+    .swiper-button-next-custom {
+        right: 5px;
+    }
+
+    .zoom-controls {
+        gap: 15px;
+    }
+
+    .zoom-nav-btn {
+        width: 35px;
+        height: 35px;
+    }
 }
 
 @media (max-width: 576px) {
-    .product-thumbnails {
-        gap: 0.25rem;
+    .product-thumbs-swiper {
+        height: 50px;
     }
 
     .product-thumb {
-        width: 50px;
-        height: 50px;
+        height: 45px;
     }
 
     .product-name {
@@ -326,11 +471,308 @@
     .product-specifications h3 {
         font-size: 1.1rem;
     }
+
+    .swiper-button-prev-custom,
+    .swiper-button-next-custom {
+        width: 30px;
+        height: 30px;
+    }
+
+    .swiper-button-prev-custom i,
+    .swiper-button-next-custom i {
+        font-size: 12px;
+    }
+
+    .zoom-hint {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+
+    .zoom-controls {
+        gap: 10px;
+    }
+
+    .zoom-nav-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .zoom-counter {
+        font-size: 12px;
+        min-width: 50px;
+    }
+
+    .pdf-action-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .pdf-icon {
+        font-size: 20px;
+    }
+
+    .pdf-name {
+        font-size: 13px;
+    }
+}
+
+/* PDF Resources Section */
+.product-pdf-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.product-pdf-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #13304a;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-pdf-section h4::before {
+    content: '\f1c1';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #dc3545;
+}
+
+.pdf-downloads {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pdf-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 1rem;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.pdf-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: #13304a;
+}
+
+.pdf-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.pdf-icon {
+    font-size: 24px;
+    color: #dc3545;
+}
+
+.pdf-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #13304a;
+    line-height: normal;
+}
+
+.pdf-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.pdf-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.pdf-view-btn {
+    background: #13304a;
+    color: white;
+}
+
+.pdf-view-btn:hover {
+    background: #0f2538;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(19, 48, 74, 0.3);
+    color: white;
+}
+
+.pdf-download-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.pdf-download-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    color: white;
+}
+
+.pdf-action-btn i {
+    font-size: 12px;
+}
+
+/* Image Zoom Modal */
+.image-zoom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.zoom-modal-content {
+    position: relative;
+    width: 90vw;
+    height: 90vh;
+    max-width: 1200px;
+    max-height: 800px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.zoom-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.zoom-close-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.zoom-close-btn i {
+    font-size: 16px;
+}
+
+.zoomed-image-container {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+}
+
+.zoom-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.zoom-nav-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.zoom-nav-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.zoom-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.zoom-nav-btn i {
+    font-size: 14px;
+}
+
+.zoom-counter {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 60px;
+    text-align: center;
 }
 
 /* Focus styles for accessibility */
 .product-thumb:focus,
-.product-nav-btn:focus {
+.product-nav-btn:focus,
+.swiper-button-prev-custom:focus,
+.swiper-button-next-custom:focus,
+.pdf-action-btn:focus,
+.zoom-close-btn:focus,
+.zoom-nav-btn:focus {
     outline: 2px solid #13304a;
     outline-offset: 2px;
 }

@@ -15,6 +15,7 @@ interface CatalogPageProps {
 }
 
 import ModalPdfViewer from "../components/ModalPdfViewer";
+import Link from "next/link";
 
 export default function CatalogPage({ initialData }: CatalogPageProps) {
     const router = useRouter();
@@ -84,9 +85,8 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
                                     <div className="album-list">
                                         {catalogs.map((catalog) => (
                                             <div key={catalog.id} className="album-box">
-                                                <a
-                                                    href={catalog.pdfUrl}
-                                                    target="_blank"
+                                                <Link
+                                                    href={`/product/${catalog.id}`}
                                                     rel="noopener noreferrer"
                                                     className="img-box img-scale"
                                                     style={{ cursor: 'pointer' }}
@@ -96,7 +96,7 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
                                                     <div className="caption">
                                                         <h3>{catalog.name}</h3>
                                                     </div>
-                                                </a>
+                                                </Link>
                                             </div>
                                         ))}
                                     </div>
