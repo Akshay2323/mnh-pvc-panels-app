@@ -2168,6 +2168,13 @@ section.no-padding > div > .slider li > .img-box img {
   position: relative;
   padding-left: 60px;
   transition: all 0.5s;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
 .album-box .caption h3:after {
