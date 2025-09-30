@@ -92,8 +92,9 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
                                             <div className="album-list">
                                                 {catalogs.map((catalog) => (
                                                     <div key={catalog.id} className="album-box">
-                                                        <Link
-                                                            href={`/product/${catalog.id}`}
+                                                        <a
+                                                            href={catalog.pdfUrl}
+                                                            target="_blank"
                                                             rel="noopener noreferrer"
                                                             className="img-box img-scale"
                                                             style={{ cursor: 'pointer' }}
@@ -103,7 +104,7 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
                                                             <div className="caption">
                                                                 <h3>{catalog.name}</h3>
                                                             </div>
-                                                        </Link>
+                                                        </a>
                                                     </div>
                                                 ))}
                                             </div>

@@ -34,7 +34,14 @@ function ProductDetails({ product }: ProductDetailsProps) {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
     const [isZoomed, setIsZoomed] = useState(false);
     const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+    const [zoomLevel, setZoomLevel] = useState(1);
+    const [panPosition, setPanPosition] = useState({ x: 0, y: 0 });
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+    const [initialTouchDistance, setInitialTouchDistance] = useState(0);
+    const [initialZoomLevel, setInitialZoomLevel] = useState(1);
     const mainSwiperRef = useRef<SwiperType | null>(null);
+    const zoomImageRef = useRef<HTMLDivElement>(null);
 
     // Combine thumb image with media images, separate images and PDFs
     // Ensure thumbImage is first and avoid duplicates
@@ -67,18 +74,149 @@ function ProductDetails({ product }: ProductDetailsProps) {
     const closeZoom = () => {
         setIsZoomed(false);
         setZoomedImage(null);
+        setZoomLevel(1);
+        setPanPosition({ x: 0, y: 0 });
+        setIsDragging(false);
+        setInitialTouchDistance(0);
+        setInitialZoomLevel(1);
     };
 
-    // Handle PDF download
-    const handlePdfDownload = (pdfUrl: string, fileName?: string) => {
-        const link = document.createElement('a');
-        link.href = pdfUrl;
-        link.download = fileName || 'product-catalog.pdf';
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    // Zoom controls
+    const handleZoomIn = () => {
+        setZoomLevel(prev => Math.min(prev + 0.5, 4));
     };
+
+    const handleZoomOut = () => {
+        setZoomLevel(prev => {
+            const newLevel = Math.max(prev - 0.5, 1);
+            if (newLevel === 1) {
+                setPanPosition({ x: 0, y: 0 });
+            }
+            return newLevel;
+        });
+    };
+
+    const resetZoom = () => {
+        setZoomLevel(1);
+        setPanPosition({ x: 0, y: 0 });
+    };
+
+    // Mouse events for panning
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (zoomLevel > 1) {
+            setIsDragging(true);
+            setDragStart({
+                x: e.clientX - panPosition.x,
+                y: e.clientY - panPosition.y
+            });
+        }
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (isDragging && zoomLevel > 1) {
+            setPanPosition({
+                x: e.clientX - dragStart.x,
+                y: e.clientY - dragStart.y
+            });
+        }
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    // Wheel zoom
+    const handleWheel = (e: React.WheelEvent) => {
+        e.preventDefault();
+        if (e.deltaY < 0) {
+            handleZoomIn();
+        } else {
+            handleZoomOut();
+        }
+    };
+
+    // Touch event helpers
+    const getTouchDistance = (touches: React.TouchList) => {
+        if (touches.length < 2) return 0;
+        const touch1 = touches[0];
+        const touch2 = touches[1];
+        return Math.sqrt(
+            Math.pow(touch2.clientX - touch1.clientX, 2) +
+            Math.pow(touch2.clientY - touch1.clientY, 2)
+        );
+    };
+
+
+    // Touch events for mobile/tablet
+    const handleTouchStart = (e: React.TouchEvent) => {
+        e.preventDefault();
+
+        if (e.touches.length === 1) {
+            // Single touch - start panning
+            if (zoomLevel > 1) {
+                setIsDragging(true);
+                const touch = e.touches[0];
+                setDragStart({
+                    x: touch.clientX - panPosition.x,
+                    y: touch.clientY - panPosition.y
+                });
+            }
+        } else if (e.touches.length === 2) {
+            // Two finger pinch - start zooming
+            const distance = getTouchDistance(e.touches);
+            setInitialTouchDistance(distance);
+            setInitialZoomLevel(zoomLevel);
+            setIsDragging(false);
+        }
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        e.preventDefault();
+
+        if (e.touches.length === 1 && isDragging && zoomLevel > 1) {
+            // Single touch panning
+            const touch = e.touches[0];
+            setPanPosition({
+                x: touch.clientX - dragStart.x,
+                y: touch.clientY - dragStart.y
+            });
+        } else if (e.touches.length === 2) {
+            // Two finger pinch zooming
+            const distance = getTouchDistance(e.touches);
+            if (initialTouchDistance > 0) {
+                const scale = distance / initialTouchDistance;
+                const newZoomLevel = Math.max(1, Math.min(4, initialZoomLevel * scale));
+                setZoomLevel(newZoomLevel);
+
+                if (newZoomLevel === 1) {
+                    setPanPosition({ x: 0, y: 0 });
+                }
+            }
+        }
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        e.preventDefault();
+
+        if (e.touches.length === 0) {
+            setIsDragging(false);
+            setInitialTouchDistance(0);
+        } else if (e.touches.length === 1) {
+            // Switched from pinch to single touch
+            setInitialTouchDistance(0);
+
+            // Start panning if zoomed
+            if (zoomLevel > 1) {
+                setIsDragging(true);
+                const touch = e.touches[0];
+                setDragStart({
+                    x: touch.clientX - panPosition.x,
+                    y: touch.clientY - panPosition.y
+                });
+            }
+        }
+    };
+
 
     // Handle PDF view in new tab
     const handlePdfView = (pdfUrl: string) => {
@@ -322,21 +460,77 @@ function ProductDetails({ product }: ProductDetailsProps) {
                 </div>
             </div>
 
-            {/* Image Zoom Modal */}
+            {/* Enhanced Image Zoom Modal */}
             {isZoomed && zoomedImage && (
                 <div className="image-zoom-modal" onClick={closeZoom}>
                     <div className="zoom-modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="zoom-close-btn" onClick={closeZoom}>
                             <i className="fas fa-times"></i>
                         </button>
-                        <div className="zoomed-image-container">
-                            <Image
-                                src={zoomedImage}
-                                alt={`${product.name} - Zoomed view`}
-                                fill
-                                style={{ objectFit: 'contain' }}
-                            />
+
+                        {/* Zoom Controls Toolbar */}
+                        <div className="zoom-toolbar">
+                            <div className="zoom-level-controls">
+                                <button
+                                    className="zoom-control-btn"
+                                    onClick={handleZoomOut}
+                                    disabled={zoomLevel <= 1}
+                                    title="Zoom Out"
+                                >
+                                    <i className="fas fa-search-minus"></i>
+                                </button>
+                                <span className="zoom-level-display">{Math.round(zoomLevel * 100)}%</span>
+                                <button
+                                    className="zoom-control-btn"
+                                    onClick={handleZoomIn}
+                                    disabled={zoomLevel >= 4}
+                                    title="Zoom In"
+                                >
+                                    <i className="fas fa-search-plus"></i>
+                                </button>
+                                <button
+                                    className="zoom-control-btn"
+                                    onClick={resetZoom}
+                                    disabled={zoomLevel === 1}
+                                    title="Reset Zoom"
+                                >
+                                    <i className="fas fa-expand-arrows-alt"></i>
+                                </button>
+                            </div>
                         </div>
+
+                        <div
+                            className="zoomed-image-container"
+                            ref={zoomImageRef}
+                            onMouseDown={handleMouseDown}
+                            onMouseMove={handleMouseMove}
+                            onMouseUp={handleMouseUp}
+                            onMouseLeave={handleMouseUp}
+                            onWheel={handleWheel}
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
+                            style={{
+                                cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'zoom-in',
+                                touchAction: 'none'
+                            }}
+                        >
+                            <div
+                                className="zoomable-image"
+                                style={{
+                                    transform: `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)`,
+                                    transition: isDragging ? 'none' : 'transform 0.2s ease-out'
+                                }}
+                            >
+                                <Image
+                                    src={zoomedImage}
+                                    alt={`${product.name} - Zoomed view`}
+                                    fill
+                                    style={{ objectFit: 'contain' }}
+                                />
+                            </div>
+                        </div>
+
                         <div className="zoom-controls">
                             <button
                                 className="zoom-nav-btn"
@@ -356,6 +550,12 @@ function ProductDetails({ product }: ProductDetailsProps) {
                                 <i className="fas fa-chevron-right"></i>
                             </button>
                         </div>
+
+                        {/* Zoom Instructions */}
+                        {/* <div className="zoom-instructions">
+                            <span className="desktop-instructions">Use mouse wheel to zoom • Click and drag to pan • ESC to close</span>
+                            <span className="mobile-instructions">Pinch to zoom • Drag to pan • Tap outside to close</span>
+                        </div> */}
                     </div>
                 </div>
             )}
