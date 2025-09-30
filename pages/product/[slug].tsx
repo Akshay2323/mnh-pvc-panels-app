@@ -58,6 +58,11 @@ function ProductDetails({ product }: ProductDetailsProps) {
         media.mediaUrl && media.type === PRODUCT_MEDIA_TYPE.PDF
     );
 
+    const allPdfFiles = [
+        { type: PRODUCT_MEDIA_TYPE.PDF, mediaUrl: product.pdfUrl },
+        ...pdfFiles.filter(media => media.mediaUrl !== product.pdfUrl)
+    ].filter(media => media.mediaUrl);
+
 
     // Handle image zoom
     const handleImageZoom = (imageUrl: string, imageIndex?: number) => {
@@ -402,11 +407,11 @@ function ProductDetails({ product }: ProductDetailsProps) {
                                 )}
 
                                 {/* PDF Resources Section */}
-                                {pdfFiles.length > 0 && (
+                                {allPdfFiles.length > 0 && (
                                     <div className="product-pdf-section">
                                         <h4>PDF Resources</h4>
                                         <div className="pdf-downloads">
-                                            {pdfFiles.map((pdf, index) => (
+                                            {allPdfFiles.map((pdf, index) => (
                                                 <div key={index} className="pdf-item">
                                                     <div className="pdf-info">
                                                         <i className="fas fa-file-pdf pdf-icon"></i>
@@ -552,10 +557,10 @@ function ProductDetails({ product }: ProductDetailsProps) {
                         </div>
 
                         {/* Zoom Instructions */}
-                        {/* <div className="zoom-instructions">
+                        <div className="zoom-instructions">
                             <span className="desktop-instructions">Use mouse wheel to zoom • Click and drag to pan • ESC to close</span>
                             <span className="mobile-instructions">Pinch to zoom • Drag to pan • Tap outside to close</span>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             )}

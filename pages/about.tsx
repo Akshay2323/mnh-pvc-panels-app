@@ -26,7 +26,7 @@ export default function About(aboutUsData: AboutUsContent) {
             <main>
                 <section className="section-base">
                     <div className="container">
-                        <div dangerouslySetInnerHTML={{ __html: aboutUsData?.aboutUs?.content || '' }} />
+                        <div className="ck-content" dangerouslySetInnerHTML={{ __html: aboutUsData?.aboutUs?.content || '' }} />
                     </div>
                 </section>
                 <section className="section-base section-color">

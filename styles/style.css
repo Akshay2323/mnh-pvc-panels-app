@@ -5870,3 +5870,613 @@ Inverted responsive classes
     height: 100vh;
   }
 }
+
+/* CKEditor Content Styles - PROTECTED FROM ALL THEME OVERRIDES */
+/* High specificity selectors to override any theme styles */
+.ck-content,
+.ck-content *,
+div.ck-content,
+div.ck-content *,
+section .ck-content,
+section .ck-content *,
+article .ck-content,
+article .ck-content *,
+main .ck-content,
+main .ck-content * {
+  font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue' !important;
+  line-height: 1.6 !important;
+  word-break: break-word !important;
+  box-sizing: border-box !important;
+}
+
+/* Complete reset of all possible theme interference */
+.ck-content img,
+.ck-content figure,
+.ck-content figure img,
+.ck-content p,
+.ck-content p img,
+div.ck-content img,
+div.ck-content figure,
+div.ck-content figure img,
+div.ck-content p,
+div.ck-content p img,
+section .ck-content img,
+section .ck-content figure,
+section .ck-content figure img,
+article .ck-content img,
+article .ck-content figure,
+article .ck-content figure img,
+main .ck-content img,
+main .ck-content figure,
+main .ck-content figure img {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+  background: none !important;
+  padding: 0 !important;
+  margin: initial !important;
+}
+
+/* Prevent any hover effects from theme */
+.ck-content img:hover,
+.ck-content figure:hover,
+.ck-content figure img:hover,
+div.ck-content img:hover,
+div.ck-content figure:hover,
+div.ck-content figure img:hover {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Image alignment styles - Protected from theme overrides */
+.ck-content .image,
+div.ck-content .image {
+  display: table !important;
+  clear: both !important;
+  text-align: center !important;
+  margin: 0.9em auto !important;
+  min-width: 50px !important;
+  border: none !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+.ck-content .image img,
+div.ck-content .image img {
+  display: block !important;
+  margin: 0 auto !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ck-content .image-inline {
+  display: inline-block;
+  align-items: flex-start;
+  max-width: 100%;
+  margin: 0;
+}
+
+.ck-content .image-inline img {
+  display: inline-block;
+  margin: 0;
+  max-width: 100%;
+  min-width: auto;
+}
+
+/* Left aligned images */
+.ck-content .image.image_resized {
+  max-width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+.ck-content .image.image_resized img {
+  width: 100%;
+}
+
+.ck-content .image.image_resized.image-style-align-left {
+  float: left;
+  margin: 0.9em 1.5em 0.9em 0;
+  clear: left;
+}
+
+.ck-content .image.image-style-align-left {
+  float: left;
+  margin: 0.9em 1.5em 0.9em 0;
+  clear: left;
+}
+
+/* Enhanced left alignment for better text wrapping - Protected from theme overrides */
+.ck-content .image-style-align-left,
+div.ck-content .image-style-align-left {
+  float: left !important;
+  margin: 0.9em 1.5em 0.9em 0 !important;
+  clear: left !important;
+  max-width: 50% !important;
+  border: none !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+.ck-content figure.image.image-style-align-left,
+div.ck-content figure.image.image-style-align-left {
+  float: left !important;
+  margin: 0.9em 1.5em 0.9em 0 !important;
+  clear: left !important;
+  max-width: 50% !important;
+  border: none !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+/* Handle all CKEditor figure structures - Protected */
+.ck-content figure.image.image-style-align-left,
+.ck-content figure.image-style-align-left,
+div.ck-content figure.image.image-style-align-left,
+div.ck-content figure.image-style-align-left,
+figure.image.image-style-align-left,
+figure.image-style-align-left {
+  float: left !important;
+  margin: 0.9em 1.5em 0.9em 0 !important;
+  clear: left !important;
+  max-width: 50% !important;
+  display: block !important;
+  border: none !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+/* Handle images with inline styles inside figures - Protected */
+.ck-content figure.image img[style*="aspect-ratio"],
+.ck-content figure img[style*="aspect-ratio"],
+div.ck-content figure.image img[style*="aspect-ratio"],
+div.ck-content figure img[style*="aspect-ratio"],
+figure.image img[style*="aspect-ratio"],
+figure img[style*="aspect-ratio"] {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Right aligned images */
+.ck-content .image.image_resized.image-style-align-right {
+  float: right;
+  margin: 0.9em 0 0.9em 1.5em;
+  clear: right;
+}
+
+.ck-content .image.image-style-align-right {
+  float: right;
+  margin: 0.9em 0 0.9em 1.5em;
+  clear: right;
+}
+
+/* Enhanced right alignment for better text wrapping */
+.ck-content .image-style-align-right {
+  float: right;
+  margin: 0.9em 0 0.9em 1.5em;
+  clear: right;
+  max-width: 50%;
+}
+
+.ck-content figure.image.image-style-align-right {
+  float: right;
+  margin: 0.9em 0 0.9em 1.5em;
+  clear: right;
+  max-width: 50%;
+}
+
+/* Handle all CKEditor figure structures for right alignment */
+.ck-content figure.image.image-style-align-right,
+.ck-content figure.image-style-align-right,
+figure.image.image-style-align-right,
+figure.image-style-align-right {
+  float: right;
+  margin: 0.9em 0 0.9em 1.5em;
+  clear: right;
+  max-width: 50%;
+  display: block;
+}
+
+/* Center aligned images */
+.ck-content .image.image-style-align-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
+  clear: both;
+}
+
+/* Handle all CKEditor figure structures for center alignment */
+.ck-content figure.image.image-style-align-center,
+.ck-content figure.image-style-align-center,
+figure.image.image-style-align-center,
+figure.image-style-align-center {
+  margin: 1em auto;
+  display: block;
+  float: none;
+  clear: both;
+  text-align: center;
+}
+
+/* Side images */
+.ck-content .image.image-style-side {
+  float: right;
+  margin-left: 1.5em;
+  max-width: 50%;
+}
+
+/* Protected heading + paragraph spacing */
+.ck-content h2 + p,
+div.ck-content h2 + p,
+section .ck-content h2 + p,
+article .ck-content h2 + p,
+main .ck-content h2 + p,
+html body .ck-content h2 + p,
+html body div.ck-content h2 + p {
+  margin-top: 0 !important;
+}
+
+/* Additional heading combinations */
+.ck-content h1 + p,
+.ck-content h3 + p,
+.ck-content h4 + p,
+.ck-content h5 + p,
+.ck-content h6 + p,
+div.ck-content h1 + p,
+div.ck-content h3 + p,
+div.ck-content h4 + p,
+div.ck-content h5 + p,
+div.ck-content h6 + p,
+html body .ck-content h1 + p,
+html body .ck-content h3 + p,
+html body .ck-content h4 + p,
+html body .ck-content h5 + p,
+html body .ck-content h6 + p {
+  margin-top: 0 !important;
+}
+
+/* Handle all CKEditor figure structures for side alignment */
+.ck-content figure.image.image-style-side,
+.ck-content figure.image-style-side,
+figure.image.image-style-side,
+figure.image-style-side {
+  float: right;
+  margin: 0.9em 0 0.9em 1.5em;
+  max-width: 50%;
+  display: block;
+}
+
+/* Handle inline image styles */
+.ck-content .image-inline,
+.ck-content figure.image-inline,
+figure.image-inline {
+  display: inline-block;
+  margin: 0 0.5em;
+  vertical-align: middle;
+}
+
+/* Handle resized images with aspect ratio */
+.ck-content img[style*="aspect-ratio"],
+img[style*="aspect-ratio"] {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Handle images with width/height attributes */
+.ck-content figure img[width][height],
+.ck-content img[width][height],
+figure img[width][height],
+img[width][height] {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Block images */
+.ck-content .image.image-style-block-align-left {
+  margin-right: auto;
+  margin-left: 0;
+  display: block;
+  float: none;
+  clear: both;
+}
+
+.ck-content .image.image-style-block-align-right {
+  margin-left: auto;
+  margin-right: 0;
+  display: block;
+  float: none;
+  clear: both;
+}
+
+.ck-content .image.image-style-block-align-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
+  clear: both;
+}
+
+/* Handle all CKEditor figure structures for block alignment */
+.ck-content figure.image.image-style-block-align-left,
+.ck-content figure.image-style-block-align-left,
+figure.image.image-style-block-align-left,
+figure.image-style-block-align-left {
+  margin: 1em auto 1em 0;
+  display: block;
+  float: none;
+  clear: both;
+}
+
+.ck-content figure.image.image-style-block-align-right,
+.ck-content figure.image-style-block-align-right,
+figure.image.image-style-block-align-right,
+figure.image-style-block-align-right {
+  margin: 1em 0 1em auto;
+  display: block;
+  float: none;
+  clear: both;
+}
+
+.ck-content figure.image.image-style-block-align-center,
+.ck-content figure.image-style-block-align-center,
+figure.image.image-style-block-align-center,
+figure.image-style-block-align-center {
+  margin: 1em auto;
+  display: block;
+  float: none;
+  clear: both;
+  text-align: center;
+}
+
+/* Image captions */
+.ck-content .image > figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  word-break: break-word;
+  color: #333;
+  background-color: #f7f7f7;
+  padding: 0.6em;
+  font-size: 0.75em;
+  outline-offset: -1px;
+}
+
+/* Text wrapping styles */
+.ck-content .image-style-wrap-text {
+  float: right;
+  margin: 0 0 1em 1em;
+}
+
+.ck-content .image-style-break-text {
+  clear: both;
+  display: block;
+  margin: 1em auto;
+}
+
+/* Responsive images */
+.ck-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Clear floats after content */
+.ck-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/* Fix for CKEditor images inside paragraph tags */
+.ck-content p img,
+p img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Handle images with alignment classes inside paragraphs */
+.ck-content p img[style*="float: left"],
+p img[style*="float: left"] {
+  float: left;
+  margin: 0 1.5em 1em 0;
+}
+
+.ck-content p img[style*="float: right"],
+p img[style*="float: right"] {
+  float: right;
+  margin: 0 0 1em 1.5em;
+}
+
+/* Handle images with alignment classes inside paragraphs */
+.ck-content p img.image-style-align-left,
+p img.image-style-align-left {
+  float: left;
+  margin: 0.9em 1.5em 0.9em 0;
+  clear: left;
+  max-width: 50%;
+  display: block;
+}
+
+.ck-content p img.image-style-align-right,
+p img.image-style-align-right {
+  float: right;
+  margin: 0.9em 0 0.9em 1.5em;
+  clear: right;
+  max-width: 50%;
+  display: block;
+}
+
+.ck-content p img.image-style-align-center,
+p img.image-style-align-center {
+  display: block;
+  margin: 1em auto;
+  float: none;
+  clear: both;
+}
+
+/* Remove default paragraph margins for aligned images */
+.ck-content p:has(img.image-style-align-left),
+.ck-content p:has(img.image-style-align-right),
+.ck-content p:has(img.image-style-align-center),
+p:has(img.image-style-align-left),
+p:has(img.image-style-align-right),
+p:has(img.image-style-align-center) {
+  margin: 0;
+  line-height: normal;
+  overflow: visible;
+}
+
+/* For browsers that don't support :has() - target paragraphs with aligned images */
+.ck-content p img.image-style-align-left:only-child,
+.ck-content p img.image-style-align-right:only-child,
+.ck-content p img.image-style-align-center:only-child,
+p img.image-style-align-left:only-child,
+p img.image-style-align-right:only-child,
+p img.image-style-align-center:only-child {
+  margin: 0.9em 1.5em 0.9em 0;
+}
+
+/* Reset for right aligned */
+.ck-content p img.image-style-align-right:only-child,
+p img.image-style-align-right:only-child {
+  margin: 0.9em 0 0.9em 1.5em;
+}
+
+/* Reset for center aligned */
+.ck-content p img.image-style-align-center:only-child,
+p img.image-style-align-center:only-child {
+  margin: 1em auto;
+}
+
+/* Remove default paragraph margins for images */
+.ck-content p:has(img),
+p:has(img) {
+  margin: 0;
+  line-height: 0;
+}
+
+/* Alternative for browsers that don't support :has() */
+.ck-content p img:only-child,
+p img:only-child {
+  margin: 1em 0;
+}
+
+/* Clear floats after content with images */
+.ck-content::after,
+.content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ULTIMATE PROTECTION: Override ALL possible theme interference with maximum specificity */
+/* This ensures CKEditor content is never affected by theme styles */
+html body .ck-content *[class*="image-style"],
+html body div.ck-content *[class*="image-style"],
+html body section .ck-content *[class*="image-style"],
+html body article .ck-content *[class*="image-style"],
+html body main .ck-content *[class*="image-style"] {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+/* Protect all CKEditor images from theme hover effects */
+html body .ck-content img:hover,
+html body .ck-content figure:hover,
+html body .ck-content figure img:hover,
+html body div.ck-content img:hover,
+html body div.ck-content figure:hover,
+html body div.ck-content figure img:hover {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  opacity: 1 !important;
+  scale: 1 !important;
+}
+
+/* Protect CKEditor paragraphs from theme interference */
+html body .ck-content p,
+html body div.ck-content p {
+  margin: 1em 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+}
+
+/* Mobile responsive styles for CKEditor images */
+@media (max-width: 768px) {
+  .ck-content .image-style-align-left,
+  .ck-content .image-style-align-right,
+  .ck-content .image-style-side,
+  .ck-content figure.image.image-style-align-left,
+  .ck-content figure.image.image-style-align-right,
+  .ck-content figure.image.image-style-side,
+  .ck-content figure.image-style-align-left,
+  .ck-content figure.image-style-align-right,
+  .ck-content figure.image-style-side,
+  .ck-content p img.image-style-align-left,
+  .ck-content p img.image-style-align-right,
+  figure.image.image-style-align-left,
+  figure.image.image-style-align-right,
+  figure.image.image-style-side,
+  figure.image-style-align-left,
+  figure.image-style-align-right,
+  figure.image-style-side,
+  p img.image-style-align-left,
+  p img.image-style-align-right {
+    float: none !important;
+    margin: 1em auto !important;
+    max-width: 100% !important;
+    display: block !important;
+    clear: both !important;
+  }
+
+  .ck-content .image.image_resized.image-style-align-left,
+  .ck-content .image.image_resized.image-style-align-right {
+    float: none;
+    margin: 1em auto;
+    max-width: 100%;
+    display: block;
+    clear: both;
+  }
+
+  /* Ensure images don't break layout on mobile */
+  .ck-content .image,
+  .ck-content figure.image,
+  .ck-content p img,
+  p img {
+    max-width: 100%;
+    margin: 1em auto;
+  }
+
+  /* Reset paragraph styles on mobile for better image display */
+  .ck-content p:has(img.image-style-align-left),
+  .ck-content p:has(img.image-style-align-right),
+  p:has(img.image-style-align-left),
+  p:has(img.image-style-align-right) {
+    margin: 1em 0;
+    line-height: normal;
+  }
+}
