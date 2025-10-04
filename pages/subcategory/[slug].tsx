@@ -1,13 +1,13 @@
 import PageHeader from '@/components/PageHeader';
 import SEO from '@/components/SEO';
-import { getProductsByCategory, getProductSubCatagoryByCategory, productCategory } from "@/utils/api";
-import { Keywords, Product, ProductCategory, ProductSubCatagory } from '@/utils/app.model';
+import { getProductSubCatagoryByCategory, productCategory } from "@/utils/api";
+import { Keywords, ProductCategory, ProductSubCatagory } from '@/utils/app.model';
 import { GetStaticPaths } from "next";
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from "next/router";
 import React, { Fragment } from 'react';
 import Loader from "../../components/Loader";
-import Link from 'next/link';
 
 interface SubCategoryPageProps {
     initialData: {

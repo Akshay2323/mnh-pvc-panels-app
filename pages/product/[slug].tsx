@@ -1,6 +1,6 @@
 import PageHeader from '@/components/PageHeader';
 import SEO from '@/components/SEO';
-import { getProductCatalog, getProductDetailsById } from "@/utils/api";
+import { getAllTopProductDetails, getProductCatalog, getProductDetailsById } from "@/utils/api";
 import { Keywords, Product, PRODUCT_MEDIA_TYPE } from '@/utils/app.model';
 import { GetStaticPaths } from "next";
 import Image from 'next/image';
@@ -618,7 +618,7 @@ export default function ProductPage({ initialData }: ProductPageProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     try {
-        const response = await getProductCatalog();
+        const response = await getAllTopProductDetails();
         const products = response.status ? response.data?.catalogs || [] : [];
 
         const paths = products.map((product) => ({

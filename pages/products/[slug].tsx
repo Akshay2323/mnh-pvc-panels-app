@@ -1,7 +1,7 @@
 import PageHeader from '@/components/PageHeader';
 import SEO from '@/components/SEO';
 import { getProductsByCategory, getProductSubCatagory } from "@/utils/api";
-import { Keywords, ProductCategory, Product, ProductSubCatagory } from '@/utils/app.model';
+import { Keywords, Product, ProductCategory } from '@/utils/app.model';
 import { GetStaticPaths } from "next";
 import Image from 'next/image';
 import Link from 'next/link';

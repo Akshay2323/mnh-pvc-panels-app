@@ -283,8 +283,33 @@ export const getFaq = async (): Promise<FaqResp> => {
 
 export const getProductCatalog = async (): Promise<ProductCatalogResp> => {
     try {
+        const response = await api.get<ProductCatalogResp>('/productCatalog/activeProductCatalogs');
+        // const response = await api.get<ProductCatalogResp>('/product/getAllProducts');
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product catalog content',
+            data: new ProductCatalogData(),
+        };
+    }
+};
+
+export const getAllTopProductDetails = async (
+    page: number = 1,
+    limit: number = 10,
+    search?: string,
+    category?: string): Promise<ProductCatalogResp> => {
+    try {
         // const response = await api.get<ProductCatalogResp>('/productCatalog/activeProductCatalogs');
-        const response = await api.get<ProductCatalogResp>('/product/getAllProducts');
+        const response = await api.get<ProductCatalogResp>('/product/getAllTopProductDetails', {
+            params: {
+                page,
+                limit,
+                search,
+                category,
+            },
+        });
         return response.data;
     } catch (error: any) {
         return {
