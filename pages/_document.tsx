@@ -120,7 +120,7 @@ class MyDocument extends Document<MyDocumentProps> {
                 <div className="col-lg-4">
                   <h2>MNH PVC Panels</h2>
                   <p style={{ marginTop: "15px" }}>
-                    {commonContent?.aboutUs?.sortContent}
+                  <div className="ck-content" dangerouslySetInnerHTML={{ __html: commonContent?.aboutUs?.sortContent || '' }} />
                   </p>
                 </div>
                 <div className="col-lg-4">

@@ -106,7 +106,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
           <div className="row">
             <div className="col-lg-4">
               <p>
-                {homeScreenData?.aboutUs?.sortContent}
+                <div className="ck-content" dangerouslySetInnerHTML={{ __html: homeScreenData?.aboutUs?.sortContent || '' }} />
               </p>
             </div>
             <div className="col-lg-8">

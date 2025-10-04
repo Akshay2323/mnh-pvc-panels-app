@@ -1,10 +1,11 @@
 /* Catalog Grid Layout */
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
     /* margin-top: 2rem; */
     align-items: stretch;
+    max-width: 100%;
 }
 
 /* Catalog Card - Category Box Style */
@@ -122,11 +123,19 @@
     margin-top: 5px;
 }
 
-/* Responsive Design - Matching Home Page Breakpoints */
-/* 1280px+ : 4 cards per row (default) */
+/* Responsive Design - Better utilization of full width */
+/* 1600px+ : 5 cards per row (default) */
 
-/* 1024px - 1279px : 3 cards per row */
-@media (max-width: 1279px) {
+/* 1400px - 1599px : 4 cards per row */
+@media (max-width: 1599px) {
+    .catalog-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+/* 1024px - 1399px : 3 cards per row */
+@media (max-width: 1399px) {
     .catalog-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.25rem;
