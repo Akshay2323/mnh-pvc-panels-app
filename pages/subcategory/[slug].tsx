@@ -55,7 +55,7 @@ export default function SubCategoryPage({ initialData }: SubCategoryPageProps) {
                         <Fragment>
                             <section className="section-base mt50">
                                 <div className="container">
-                                    <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
+                                    {/* <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
                                         <div className="album-list">
                                             {initialData?.subCatagories.map((subCatagory) => (
                                                 <div key={subCatagory.id} className="album-box">
@@ -74,6 +74,35 @@ export default function SubCategoryPage({ initialData }: SubCategoryPageProps) {
                                                 </div>
                                             ))}
                                         </div>
+                                    </div> */}
+                                    <div className="catalog-grid">
+                                        {initialData?.subCatagories.map((subCatagory) => (
+                                            <Link
+                                                key={subCatagory.id}
+                                                href={`/products/${subCatagory.id}`}
+                                                rel="noopener noreferrer"
+                                                className="catalog-card"
+                                            >
+                                                <div className="catalog-card-image">
+                                                    <Image
+                                                        src={subCatagory.imagePath}
+                                                        alt={subCatagory.name}
+                                                        width={0}
+                                                        height={0}
+                                                        sizes="100vw"
+                                                        className="catalog-image"
+                                                    />
+                                                    <div className="catalog-overlay">
+                                                        <div className="catalog-pdf-icon">
+                                                            <i className="fas fa-eye"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="catalog-card-content">
+                                                    <h3 className="catalog-title">{subCatagory.name}</h3>
+                                                </div>
+                                            </Link>
+                                        ))}
                                     </div>
                                 </div>
                             </section>

@@ -14,14 +14,10 @@ interface CatalogPageProps {
     };
 }
 
-import ModalPdfViewer from "../components/ModalPdfViewer";
-import Link from "next/link";
 
 export default function CatalogPage({ initialData }: CatalogPageProps) {
     const router = useRouter();
     const [catalogs, setCatalogs] = useState<ProductCatalog[]>(initialData.catalogs);
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalPdfUrl, setModalPdfUrl] = useState<string | null>(null);
     const [search, setSearch] = useState('');
 
     const handleSearch = (value: string) => {
@@ -40,13 +36,6 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
 
     return (
         <React.Fragment>
-            {modalOpen && (
-                <ModalPdfViewer
-                    url={modalPdfUrl}
-                    onClose={() => setModalOpen(false)}
-                />
-            )}
-
             <SEO
                 title={
                     initialData?.keywords.title || "Catalog"}
@@ -88,26 +77,35 @@ export default function CatalogPage({ initialData }: CatalogPageProps) {
                                             <p>There are no catalogs available.</p>
                                         </div>
                                     ) : (
-                                        <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
-                                            <div className="album-list">
-                                                {catalogs.map((catalog) => (
-                                                    <div key={catalog.id} className="album-box">
-                                                        <a
-                                                            href={catalog.pdfUrl}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="img-box img-scale"
-                                                            style={{ cursor: 'pointer' }}
-                                                        >
-                                                            <Image src={catalog.thumbImage} alt={catalog.name} layout="fill"
-                                                                objectFit="contain" />
-                                                            <div className="caption">
-                                                                <h3>{catalog.name}</h3>
+                                        <div className="catalog-grid">
+                                            {catalogs.map((catalog) => (
+                                                <a
+                                                    key={catalog.id}
+                                                    href={catalog.pdfUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="catalog-card"
+                                                >
+                                                    <div className="catalog-card-image">
+                                                        <Image
+                                                            src={catalog.thumbImage}
+                                                            alt={catalog.name}
+                                                            width={0}
+                                                            height={0}
+                                                            sizes="100vw"
+                                                            className="catalog-image"
+                                                        />
+                                                        <div className="catalog-overlay">
+                                                            <div className="catalog-pdf-icon">
+                                                                <i className="fas fa-file-pdf"></i>
                                                             </div>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                ))}
-                                            </div>
+                                                    <div className="catalog-card-content">
+                                                        <h3 className="catalog-title">{catalog.name}</h3>
+                                                    </div>
+                                                </a>
+                                            ))}
                                         </div>)
                                 }
 

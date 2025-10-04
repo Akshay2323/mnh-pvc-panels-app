@@ -1,4 +1,5 @@
 import "@/styles/bootstrap-grid.css";
+import "@/styles/catalog.css";
 import "@/styles/contact-form.css";
 import "@/styles/content-box.css";
 import "@/styles/glide.css";
