@@ -1,15 +1,15 @@
 import PageHeader from '@/components/PageHeader';
 import SEO from '@/components/SEO';
-import { getAllTopProductDetails, getProductCatalog, getProductDetailsById } from "@/utils/api";
+import { getAllTopProductDetails, getProductDetailsById } from "@/utils/api";
 import { Keywords, Product, PRODUCT_MEDIA_TYPE } from '@/utils/app.model';
 import { GetStaticPaths } from "next";
 import Image from 'next/image';
 import { useRouter } from "next/router";
-import React, { Fragment, useState, useEffect, useRef, useCallback } from 'react';
-import Loader from "../../components/Loader";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, Thumbs, Zoom } from 'swiper/modules';
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
+import { Autoplay, Navigation, Pagination, Thumbs, Zoom } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Loader from "../../components/Loader";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -58,10 +58,10 @@ function ProductDetails({ product }: ProductDetailsProps) {
         media.mediaUrl && media.type === PRODUCT_MEDIA_TYPE.PDF
     );
 
-    const allPdfFiles = [
-        { type: PRODUCT_MEDIA_TYPE.PDF, mediaUrl: product.pdfUrl },
-        ...pdfFiles.filter(media => media.mediaUrl !== product.pdfUrl)
-    ].filter(media => media.mediaUrl);
+    // const allPdfFiles = [
+    //     { type: PRODUCT_MEDIA_TYPE.PDF, mediaUrl: product.pdfUrl },
+    //     ...pdfFiles.filter(media => media.mediaUrl !== product.pdfUrl)
+    // ].filter(media => media.mediaUrl);
 
 
     // Handle image zoom
@@ -407,11 +407,11 @@ function ProductDetails({ product }: ProductDetailsProps) {
                                 )}
 
                                 {/* PDF Resources Section */}
-                                {allPdfFiles.length > 0 && (
+                                {pdfFiles.length > 0 && (
                                     <div className="product-pdf-section">
                                         <h4>PDF Resources</h4>
                                         <div className="pdf-downloads">
-                                            {allPdfFiles.map((pdf, index) => (
+                                            {pdfFiles.map((pdf, index) => (
                                                 <div key={index} className="pdf-item">
                                                     <div className="pdf-info">
                                                         <i className="fas fa-file-pdf pdf-icon"></i>

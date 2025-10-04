@@ -45,7 +45,7 @@ export default function SubCategoryPage({ initialData }: SubCategoryPageProps) {
             <main>
                 {
                     (!initialData?.products || initialData?.products?.length === 0) ? (
-                        <section className="section-base mt50">
+                        <section className="section-base">
                             <div className="container">
                                 <div className="error-container">
                                     <h1>No Products Found</h1>
