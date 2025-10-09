@@ -1001,6 +1001,7 @@ body > nav .menu-brand img {
   padding: 5px;
   overflow: hidden;
   border-radius: 5px;
+  width: unset !important;
 }
 
 .menu-btn {

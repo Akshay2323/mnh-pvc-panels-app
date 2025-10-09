@@ -161,3 +161,26 @@
 .headerBase .light .breadcrumb li a:after {
   background: #fff;
 }
+
+@media (max-width: 768px) {
+  .headerBase {
+    padding-top: 20px
+  }
+  .headerBase .breadcrumb {
+    display: none !important;
+  }
+
+  .headerBase h1 {
+    font-size: 36px;
+  }
+
+  .headerBase h2 {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .headerBase h2:after,
+  .headerBase h2:before {
+    display: none !important;
+  }
+}
