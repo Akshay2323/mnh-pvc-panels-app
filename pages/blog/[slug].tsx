@@ -81,7 +81,7 @@ export default function BlogPage(blogData: BlogDetails) {
                                                 }}
                                             /> :
                                                 <div className="blog-detail-image" >
-                                                    <Image src={blogData?.blogDetail?.thumbnail || "/assets/app-logo.webp"} alt={blogData?.blogDetail?.title || ""} layout="fill"
+                                                    <Image src={blogData?.blogDetail?.thumbnail || "/assets/logo.jpeg"} alt={blogData?.blogDetail?.title || ""} layout="fill"
                                                         objectFit="contain" />
                                                 </div>
 

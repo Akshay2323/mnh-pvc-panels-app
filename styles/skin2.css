@@ -843,7 +843,7 @@ nav:not(.menu-side):not(.menu-transparent) .shop-menu {
 }
 
 .menu-fixed.scroll-menu .menu-cnt > ul > li > a,
-.menu-fixed.scroll-menu .menu-brand,
+/* .menu-fixed.scroll-menu .menu-brand, */
 .menu-fixed.scroll-menu .menu-right,
 .menu-icon-top.menu-fixed.scroll-menu .menu-cnt .menu-right {
   height: 85px;
@@ -2336,7 +2336,7 @@ Medium devices (tablets, less than 992px)
   body > nav .lan-menu > li > a,
   body > nav .menu-right,
   .menu-fixed.scroll-menu .menu-cnt > ul > li > a,
-  .menu-fixed.scroll-menu .menu-brand,
+  /* .menu-fixed.scroll-menu .menu-brand, */
   body > nav.scroll-menu .lan-menu > li > a {
     height: 100%;
     line-height: 56px;

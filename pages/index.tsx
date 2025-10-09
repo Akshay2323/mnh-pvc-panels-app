@@ -105,9 +105,9 @@ export default function Home(homeScreenData: HomeScreenContent) {
           </div>
           <div className="row">
             <div className="col-lg-4">
-              <p>
+              <div>
                 <div className="ck-content" dangerouslySetInnerHTML={{ __html: homeScreenData?.aboutUs?.sortContent || '' }} />
-              </p>
+              </div>
             </div>
             <div className="col-lg-8">
               <ul className="accordion-list" data-open="1">

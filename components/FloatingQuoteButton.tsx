@@ -1,18 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { getCategoryWithSubCategory, sendQuote } from '@/utils/api';
+import { states } from '@/utils/states';
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/FloatingQuoteButton.module.css';
-import { states } from '@/utils/states';
-import { productCategory, sendQuote } from '@/utils/api';
+import { CategoryData } from '@/utils/app.model';
 
 const FloatingQuoteButton: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
+    const [mainCategory, setMainCategory] = useState<CategoryData[]>([]);
     const [categories, setCategories] = useState<any[]>([]);
+    const [subCategories, setSubCategories] = useState<any[]>([]);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         phoneNo: '',
         category: '',
+        subCategory: '',
         state: '',
         message: ''
     });
@@ -23,8 +27,12 @@ const FloatingQuoteButton: React.FC = () => {
     }, []);
     const loadProductCategory = async () => {
         try {
-            const resp = await productCategory();
+            // setIsLoading(true);
+            setCategories([{ value: '', label: 'loading....' }]);
+            const resp = await getCategoryWithSubCategory();
+            console.log("🚀 ~ loadProductCategory ~ resp:", resp)
             if (resp?.status) {
+                setMainCategory(resp.data);
                 const categories = [
                     { value: '', label: 'Select Category' },
                     ...resp.data.map((category: any) => ({
@@ -38,7 +46,7 @@ const FloatingQuoteButton: React.FC = () => {
             const msg = error?.message || "Something went wrong to load details";
             console.error(msg);
         } finally {
-            setIsLoading(false);
+            // setIsLoading(false);
         }
     }
 
@@ -46,6 +54,25 @@ const FloatingQuoteButton: React.FC = () => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        const category = mainCategory.find((category: any) => category.name === value);
+        if (category) {
+            const subCategories = [
+                { value: '', label: 'Select Sub Category' },
+                ...category?.subCategories?.map((subCategory: any) => ({
+                    value: subCategory.name,
+                    label: subCategory.name
+                })) || []
+            ];
+            setSubCategories(subCategories);
+        }
         setFormData(prev => ({
             ...prev,
             [name]: value
@@ -64,6 +91,7 @@ const FloatingQuoteButton: React.FC = () => {
                 email: '',
                 phoneNo: '',
                 category: '',
+                subCategory: '',
                 state: '',
                 message: ''
             });
@@ -153,17 +181,34 @@ const FloatingQuoteButton: React.FC = () => {
                                     ))}
                                 </select>
                             </div>
-                            <div className={`${styles.formGroup} ${styles.fullWidthInput}`}>
+                            <div className={`${styles.formGroup}`}>
                                 <label htmlFor="category">Category *</label>
                                 <select
                                     id="category"
                                     name="category"
                                     value={formData.category}
-                                    onChange={handleInputChange}
+                                    onChange={handleCategoryChange}
                                     required
                                     className={styles.selectInput}
                                 >
                                     {categories.map((option) => (
+                                        <option key={option.value} value={option.value}>
+                                            {option.label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className={`${styles.formGroup}`}>
+                                <label htmlFor="subCategory">Sub Category *</label>
+                                <select
+                                    id="subCategory"
+                                    name="subCategory"
+                                    value={formData.subCategory}
+                                    onChange={handleInputChange}
+                                    required
+                                    className={styles.selectInput}
+                                >
+                                    {subCategories.map((option) => (
                                         <option key={option.value} value={option.value}>
                                             {option.label}
                                         </option>

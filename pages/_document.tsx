@@ -56,28 +56,28 @@ class MyDocument extends Document<MyDocumentProps> {
                 <Link href="/">
                   <Image
                     className="logo-default scroll-hide"
-                    src="/assets/app-logo.webp"
+                    src="/assets/logo.jpeg"
                     alt="Logo"
                     layout="fill"
                     objectFit="contain"
                   />
                   <Image
                     className="logo-retina scroll-hide"
-                    src="/assets/app-logo.webp"
+                    src="/assets/logo.jpeg"
                     alt="Logo"
                     layout="fill"
                     objectFit="contain"
                   />
                   <Image
                     className="logo-default scroll-show"
-                    src="/assets/app-logo.webp"
+                    src="/assets/logo.jpeg"
                     alt="Logo"
                     layout="fill"
                     objectFit="contain"
                   />
                   <Image
                     className="logo-retina scroll-show"
-                    src="/assets/app-logo.webp"
+                    src="/assets/logo.jpeg"
                     alt="Logo"
                     layout="fill"
                     objectFit="contain"

@@ -135,7 +135,7 @@ export default function BlogPage({ initialData }: BlogPageProps) {
                                                                                 event.target.pauseVideo();
                                                                             }}
                                                                         /> :
-                                                                            <Image src={blog.thumbnail || "/assets/app-logo.webp"} alt="" layout="fill"
+                                                                            <Image src={blog.thumbnail || "/assets/logo.jpeg"} alt="" layout="fill"
                                                                                 objectFit="contain" />
 
                                                                     }
@@ -212,28 +212,28 @@ export default function BlogPage({ initialData }: BlogPageProps) {
                                     <ul>
                                         <li>
                                             <Link href="#">
-                                                <Image src="/assets/app-logo.webp" alt="" style={{ objectFit: 'cover' }} height={50} width={50} />
+                                                <Image src="/assets/logo.jpeg" alt="" style={{ objectFit: 'cover' }} height={50} width={50} />
                                                 <span>February 12, 2020</span>
                                                 The last summer days
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="#">
-                                                <Image src="/assets/app-logo.webp" alt="" style={{ objectFit: 'cover' }} height={50} width={50} />
+                                                <Image src="/assets/logo.jpeg" alt="" style={{ objectFit: 'cover' }} height={50} width={50} />
                                                 <span>February 25, 2020</span>
                                                 Travels
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="#">
-                                                <Image src="/assets/app-logo.webp" alt="" style={{ objectFit: 'cover' }} height={50} width={50} />
+                                                <Image src="/assets/logo.jpeg" alt="" style={{ objectFit: 'cover' }} height={50} width={50} />
                                                 <span>April 19, 2020</span>
                                                 People and kids
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="#">
-                                                <Image src="/assets/app-logo.webp" alt="" style={{ objectFit: 'cover' }} height={50} width={50} />
+                                                <Image src="/assets/logo.jpeg" alt="" style={{ objectFit: 'cover' }} height={50} width={50} />
                                                 <span>April 20, 2020</span>
                                                 Animals and nature
                                             </Link>

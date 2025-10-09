@@ -309,10 +309,10 @@ nav.menu-transparent.light .brand-logo {
 
 /* Ensure logo visibility on video background */
 nav.menu-transparent .menu-brand {
-  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.1); */
   border-radius: 8px;
   padding: 5px 10px;
-  backdrop-filter: blur(5px);
+  /* backdrop-filter: blur(5px); */
 }
 
 /* Menu brand container adjustments for full-width */
@@ -998,7 +998,6 @@ body > nav .menu-brand img {
   max-height: 100%;
   display: block;
   object-fit: contain;
-  background-color: rgba(0, 0, 0, 0.5);
   padding: 5px;
   overflow: hidden;
   border-radius: 5px;

@@ -210,6 +210,7 @@ export class UserQuoteParam {
     phoneNo: string = "";
     email: string = "";
     category: string = "";
+    subCategory: string = "";
     state: string = "";
     message: string = "";
 }
@@ -303,6 +304,7 @@ export class CategoryData {
     description: string = "";
     imagePath: string = "";
     orderNo: number = 0;
+    subCategories?: ProductSubCatagory[] = [];
 }
 
 export enum PRODUCT_MEDIA_TYPE {

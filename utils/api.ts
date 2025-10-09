@@ -174,6 +174,19 @@ export const productCategory = async (): Promise<CategoryResp> => {
     }
 };
 
+export const getCategoryWithSubCategory = async (): Promise<CategoryResp> => {
+    try {
+        const response = await api.get<CategoryResp>('/productCategory/categoryWithSubCategory');
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to fetch product category',
+            data: [],
+        };
+    }
+};
+
 export const productSubCategory = async (): Promise<SubCategoryResp> => {
     try {
         const response = await api.get<SubCategoryResp>('/productSubCategory/active');
