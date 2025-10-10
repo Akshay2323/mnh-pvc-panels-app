@@ -51,7 +51,7 @@ h6,
 .list-nav a,
 .media-box-down .caption h2,
 .media-box-down .caption p {
-  color: #13304a;
+  color: #231f20;
 }
 
 div.cnt-box-info .cnt-info,
@@ -69,17 +69,17 @@ footer,
 .cnt-box-blog-top .blog-date span:last-child,
 .section-home-alpins + section:before,
 .scroll-menu .shop-menu-cnt .cart-count {
-  background-color: #13304a;
+  background-color: #231f20;
 }
 
 .cnt-box-testimonials-bubble > p:after {
-  border-right-color: #13304a;
+  border-right-color: #231f20;
 }
 
 .tab-nav li.active a,
 .tab-nav li:hover a {
-  background-color: #13304a;
-  border-color: #13304a;
+  background-color: #231f20;
+  border-color: #231f20;
 }
 
 .lan-menu .dropdown > ul > li > a,
