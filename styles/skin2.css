@@ -846,14 +846,15 @@ nav:not(.menu-side):not(.menu-transparent) .shop-menu {
 /* .menu-fixed.scroll-menu .menu-brand, */
 .menu-fixed.scroll-menu .menu-right,
 .menu-icon-top.menu-fixed.scroll-menu .menu-cnt .menu-right {
-  height: 85px;
-  line-height: 85px;
+  height: 65px;
+  line-height: 65px;
 }
 
 body > nav .menu-brand,
 .menu-icon-top .menu-brand {
   height: 95px;
-  padding: 15px 0;
+  margin: 5px 10px;
+  /* padding: 15px 0; */
 }
 
 .menu-cnt > ul > li a,
@@ -924,8 +925,8 @@ body > nav.menu-transparent:not(.scroll-menu):before {
 body > nav .menu-cnt > ul > li > a,
 body > nav .lan-menu > li > a,
 body > nav .menu-right {
-  height: 95px;
-  line-height: 95px;
+  height: 65px;
+  line-height: 65px;
   padding-bottom: 25px;
   box-sizing: content-box;
 }
