@@ -127,7 +127,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
         </div>
       </section>
 
-      <section className="section-base">
+      {/* <section className="section-base">
         <div className="container">
           <div className="title align-center">
             <h2>Our Clients</h2>
@@ -141,7 +141,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="section-base section-color">
         <div className="container">

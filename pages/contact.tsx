@@ -101,7 +101,7 @@ export default function Contact(contactContentData: ContactContent) {
                             </div>
                             <div className="col-lg-4">
                                 <div className="title">
-                                    <h2>Contacts</h2>
+                                    {/* <h2>Contacts</h2> */}
                                     <p>Information</p>
                                 </div>
                                 <ul className="text-list text-list-line">
