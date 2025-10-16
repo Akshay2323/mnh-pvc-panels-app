@@ -129,6 +129,7 @@ export class AboutUsContent {
     aboutUs: AboutUs = new AboutUs();
     faqs: Faq[] = [];
     branches: Branch[] = [];
+    members: Member[] = [];
     keywords: Keywords = new Keywords();
 }
 

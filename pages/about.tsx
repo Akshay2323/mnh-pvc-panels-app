@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { getAboutUsDetails } from "@/utils/api";
 import { AboutUsContent } from "@/utils/app.model";
 import { GetStaticProps } from "next";
@@ -40,6 +41,46 @@ export default function About(aboutUsData: AboutUsContent) {
           <div className="container">
             <div className="title align-center">
               <h2>Our Experts</h2>
+            </div>
+            <div
+              className="grid-list gap-60"
+              data-columns="2"
+              data-columns-sm="1"
+              data-gap="60"
+            >
+              <div className="grid-box">
+                {aboutUsData?.members?.map((item) => (
+                  <div className="grid-item" key={item.id}>
+                    <div className="cnt-box cnt-box-side">
+                      <a href="#" className="img-box">
+                        <img
+                          src={item.imagePath || "/assets/logo.jpeg"}
+                          alt=""
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = "/assets/logo.jpeg";
+                          }}
+                        />
+                      </a>
+                      <div className="caption">
+                        <h2>{item.name}</h2>
+                        <p>{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section-base">
+          <div className="container">
+            <div className="title align-center">
+              <h2>Strengthening Connections Nationwide</h2>
+              <p>
+                Stocking at strategic hotspots to ensure timely delivery
+                everywhere.
+              </p>
             </div>
             <div className="category-slider">
               <Swiper
@@ -105,7 +146,7 @@ export default function About(aboutUsData: AboutUsContent) {
             </div>
           </div>
         </section>
-        <section className="section-base">
+        <section className="section-base section-color">
           <div className="container">
             <div className="title align-center align-left-md">
               <h2>FAQ</h2>
