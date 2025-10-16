@@ -147,46 +147,44 @@ export default function Home(homeScreenData: HomeScreenContent) {
           </div>
         </div>
       </section>
-
+      
       <section className="section-base py-16 founders-section">
-  <div className="container mx-auto px-4">
-<div className="title align-center">
-  <h2>Founders & Executive Leadership</h2>
-</div>
-
-
-
-    <div className="founders-list">
-      {homeScreenData?.members?.map((item, index) => (
-        <div key={item.id} className={`founder ${index % 2 === 1 ? "reverse" : ""}`}>
-          {/* Image */}
-          <div className="founder-image">
-            <img
-              src={item.imagePath || "/assets/logo.jpeg"}
-              alt={item.name}
-              className="rounded-2xl shadow-lg"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = "/assets/logo.jpeg";
-              }}
-            />
+        <div className="container mx-auto px-4">
+          <div className="title align-center">
+            <h2>Founders & Executive Leadership</h2>
           </div>
+          <div className="founders-list">
+            {homeScreenData?.members?.map((item, index) => (
+              <div key={item.id} className={`founder ${index % 2 === 1 ? "reverse" : ""}`}>
+                {/* Image */}
+                <div className="founder-image">
+                  <img
+                    src={item.imagePath || "/assets/logo.jpeg"}
+                    alt={item.name}
+                    className="rounded-2xl shadow-lg"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/assets/logo.jpeg";
+                    }}
+                  />
+                </div>
 
-          {/* Text */}
-          <div className="founder-text">
-            <h3 className="text-2xl font-semibold mb-4">{item.name}</h3>
-            <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                {/* Text */}
+                <div className="founder-text">
+                  <h3 className="text-2xl font-semibold mb-4">{item.name}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+
+                  {/* Learn More Button */}
+
+                  <a href="/about" className="btn btn-sm">
+                    Learn More
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-
-
-
-
+      </section>
 
       <section className="section-base section-color">
         <div className="container">
