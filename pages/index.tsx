@@ -175,7 +175,8 @@ export default function Home(homeScreenData: HomeScreenContent) {
                   <p className="text-gray-600 leading-relaxed">{item.description}</p>
 
                   {/* Learn More Button */}
-                  <Link href="/about" className="btn btn-primary">
+
+                  <Link className="btn btn-sm" href='/about'>
                     Learn More
                   </Link>
                 </div>
