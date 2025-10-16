@@ -9,6 +9,7 @@ import "@/styles/media-box.css";
 import "@/styles/product-categories.css";
 import "@/styles/product-details.css";
 import "@/styles/style.css";
+import "@/styles/blog-cards.css";
 import "@/styles/skin2.css";
 import type { AppProps } from 'next/app';
 import Script from 'next/script';

@@ -116,10 +116,6 @@ export default function BlogPage({ initialData }: BlogPageProps) {
                                                         <div key={blog.id} className="grid-item">
                                                             <div className="cnt-box cnt-box-blog-side boxed" data-href={`/blog/${blog.id}`}>
                                                                 <Link href={`/blog/${blog.id}`} className="img-box">
-                                                                    {/* <div className="blog-date">
-                                                                <span>{format(blog.createdAt, 'dd')}</span>
-                                                                <span>{format(blog.createdAt, 'MMM yyyy')}</span>
-                                                            </div> */}
                                                                     {
                                                                         blog.type == BLOG_MEDIA_TYPE.VIDEO ? < YouTube
                                                                             ref={(ref) => {

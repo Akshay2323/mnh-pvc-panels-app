@@ -93,6 +93,8 @@ export class HomeScreenContent {
     specifications: Specification[] = [];
     aboutUs: AboutUs = new AboutUs();
     faqs: Faq[] = [];
+    members: Member[] = [];
+    blogs: Blog[] = [];
     // manufacturerContent: ManufacturerContent = new ManufacturerContent();
     // pvcWallContent: PvcWallContent = new PvcWallContent();
 }
@@ -126,6 +128,7 @@ export class AboutUsContentResp {
 export class AboutUsContent {
     aboutUs: AboutUs = new AboutUs();
     faqs: Faq[] = [];
+    branches: Branch[] = [];
     keywords: Keywords = new Keywords();
 }
 
@@ -372,6 +375,16 @@ export class ProductGalleryResp {
 export class Faq {
     id?: string = "";
     title?: string = "";
+    description?: string = "";
+    orderNo?: number | null = null;
+    createdAt: any;
+    updatedAt: any;
+}
+
+export class Member {
+    id?: string = "";
+    name?: string = "";
+    imagePath?: string = "";
     description?: string = "";
     orderNo?: number | null = null;
     createdAt: any;
