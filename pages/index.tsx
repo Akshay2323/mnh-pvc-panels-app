@@ -147,7 +147,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
           </div>
         </div>
       </section>
-      
+
       <section className="section-base py-16 founders-section">
         <div className="container mx-auto px-4">
           <div className="title align-center">
@@ -175,10 +175,9 @@ export default function Home(homeScreenData: HomeScreenContent) {
                   <p className="text-gray-600 leading-relaxed">{item.description}</p>
 
                   {/* Learn More Button */}
-
-                  <a href="/about" className="btn btn-sm">
+                  <Link href="/about" className="btn btn-primary">
                     Learn More
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
