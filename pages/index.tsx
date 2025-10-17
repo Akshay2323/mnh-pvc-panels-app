@@ -290,7 +290,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
         </div>
       </section> */}
 
-      {/* <section className="section-base section-color">
+      <section className="section-base section-color">
         <div className="container">
           <div className="title align-center">
             <h2>Strengthening Connections Nationwide</h2>
@@ -362,7 +362,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
             </Swiper>
           </div>
         </div>
-      </section> */}
+      </section> 
 
       <section className="section-base">
         <div className="container">
