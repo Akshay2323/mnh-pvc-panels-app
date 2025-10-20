@@ -11,9 +11,9 @@ import { getHomeDetails } from "@/utils/api";
 import { extractYouTubeId } from "@/utils/common";
 import SEO from "@/components/SEO";
 import YouTube, { YouTubePlayer } from "react-youtube";
-import Image from "next/image";
 import { useRef } from "react";
 import { format } from "date-fns";
+import { motion } from "framer-motion";
 
 const youtubeOptions = {
   width: "100%",
@@ -25,9 +25,29 @@ const youtubeOptions = {
     rel: 0,
   },
 };
+
+// Animation Variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, when: "beforeChildren" },
+  },
+};
+
+const fadeUpItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 export default function Home(homeScreenData: HomeScreenContent) {
-  console.log("🚀 ~ Home ~ homeScreenData:", homeScreenData);
   const videoRefs = useRef<{ [key: string]: YouTubePlayer | null }>({});
+
   return (
     <main>
       <SEO
@@ -36,20 +56,39 @@ export default function Home(homeScreenData: HomeScreenContent) {
         keywords={homeScreenData?.keywords.keywords?.split(",") || []}
         image={homeScreenData?.keywords.imagePath}
       />
-      <section className="video-container">
+
+      {/* Hero Video */}
+      <motion.section
+        className="video-container"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
         <video autoPlay muted loop playsInline className="responsive-video">
           <source src="/assets/MNH-Full-intro-Video-V2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      </section>
+      </motion.section>
 
-      <section className="section-base">
+      {/* Products Categories */}
+      <motion.section
+        className="section-base"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
         <div className="container">
           <div className="title align-center">
             <h2>Our Products Categories</h2>
             <p>Explore our premium PVC solutions</p>
           </div>
-          <div className="category-slider">
+          <motion.div
+            className="category-slider"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
             <Swiper
               modules={[Navigation, Autoplay]}
               spaceBetween={15}
@@ -62,77 +101,62 @@ export default function Home(homeScreenData: HomeScreenContent) {
                 disableOnInteraction: false,
               }}
               breakpoints={{
-                320: {
-                  slidesPerView: 1.2,
-                  centeredSlides: true,
-                  spaceBetween: 15,
-                },
-                480: {
-                  slidesPerView: 1.5,
-                  centeredSlides: false,
-                },
-                640: {
-                  slidesPerView: 2,
-                  centeredSlides: false,
-                },
-                768: {
-                  slidesPerView: 2.5,
-                  centeredSlides: false,
-                },
-                1024: {
-                  slidesPerView: 3,
-                  centeredSlides: false,
-                },
-                1280: {
-                  slidesPerView: 4,
-                  centeredSlides: false,
-                },
+                320: { slidesPerView: 1.2, centeredSlides: true, spaceBetween: 15 },
+                480: { slidesPerView: 1.5, centeredSlides: false },
+                640: { slidesPerView: 2, centeredSlides: false },
+                768: { slidesPerView: 2.5, centeredSlides: false },
+                1024: { slidesPerView: 3, centeredSlides: false },
+                1280: { slidesPerView: 4, centeredSlides: false },
               }}
             >
-              {homeScreenData?.categories?.map((item) => (
+              {homeScreenData?.categories?.map((item, index) => (
                 <SwiperSlide key={item.id}>
-                  <Link
-                    href={`/subcategory/${item.id}`}
-                    className="category-box"
-                  >
-                    <img
-                      src={item.imagePath || "/assets/logo.jpeg"}
-                      alt={item.name}
-                      className="category-image"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "/assets/logo.jpeg";
-                      }}
-                    />
-                    <div className="category-content">
-                      <h3 className="title">{item.name}</h3>
-                    </div>
-                  </Link>
+                  <motion.div variants={fadeUpItem}>
+                    <Link href={`/subcategory/${item.id}`} className="category-box">
+                      <img
+                        src={item.imagePath || "/assets/logo.jpeg"}
+                        alt={item.name}
+                        className="category-image"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/assets/logo.jpeg";
+                        }}
+                      />
+                      <div className="category-content">
+                        <h3 className="title">{item.name}</h3>
+                      </div>
+                    </Link>
+                  </motion.div>
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="section-base section-color">
+      {/* About Us & FAQs */}
+      <motion.section
+        className="section-base section-color"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
         <div className="container">
           <div className="title align-center align-left-md">
             <h2>About us</h2>
             <p>Our Company Profile</p>
           </div>
           <div className="row">
-            <div className="col-lg-4">
-              <div>
-                <div
-                  className="ck-content"
-                  dangerouslySetInnerHTML={{
-                    __html: homeScreenData?.aboutUs?.sortContent || "",
-                  }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-8">
+            <motion.div className="col-lg-4" variants={fadeUpItem}>
+              <div
+                className="ck-content"
+                dangerouslySetInnerHTML={{
+                  __html: homeScreenData?.aboutUs?.sortContent || "",
+                }}
+              />
+            </motion.div>
+            <motion.div className="col-lg-8" variants={fadeUpItem}>
               <ul className="accordion-list" data-open="1">
                 {homeScreenData?.faqs?.map((item) => (
                   <li key={item.id}>
@@ -143,228 +167,186 @@ export default function Home(homeScreenData: HomeScreenContent) {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="section-base py-16 founders-section">
+      {/* Founders & Leadership */}
+      <motion.section
+        className="section-base py-16 founders-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
         <div className="container mx-auto px-4">
           <div className="title align-center">
             <h2>Founders & Executive Leadership</h2>
           </div>
-          <div className="founders-list">
-            {homeScreenData?.members?.map((item, index) => (
-              <div key={item.id} className={`founder ${index % 2 === 1 ? "reverse" : ""}`}>
-                {/* Image */}
-                <div className="founder-image">
-                  <img
-                    src={item.imagePath || "/assets/logo.jpeg"}
-                    alt={item.name}
-                    className="rounded-2xl shadow-lg"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "/assets/logo.jpeg";
-                    }}
-                  />
-                </div>
-
-                {/* Text */}
-                <div className="founder-text">
-                  <h3 className="text-2xl font-semibold mb-4">{item.name}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
-
-                  {/* Learn More Button */}
-
-                  <Link className="btn btn-sm" href='/about'>
-                    Learn More
-                  </Link>
-                </div>
+          {homeScreenData?.members?.map((item, index) => (
+            <motion.div
+              key={item.id}
+              className={`founder ${index % 2 === 1 ? "reverse" : ""}`}
+              variants={fadeUpItem}
+            >
+              <div className="founder-image">
+                <img
+                  src={item.imagePath || "/assets/logo.jpeg"}
+                  alt={item.name}
+                  className="rounded-2xl shadow-lg"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/assets/logo.jpeg";
+                  }}
+                />
               </div>
-            ))}
-          </div>
+              <div className="founder-text">
+                <h3 className="text-2xl font-semibold mb-4">{item.name}</h3>
+                <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                <Link className="btn btn-sm" href="/about">
+                  Learn More
+                </Link>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </motion.section>
 
-      <section className="section-base section-color">
+      {/* Blogs */}
+      <motion.section
+        className="section-base section-color"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
         <div className="container">
           <div className="title align-center">
             <h2>Blogs</h2>
           </div>
-          <div className="category-slider">
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              spaceBetween={15}
-              slidesPerView={"auto"}
-              centeredSlides={true}
-              loop={false}
-              navigation
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              breakpoints={{
-                320: {
-                  slidesPerView: 1,
-                  centeredSlides: true,
-                  spaceBetween: 15,
-                },
-                768: {
-                  slidesPerView: 1.5,
-                  centeredSlides: false,
-                },
-                991: {
-                  slidesPerView: 2.5,
-                  centeredSlides: false,
-                },
-              }}
-            >
-              {homeScreenData?.blogs?.map((item) => (
-                <SwiperSlide key={item.id}>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            spaceBetween={15}
+            slidesPerView={"auto"}
+            centeredSlides={true}
+            loop={false}
+            navigation
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            breakpoints={{
+              320: { slidesPerView: 1, centeredSlides: true, spaceBetween: 15 },
+              768: { slidesPerView: 1.5, centeredSlides: false },
+              991: { slidesPerView: 2.5, centeredSlides: false },
+            }}
+          >
+            {homeScreenData?.blogs?.map((item) => (
+              <SwiperSlide key={item.id}>
+                <motion.div variants={fadeUpItem}>
                   <div className="blog-card">
                     <Link href={`/blog/${item.id}`} className="blog-card-image">
                       {item.type == BLOG_MEDIA_TYPE.VIDEO ? (
                         <>
                           <YouTube
                             ref={(ref) => {
-                              if (ref) {
-                                videoRefs.current[item.id] = ref;
-                              }
+                              if (ref) videoRefs.current[item.id] = ref;
                             }}
                             videoId={extractYouTubeId(item.media)}
                             opts={youtubeOptions}
-                            style={{
-                              height: "auto",
-                              width: "100%",
-                              position: "relative",
-                            }}
-                            onReady={(event) => {
-                              // Pause video on initial load
-                              event.target.pauseVideo();
-                            }}
+                            style={{ height: "auto", width: "100%", position: "relative" }}
+                            onReady={(event) => event.target.pauseVideo()}
                           />
-                          <div className="blog-video-icon">
+                          <motion.div
+                            className="blog-video-icon"
+                            animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
+                            transition={{ repeat: Infinity, duration: 1.2 }}
+                          >
                             <i className="fas fa-play"></i>
-                          </div>
+                          </motion.div>
                         </>
                       ) : (
-                        <img
-                          src={item.thumbnail || "/assets/logo.jpeg"}
-                          alt={item.title || ""}
-                        />
+                        <img src={item.thumbnail || "/assets/logo.jpeg"} alt={item.title || ""} />
                       )}
                     </Link>
                     <div className="blog-card-content">
                       <h3 className="blog-card-title">{item.title}</h3>
-                      <p className="blog-card-description">
-                        {item.sortDescription}
-                      </p>
+                      <p className="blog-card-description">{item.sortDescription}</p>
                       <div className="blog-card-meta">
                         <div className="blog-card-date">
                           <i className="far fa-calendar-alt"></i>
-                          <span>{format(item.createdAt, 'dd / MM / yyyy')}</span>
+                          <span>{format(item.createdAt, "dd / MM / yyyy")}</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
-      </section>
-
-      {/* <section className="section-base">
-        <div className="container">
-          <div className="title align-center">
-            <h2>Our Clients</h2>
-            <p>Trusted by leading brands for innovative PVC solutions.</p>
-          </div>
-          <div className="client-details">
-            {homeScreenData?.clients?.map((item) => (
-              <div key={item.id} className="client-box">
-                <img src={item.imagePath || '/assets/logo.jpeg'} alt={'MNH PVC Panel clients'} />
-              </div>
+                </motion.div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
-      </section> */}
+      </motion.section>
 
-      <section className="section-base section-color">
+      {/* Branches */}
+      <motion.section
+        className="section-base section-color"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
         <div className="container">
           <div className="title align-center">
             <h2>Strengthening Connections Nationwide</h2>
-            <p>
-              Stocking at strategic hotspots to ensure timely delivery
-              everywhere.
-            </p>
+            <p>Stocking at strategic hotspots to ensure timely delivery everywhere.</p>
           </div>
-          <div className="category-slider">
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              spaceBetween={15}
-              slidesPerView={"auto"}
-              centeredSlides={true}
-              loop={false}
-              navigation
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              breakpoints={{
-                320: {
-                  slidesPerView: 1.2,
-                  centeredSlides: true,
-                  spaceBetween: 15,
-                },
-                480: {
-                  slidesPerView: 1.5,
-                  centeredSlides: false,
-                },
-                640: {
-                  slidesPerView: 2,
-                  centeredSlides: false,
-                },
-                768: {
-                  slidesPerView: 2.5,
-                  centeredSlides: false,
-                },
-                1024: {
-                  slidesPerView: 3,
-                  centeredSlides: false,
-                },
-                1280: {
-                  slidesPerView: 4,
-                  centeredSlides: false,
-                },
-              }}
-            >
-              {homeScreenData?.branches?.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <div className="category-box">
-                    <img
-                      src={item.imagePath || "/assets/logo.jpeg"}
-                      alt={item.name}
-                      className="category-image"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "/assets/logo.jpeg";
-                      }}
-                    />
-                    <div className="category-content">
-                      <h3 className="title">{item.name}</h3>
-                      <h3 className="sub-title">{item.city}</h3>
-                      <p className="sub-title address">{item.address}</p>
-                    </div>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            spaceBetween={15}
+            slidesPerView={"auto"}
+            centeredSlides={true}
+            loop={false}
+            navigation
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            breakpoints={{
+              320: { slidesPerView: 1.2, centeredSlides: true, spaceBetween: 15 },
+              480: { slidesPerView: 1.5, centeredSlides: false },
+              640: { slidesPerView: 2, centeredSlides: false },
+              768: { slidesPerView: 2.5, centeredSlides: false },
+              1024: { slidesPerView: 3, centeredSlides: false },
+              1280: { slidesPerView: 4, centeredSlides: false },
+            }}
+          >
+            {homeScreenData?.branches?.map((item) => (
+              <SwiperSlide key={item.id}>
+                <motion.div variants={fadeUpItem} className="category-box">
+                  <img
+                    src={item.imagePath || "/assets/logo.jpeg"}
+                    alt={item.name}
+                    className="category-image"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/assets/logo.jpeg";
+                    }}
+                  />
+                  <div className="category-content">
+                    <h3 className="title">{item.name}</h3>
+                    <h3 className="sub-title">{item.city}</h3>
+                    <p className="sub-title address">{item.address}</p>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-      </section> 
+      </motion.section>
 
-      <section className="section-base">
+      {/* Specifications */}
+      <motion.section
+        className="section-base"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
         <div className="container">
           <div className="title align-center">
             <h2>Why you should use our products</h2>
@@ -374,7 +356,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
             <tbody>
               <tr>
                 {homeScreenData?.specifications?.map((item) => (
-                  <td key={item.id}>
+                  <motion.td key={item.id} variants={fadeUpItem}>
                     <div className="icon-box icon-box-top align-center">
                       <i className={item.iconName}></i>
                       <div className="caption">
@@ -382,13 +364,13 @@ export default function Home(homeScreenData: HomeScreenContent) {
                         <p>{item.description}</p>
                       </div>
                     </div>
-                  </td>
+                  </motion.td>
                 ))}
               </tr>
             </tbody>
           </table>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }
