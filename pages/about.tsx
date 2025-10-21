@@ -73,7 +73,7 @@ export default function About(aboutUsData: AboutUsContent) {
             </div>
           </div>
         </section>
-        <section className="section-base">
+        {/* <section className="section-base">
           <div className="container">
             <div className="title align-center">
               <h2>Strengthening Connections Nationwide</h2>
@@ -145,8 +145,8 @@ export default function About(aboutUsData: AboutUsContent) {
               </Swiper>
             </div>
           </div>
-        </section>
-        <section className="section-base section-color">
+        </section> */}
+        <section className="section-base">
           <div className="container">
             <div className="title align-center align-left-md">
               <h2>FAQ</h2>

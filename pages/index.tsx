@@ -174,7 +174,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Founders & Leadership */}
       <motion.section
-        className="section-base py-16 founders-section"
+        className="section-base py-16 founders-list"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
