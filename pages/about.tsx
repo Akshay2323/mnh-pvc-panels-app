@@ -37,7 +37,7 @@ export default function About(aboutUsData: AboutUsContent) {
             />
           </div>
         </section>
-        <section className="section-base section-color">
+        {/* <section className="section-base section-color">
           <div className="container">
             <div className="title align-center">
               <h2>Our Experts</h2>
@@ -72,15 +72,11 @@ export default function About(aboutUsData: AboutUsContent) {
               </div>
             </div>
           </div>
-        </section>
-        {/* <section className="section-base">
+        </section> */}
+        <section className="section-base section-color">
           <div className="container">
             <div className="title align-center">
-              <h2>Strengthening Connections Nationwide</h2>
-              <p>
-                Stocking at strategic hotspots to ensure timely delivery
-                everywhere.
-              </p>
+              <h2>Our Experts</h2>
             </div>
             <div className="category-slider">
               <Swiper
@@ -122,7 +118,7 @@ export default function About(aboutUsData: AboutUsContent) {
                   },
                 }}
               >
-                {aboutUsData?.branches?.map((item) => (
+                {aboutUsData?.members?.map((item) => (
                   <SwiperSlide key={item.id}>
                     <div className="category-box">
                       <img
@@ -136,8 +132,7 @@ export default function About(aboutUsData: AboutUsContent) {
                       />
                       <div className="category-content">
                         <h3 className="title">{item.name}</h3>
-                        <h3 className="sub-title">{item.city}</h3>
-                        <p className="sub-title address">{item.address}</p>
+                        <p className="sub-title address">{item.description}</p>
                       </div>
                     </div>
                   </SwiperSlide>
@@ -145,7 +140,7 @@ export default function About(aboutUsData: AboutUsContent) {
               </Swiper>
             </div>
           </div>
-        </section> */}
+        </section>
         <section className="section-base">
           <div className="container">
             <div className="title align-center align-left-md">

@@ -15,12 +15,17 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  visibility: hidden;
+  /* transition: opacity 0.3s ease-in-out; */
+  transition: opacity 500ms ease, visibility 500ms ease, transform 500ms ease,
+    -webkit-transform 500ms ease;
   z-index: 1;
 }
 
 .category-box:hover:before {
   opacity: 1;
+  visibility: visible;
+  transform: translateY(0%);
 }
 
 .category-box img {

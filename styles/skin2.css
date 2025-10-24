@@ -269,8 +269,9 @@ form.form-box input,
   box-shadow: 0 10px 60px -12px rgba(39, 79, 117, 0.25);
 }
 
-.section-color .cnt-box.boxed .caption {
-  background-color: #fff;
+/* .section-color */
+.cnt-box.boxed .caption {
+  background-color: #fff !important;
 }
 
 .search-box-menu > input[type="text"] {

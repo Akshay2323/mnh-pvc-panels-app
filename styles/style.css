@@ -198,11 +198,22 @@ h4 + a {
   gap: 2rem;
   margin-bottom: 4rem;
 }
+/* .founder-image {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+} */
 
 /* Image sizing */
 .founder-image img {
   width: 100%;
+  height: auto;
   object-fit: cover;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
 }
 
 /* Desktop alternating */
@@ -1037,7 +1048,7 @@ body > nav .menu-brand img {
   overflow: hidden;
   border-radius: 5px;
   width: 100%;
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   height: 65px !important;
   width: 65px !important;
@@ -1296,6 +1307,10 @@ DROPDOWN - NAVIGATION MENU
 
 .dropdown li {
   cursor: pointer;
+}
+
+.dropdown ul li:hover > a{
+  background-color: #e26122 !important;
 }
 
 .dropdown > a {
@@ -6642,4 +6657,16 @@ html body div.ck-content p {
     margin: 1em 0;
     line-height: normal;
   }
+}
+
+.blog-swiper {
+  padding: 25px 0px !important;
+}
+
+.home-blog-section .title {
+  margin-bottom: 20px;
+}
+
+.home-blog-section .container {
+  padding-bottom: 30px;
 }

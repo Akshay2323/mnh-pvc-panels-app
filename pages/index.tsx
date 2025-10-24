@@ -215,7 +215,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Blogs */}
       <motion.section
-        className="section-base section-color"
+        className="section-base section-color home-blog-section"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -230,6 +230,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
             spaceBetween={15}
             slidesPerView={"auto"}
             centeredSlides={true}
+            className="blog-swiper"
             loop={false}
             navigation
             autoplay={{ delay: 3000, disableOnInteraction: false }}
