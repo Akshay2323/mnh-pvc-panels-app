@@ -12,7 +12,6 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function About(aboutUsData: AboutUsContent) {
-  console.log("🚀 ~ About ~ aboutUsData:", aboutUsData);
   return (
     <React.Fragment>
       <SEO

@@ -30,7 +30,6 @@ const FloatingQuoteButton: React.FC = () => {
             // setIsLoading(true);
             setCategories([{ value: '', label: 'loading....' }]);
             const resp = await getCategoryWithSubCategory();
-            console.log("🚀 ~ loadProductCategory ~ resp:", resp)
             if (resp?.status) {
                 setMainCategory(resp.data);
                 const categories = [

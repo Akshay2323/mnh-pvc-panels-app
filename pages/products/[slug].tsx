@@ -18,7 +18,6 @@ interface SubCategoryPageProps {
 }
 
 export default function SubCategoryPage({ initialData }: SubCategoryPageProps) {
-    console.log("🚀 ~ SubCategoryPage ~ initialData:", initialData)
     const router = useRouter();
 
     if (router.isFallback) {
