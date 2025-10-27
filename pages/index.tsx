@@ -14,6 +14,12 @@ import YouTube, { YouTubePlayer } from "react-youtube";
 import { useRef } from "react";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const IndiaMap3D = dynamic(() => import("./IndiaMap3D"), {
+  ssr: false,
+});
+
 
 const youtubeOptions = {
   width: "100%",
@@ -287,58 +293,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
       </motion.section>
 
       {/* Branches */}
-      <motion.section
-        className="section-base section-color"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={staggerContainer}
-      >
-        <div className="container">
-          <div className="title align-center">
-            <h2>Strengthening Connections Nationwide</h2>
-            <p>Stocking at strategic hotspots to ensure timely delivery everywhere.</p>
-          </div>
-          <Swiper
-            modules={[Navigation, Autoplay]}
-            spaceBetween={15}
-            slidesPerView={"auto"}
-            centeredSlides={true}
-            loop={false}
-            navigation
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            breakpoints={{
-              320: { slidesPerView: 1.2, centeredSlides: true, spaceBetween: 15 },
-              480: { slidesPerView: 1.5, centeredSlides: false },
-              640: { slidesPerView: 2, centeredSlides: false },
-              768: { slidesPerView: 2.5, centeredSlides: false },
-              1024: { slidesPerView: 3, centeredSlides: false },
-              1280: { slidesPerView: 4, centeredSlides: false },
-            }}
-          >
-            {homeScreenData?.branches?.map((item) => (
-              <SwiperSlide key={item.id}>
-                <motion.div variants={fadeUpItem} className="category-box">
-                  <img
-                    src={item.imagePath || "/assets/logo.jpeg"}
-                    alt={item.name}
-                    className="category-image"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "/assets/logo.jpeg";
-                    }}
-                  />
-                  <div className="category-content">
-                    <h3 className="title">{item.name}</h3>
-                    <h3 className="sub-title">{item.city}</h3>
-                    <p className="sub-title address">{item.address}</p>
-                  </div>
-                </motion.div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </motion.section>
+      <IndiaMap3D />
 
       {/* Specifications */}
       <motion.section
