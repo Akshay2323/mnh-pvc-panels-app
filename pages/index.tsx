@@ -15,8 +15,9 @@ import { useRef } from "react";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import VideoCard from "@/components/VideoCard";
 
-const IndiaMap3D = dynamic(() => import("./IndiaMap3D"), {
+const IndiaMap3D = dynamic(() => import("../components/IndiaMap3D"), {
   ssr: false,
 });
 
@@ -293,11 +294,19 @@ export default function Home(homeScreenData: HomeScreenContent) {
       </motion.section>
 
       {/* Branches */}
-      <IndiaMap3D />
+      <motion.section
+        className="section-base"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
+        <IndiaMap3D />
+      </motion.section>
 
       {/* Specifications */}
       <motion.section
-        className="section-base"
+        className="section-base section-color"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -325,6 +334,72 @@ export default function Home(homeScreenData: HomeScreenContent) {
               </tr>
             </tbody>
           </table>
+        </div>
+      </motion.section>
+
+       {/* Reviews */}
+      <motion.section
+        className="section-base"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
+        <div className="container">
+          <div className="title align-center">
+            <h2>Customer Review</h2>
+            <p>What our customers say</p>
+          </div>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={15}
+              slidesPerView={1}
+              breakpoints={{
+                480: {
+                  slidesPerView: 2,
+                },
+                768: {
+                  slidesPerView: 3,
+                },
+                1024: {
+                  slidesPerView: 4,
+                },
+                1280: {
+                  slidesPerView: 5,
+                },
+              }}
+              loop={false}
+              navigation
+              className="video-swiper"
+            >
+              {homeScreenData?.reviewsVideos?.map((item, index) => (
+                <SwiperSlide key={item.id}>
+                  <motion.div variants={fadeUpItem}>
+                    <VideoCard video={item} key={index} />
+                    {/* <Link href={`/subcategory/${item.id}`} className="category-box">
+                      <img
+                        src={item.imagePath || "/assets/logo.jpeg"}
+                        alt={item.name}
+                        className="category-image"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/assets/logo.jpeg";
+                        }}
+                      />
+                      <div className="category-content">
+                        <h3 className="title">{item.name}</h3>
+                      </div>
+                    </Link> */}
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </motion.div>
         </div>
       </motion.section>
     </main>

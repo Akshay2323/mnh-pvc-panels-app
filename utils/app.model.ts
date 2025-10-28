@@ -95,6 +95,7 @@ export class HomeScreenContent {
     faqs: Faq[] = [];
     members: Member[] = [];
     blogs: Blog[] = [];
+    reviewsVideos: Video[] = [];
     // manufacturerContent: ManufacturerContent = new ManufacturerContent();
     // pvcWallContent: PvcWallContent = new PvcWallContent();
 }
@@ -458,4 +459,19 @@ export class ProductDetailResp {
 export class ProductDetailData {
     productDetail: Product = new Product();
     keywords: Keywords = new Keywords();
+}
+
+export class Video {
+    id: string = "";
+    title?: string = "";
+    description?: string = "";
+    videoUrl: string = "";
+    videoPath: string = "";
+    isLocalVideo: boolean = false;
+    localVideoUrl: string = "";
+    orderNo: number = 0;
+    createdAt: any;
+    updatedAt: any;
+    videoId?: string = "";
+    thumbnail?: string = "";
 }
