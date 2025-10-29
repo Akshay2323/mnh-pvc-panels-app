@@ -258,7 +258,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
                             ref={(ref) => {
                               if (ref) videoRefs.current[item.id] = ref;
                             }}
-                            videoId={extractYouTubeId(item.media)}
+                            videoId={extractYouTubeId(item.media) ?? ""}
                             opts={youtubeOptions}
                             style={{ height: "auto", width: "100%", position: "relative" }}
                             onReady={(event) => event.target.pauseVideo()}
