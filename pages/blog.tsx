@@ -123,7 +123,7 @@ export default function BlogPage({ initialData }: BlogPageProps) {
                                                                                     videoRefs.current[blog.id] = ref;
                                                                                 }
                                                                             }}
-                                                                            videoId={extractYouTubeId(blog.media)}
+                                                                             videoId={extractYouTubeId(blog.media) ?? ""}
                                                                             opts={youtubeOptions}
                                                                             style={{ height: 'auto', width: '100%', position: 'relative' }}
                                                                             onReady={(event) => {
