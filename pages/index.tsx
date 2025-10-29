@@ -338,70 +338,46 @@ export default function Home(homeScreenData: HomeScreenContent) {
       </motion.section>
 
        {/* Reviews */}
-      <motion.section
-        className="section-base"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeUp}
-      >
-        <div className="container">
-          <div className="title align-center">
-            <h2>Customer Review</h2>
-            <p>What our customers say</p>
-          </div>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-          >
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              spaceBetween={15}
-              slidesPerView={1}
-              breakpoints={{
-                480: {
-                  slidesPerView: 2,
-                },
-                768: {
-                  slidesPerView: 3,
-                },
-                1024: {
-                  slidesPerView: 4,
-                },
-                1280: {
-                  slidesPerView: 5,
-                },
-              }}
-              loop={false}
-              navigation
-              className="video-swiper"
-            >
-              {homeScreenData?.reviewsVideos?.map((item, index) => (
-                <SwiperSlide key={item.id}>
-                  <motion.div variants={fadeUpItem}>
-                    <VideoCard video={item} key={index} />
-                    {/* <Link href={`/subcategory/${item.id}`} className="category-box">
-                      <img
-                        src={item.imagePath || "/assets/logo.jpeg"}
-                        alt={item.name}
-                        className="category-image"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = "/assets/logo.jpeg";
-                        }}
-                      />
-                      <div className="category-content">
-                        <h3 className="title">{item.name}</h3>
-                      </div>
-                    </Link> */}
-                  </motion.div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </motion.div>
+       <motion.section
+      className="section-base"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeUp}
+    >
+      <div className="container">
+        <div className="title align-center">
+          <h2>Check Our Latest Video</h2>
+          <p>Video</p>
         </div>
-      </motion.section>
+
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            spaceBetween={15}
+            slidesPerView={1}
+            breakpoints={{
+              480: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+              1280: { slidesPerView: 5 },
+            }}
+            loop={false}
+            navigation
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            className="video-swiper"
+          >
+            {homeScreenData?.reviewsVideos?.map((item, index) => (
+              <SwiperSlide key={item.id}>
+                <motion.div variants={fadeUpItem}>
+                  <VideoCard video={item} key={index} />
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </motion.div>
+      </div>
+    </motion.section>
     </main>
   );
 }

@@ -20,9 +20,11 @@ export function isEmpty(obj: any): boolean {
     return false;
 }
 
-export const extractYouTubeId = (url: string): string => {
-    if (!url) return '';
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : '';
+export function extractYouTubeId(url: string): string | null {
+  if (!url) return null;
+
+  const regExp =
+    /(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|shorts\/|watch\?v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+  const match = url.match(regExp);
+  return match ? match[1] : null;
 }
