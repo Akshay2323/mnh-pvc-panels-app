@@ -72,7 +72,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
         variants={fadeUp}
       >
         <video autoPlay muted loop playsInline className="responsive-video">
-          <source src="/assets/MNH-Full-intro-Video-V2.mp4" type="video/mp4" />
+          <source src="/assets/DJI_0001.MP4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </motion.section>
