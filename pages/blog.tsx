@@ -131,7 +131,7 @@ export default function BlogPage({ initialData }: BlogPageProps) {
                                                                                 event.target.pauseVideo();
                                                                             }}
                                                                         /> :
-                                                                            <Image src={blog.thumbnail || "/assets/logo.jpeg"} alt="" layout="fill"
+                                                                            <Image src={blog.media || "/assets/logo.jpeg"} alt="" layout="fill"
                                                                                 objectFit="contain" />
 
                                                                     }

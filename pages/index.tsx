@@ -272,7 +272,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
                           </motion.div>
                         </>
                       ) : (
-                        <img src={item.thumbnail || "/assets/logo.jpeg"} alt={item.title || ""} />
+                        <img src={item.media || "/assets/logo.jpeg"} alt={item.title || ""} />
                       )}
                     </Link>
                     <div className="blog-card-content">
