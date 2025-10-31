@@ -7,7 +7,7 @@ export default function IndiaMap3D() {
 
       <div className="title align-center">
         <h2>We Deliver All India</h2>
-        <p>Our Branches</p>
+        <p>Our Distribution</p>
       </div>
       {/* Centered Video */}
       <div className="map-video-container">

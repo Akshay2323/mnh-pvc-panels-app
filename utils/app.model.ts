@@ -132,6 +132,7 @@ export class AboutUsContent {
     branches: Branch[] = [];
     members: Member[] = [];
     keywords: Keywords = new Keywords();
+    reviewsVideos: Video[] = [];
 }
 
 export class ContactContentResp {

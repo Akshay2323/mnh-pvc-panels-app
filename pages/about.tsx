@@ -10,6 +10,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import VideoCard from "@/components/VideoCard";
+import { OurStoryDetails } from "@/utils/app.constants";
 
 export default function About(aboutUsData: AboutUsContent) {
   return (
@@ -36,43 +38,65 @@ export default function About(aboutUsData: AboutUsContent) {
             />
           </div>
         </section>
-        {/* <section className="section-base section-color">
+        <section className="section-base section-color">
           <div className="container">
             <div className="title align-center">
               <h2>Our Experts</h2>
+              <p>Experts</p>
             </div>
-            <div
-              className="grid-list gap-60"
-              data-columns="2"
-              data-columns-sm="1"
-              data-gap="60"
-            >
-              <div className="grid-box">
-                {aboutUsData?.members?.map((item) => (
-                  <div className="grid-item" key={item.id}>
-                    <div className="cnt-box cnt-box-side">
-                      <a href="#" className="img-box">
-                        <img
-                          src={item.imagePath || "/assets/logo.jpeg"}
-                          alt=""
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "/assets/logo.jpeg";
-                          }}
-                        />
-                      </a>
-                      <div className="caption">
-                        <h2>{item.name}</h2>
-                        <p>{item.description}</p>
-                      </div>
-                    </div>
+            <div className="member-grid">
+              {aboutUsData?.members?.map((item) => (
+                <div className="member-card" key={item.id}>
+                  {/* <div className="cnt-box cnt-box-side"> */}
+                  {/* <a href="#" className="img-box"> */}
+                  <img
+                    src={item.imagePath || "/assets/logo.jpeg"}
+                    alt=""
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/assets/logo.jpeg";
+                    }}
+                  />
+                  {/* </a> */}
+                  <div className="caption">
+                    <h2>{item.name}</h2>
+                    <p>{item.description}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+                // </div>
+              ))}
             </div>
           </div>
-        </section> */}
-        <section className="section-base section-color">
+        </section>
+        <section className="section-base">
+          <div className="container">
+            <div className="title align-center">
+              <h2>Our Story</h2>
+              <p>Story</p>
+            </div>
+            <div className="member-grid">
+              {OurStoryDetails.map((item) => (
+                <div className="member-card our-story" key={item.title}>
+                  <div className="caption-top">
+                    <h2>{item.title}</h2>
+                  </div>
+                  <img
+                    src={item.imagePath || "/assets/logo.jpeg"}
+                    alt=""
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/assets/logo.jpeg";
+                    }}
+                  />
+                  <div className="caption">
+                    <p>{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* <section className="section-base section-color">
           <div className="container">
             <div className="title align-center">
               <h2>Our Experts</h2>
@@ -139,8 +163,40 @@ export default function About(aboutUsData: AboutUsContent) {
               </Swiper>
             </div>
           </div>
+        </section> */}
+        {/* Reviews */}
+        <section className="section-base section-color">
+          <div className="container">
+            <div className="title align-center">
+              <h2>Check Our Latest Video</h2>
+              <p>Video</p>
+            </div>
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={15}
+              slidesPerView={1}
+              breakpoints={{
+                480: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+                1280: { slidesPerView: 5 },
+              }}
+              loop={false}
+              navigation
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              className="video-swiper"
+            >
+              {aboutUsData?.reviewsVideos?.map((item, index) => (
+                <SwiperSlide key={item.id}>
+                  <div>
+                    <VideoCard video={item} key={index} />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </section>
-        <section className="section-base">
+        {/* <section className="section-base">
           <div className="container">
             <div className="title align-center align-left-md">
               <h2>FAQ</h2>
@@ -156,7 +212,7 @@ export default function About(aboutUsData: AboutUsContent) {
               ))}
             </ul>
           </div>
-        </section>
+        </section> */}
       </main>
     </React.Fragment>
   );

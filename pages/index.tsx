@@ -21,7 +21,6 @@ const IndiaMap3D = dynamic(() => import("../components/IndiaMap3D"), {
   ssr: false,
 });
 
-
 const youtubeOptions = {
   width: "100%",
   height: "240px",
@@ -108,7 +107,11 @@ export default function Home(homeScreenData: HomeScreenContent) {
                 disableOnInteraction: false,
               }}
               breakpoints={{
-                320: { slidesPerView: 1.2, centeredSlides: true, spaceBetween: 15 },
+                320: {
+                  slidesPerView: 1.2,
+                  centeredSlides: true,
+                  spaceBetween: 15,
+                },
                 480: { slidesPerView: 1.5, centeredSlides: false },
                 640: { slidesPerView: 2, centeredSlides: false },
                 768: { slidesPerView: 2.5, centeredSlides: false },
@@ -119,7 +122,10 @@ export default function Home(homeScreenData: HomeScreenContent) {
               {homeScreenData?.categories?.map((item, index) => (
                 <SwiperSlide key={item.id}>
                   <motion.div variants={fadeUpItem}>
-                    <Link href={`/subcategory/${item.id}`} className="category-box">
+                    <Link
+                      href={`/subcategory/${item.id}`}
+                      className="category-box"
+                    >
                       <img
                         src={item.imagePath || "/assets/logo.jpeg"}
                         alt={item.name}
@@ -210,7 +216,9 @@ export default function Home(homeScreenData: HomeScreenContent) {
               </div>
               <div className="founder-text">
                 <h3 className="text-2xl font-semibold mb-4">{item.name}</h3>
-                <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                <p className="text-gray-600 leading-relaxed">
+                  {item.description}
+                </p>
                 <Link className="btn btn-sm" href="/about">
                   Learn More
                 </Link>
@@ -260,28 +268,42 @@ export default function Home(homeScreenData: HomeScreenContent) {
                             }}
                             videoId={extractYouTubeId(item.media) ?? ""}
                             opts={youtubeOptions}
-                            style={{ height: "auto", width: "100%", position: "relative" }}
+                            style={{
+                              height: "auto",
+                              width: "100%",
+                              position: "relative",
+                            }}
                             onReady={(event) => event.target.pauseVideo()}
                           />
                           <motion.div
                             className="blog-video-icon"
-                            animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
+                            animate={{
+                              scale: [1, 1.2, 1],
+                              opacity: [0.8, 1, 0.8],
+                            }}
                             transition={{ repeat: Infinity, duration: 1.2 }}
                           >
                             <i className="fas fa-play"></i>
                           </motion.div>
                         </>
                       ) : (
-                        <img src={item.media || "/assets/logo.jpeg"} alt={item.title || ""} />
+                        <img
+                          src={item.media || "/assets/logo.jpeg"}
+                          alt={item.title || ""}
+                        />
                       )}
                     </Link>
                     <div className="blog-card-content">
                       <h3 className="blog-card-title">{item.title}</h3>
-                      <p className="blog-card-description">{item.sortDescription}</p>
+                      <p className="blog-card-description">
+                        {item.sortDescription}
+                      </p>
                       <div className="blog-card-meta">
                         <div className="blog-card-date">
                           <i className="far fa-calendar-alt"></i>
-                          <span>{format(item.createdAt, "dd / MM / yyyy")}</span>
+                          <span>
+                            {format(item.createdAt, "dd / MM / yyyy")}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -337,47 +359,51 @@ export default function Home(homeScreenData: HomeScreenContent) {
         </div>
       </motion.section>
 
-       {/* Reviews */}
-       <motion.section
-      className="section-base"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={fadeUp}
-    >
-      <div className="container">
-        <div className="title align-center">
-          <h2>Check Our Latest Video</h2>
-          <p>Video</p>
-        </div>
+      {/* Reviews */}
+      <motion.section
+        className="section-base"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
+        <div className="container">
+          <div className="title align-center">
+            <h2>Check Our Latest Video</h2>
+            <p>Video</p>
+          </div>
 
-        <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-          <Swiper
-            modules={[Navigation, Autoplay]}
-            spaceBetween={15}
-            slidesPerView={1}
-            breakpoints={{
-              480: { slidesPerView: 2 },
-              768: { slidesPerView: 3 },
-              1024: { slidesPerView: 4 },
-              1280: { slidesPerView: 5 },
-            }}
-            loop={false}
-            navigation
-            autoplay={{ delay: 4000, disableOnInteraction: false }}
-            className="video-swiper"
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
           >
-            {homeScreenData?.reviewsVideos?.map((item, index) => (
-              <SwiperSlide key={item.id}>
-                <motion.div variants={fadeUpItem}>
-                  <VideoCard video={item} key={index} />
-                </motion.div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </motion.div>
-      </div>
-    </motion.section>
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={15}
+              slidesPerView={1}
+              breakpoints={{
+                480: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+                1280: { slidesPerView: 5 },
+              }}
+              loop={false}
+              navigation
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              className="video-swiper"
+            >
+              {homeScreenData?.reviewsVideos?.map((item, index) => (
+                <SwiperSlide key={item.id}>
+                  <motion.div variants={fadeUpItem}>
+                    <VideoCard video={item} key={index} />
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </motion.div>
+        </div>
+      </motion.section>
     </main>
   );
 }
