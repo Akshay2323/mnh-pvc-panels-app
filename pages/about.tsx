@@ -74,7 +74,7 @@ export default function About(aboutUsData: AboutUsContent) {
               <h2>Our Story</h2>
               <p>Story</p>
             </div>
-            <div className="member-grid">
+            <div className="member-grid1">
               {OurStoryDetails.map((item) => (
                 <div className="member-card our-story" key={item.title}>
                   <div className="caption-top">

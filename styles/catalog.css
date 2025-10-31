@@ -195,7 +195,7 @@
 /* 320px - 479px : 1.2 cards per row (rounded to 1 for grid) */
 @media (max-width: 479px) {
   .catalog-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: (2,1fr);
     gap: 1rem;
   }
 

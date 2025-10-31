@@ -51,39 +51,40 @@ class MyDocument extends Document<MyDocumentProps> {
         <body className="page-main">
           {/* <div id="preloader"></div> */}
           <nav className={`menu-classic menu-fixed ${currentPath === "/" ? "menu-transparent light" : ""} align-right`} data-menu-anima="fade-in">
-            <div className="container">
-              <div className="menu-brand">
-                <Link href="/">
-                  <Image
-                    className="logo-default scroll-hide"
-                    src="/assets/logo.jpeg"
-                    alt="Logo"
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                  <Image
-                    className="logo-retina scroll-hide"
-                    src="/assets/logo.jpeg"
-                    alt="Logo"
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                  <Image
-                    className="logo-default scroll-show"
-                    src="/assets/logo.jpeg"
-                    alt="Logo"
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                  <Image
-                    className="logo-retina scroll-show"
-                    src="/assets/logo.jpeg"
-                    alt="Logo"
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                </Link>
-              </div>
+            <div className="">
+              <div className="menu-brand" style={{ position: 'relative', width: '200px', height: '100px' ,top:'-12px',}}>
+  <Link href="/">
+    <Image
+      className="logo-default scroll-hide"
+      src="/assets/logo.jpeg"
+      alt="Logo"
+      layout="fill"
+      objectFit="contain"
+    />
+    <Image
+      className="logo-retina scroll-hide"
+      src="/assets/logo.jpeg"
+      alt="Logo"
+      layout="fill"
+      objectFit="contain"
+    />
+    <Image
+      className="logo-default scroll-show"
+      src="/assets/logo.jpeg"
+      alt="Logo"
+      layout="fill"
+      objectFit="contain"
+    />
+    <Image
+      className="logo-retina scroll-show"
+      src="/assets/logo.jpeg"
+      alt="Logo"
+      layout="fill"
+      objectFit="contain"
+    />
+  </Link>
+</div>
+
               <i className="menu-btn"></i>
               <div className="menu-cnt">
                 <ul id="main-menu">

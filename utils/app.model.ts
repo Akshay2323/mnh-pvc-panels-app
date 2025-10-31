@@ -321,6 +321,7 @@ export enum PRODUCT_MEDIA_TYPE {
 export class ProductMedia {
     type: PRODUCT_MEDIA_TYPE = PRODUCT_MEDIA_TYPE.IMAGE;
     mediaUrl: string = "";
+    shortMediaUrl: ReactNode;
 }
 
 export class ProductSpecification {

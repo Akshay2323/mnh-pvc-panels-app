@@ -64,20 +64,39 @@ export default function Home(homeScreenData: HomeScreenContent) {
       />
 
       {/* Hero Video */}
-      <motion.section
-        className="video-container"
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        <video autoPlay muted loop playsInline className="responsive-video">
-          <source src="/assets/DJI_0001.MP4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </motion.section>
+      {/* Hero Video */}
+<motion.section
+  className="video-container"
+  initial="hidden"
+  animate="visible"
+  variants={fadeUp}
+>
+  <video autoPlay muted loop playsInline className="responsive-video">
+    <source src="/assets/DJI_0001.MP4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  {/* Scroll Down Button */}
+  <a
+    href="#categories"
+    className="scroll-down"
+    onClick={(e) => {
+      e.preventDefault();
+      document
+        .querySelector("#categories")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }}
+  >
+    <span></span>
+    Scroll
+  </a>
+</motion.section>
+
+
 
       {/* Products Categories */}
       <motion.section
+        id="categories"
         className="section-base"
         initial="hidden"
         whileInView="visible"
@@ -160,16 +179,16 @@ export default function Home(homeScreenData: HomeScreenContent) {
             <h2>About us</h2>
             <p>Our Company Profile</p>
           </div>
-          <div className="row">
-            <motion.div className="col-lg-4" variants={fadeUpItem}>
+          <div className="">
+            <motion.div className="" variants={fadeUpItem}>
               <div
-                className="ck-content"
-                dangerouslySetInnerHTML={{
-                  __html: homeScreenData?.aboutUs?.sortContent || "",
-                }}
-              />
+              className="ck-content"
+              dangerouslySetInnerHTML={{
+                __html: homeScreenData?.aboutUs?.content || "",
+              }}
+            />
             </motion.div>
-            <motion.div className="col-lg-8" variants={fadeUpItem}>
+            {/* <motion.div className="col-lg-8" variants={fadeUpItem}>
               <ul className="accordion-list" data-open="1">
                 {homeScreenData?.faqs?.map((item) => (
                   <li key={item.id}>
@@ -180,7 +199,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </motion.section>
@@ -360,7 +379,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
       </motion.section>
 
       {/* Reviews */}
-      <motion.section
+      {/* <motion.section
         className="section-base"
         initial="hidden"
         whileInView="visible"
@@ -403,7 +422,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
             </Swiper>
           </motion.div>
         </div>
-      </motion.section>
+      </motion.section> */}
     </main>
   );
 }

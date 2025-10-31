@@ -409,13 +409,22 @@ function ProductDetails({ product }: ProductDetailsProps) {
                                 {/* PDF Resources Section */}
                                 {pdfFiles.length > 0 && (
                                     <div className="product-pdf-section">
-                                        <h4>PDF Resources</h4>
+                                        <h4>Download Brochure</h4>
                                         <div className="pdf-downloads">
                                             {pdfFiles.map((pdf, index) => (
                                                 <div key={index} className="pdf-item">
                                                     <div className="pdf-info">
                                                         <i className="fas fa-file-pdf pdf-icon"></i>
-                                                        <span className="pdf-name">Product Catalog {index + 1}</span>
+                                                        <span className="pdf-name">
+                                                        {decodeURIComponent(
+                                                            pdf.mediaUrl
+                                                            .split('/').pop()              // get file name from URL
+                                                            .replace(/\.[^/.]+$/, '')      // remove .pdf extension
+                                                            .replace(/^\d+(\.\d+)?-/, '')  // remove numeric prefix like 1761837769657.8638-
+                                                            .trim()                        // remove extra spaces
+                                                        )}
+                                                        </span>
+
                                                     </div>
                                                     <button
                                                         className="pdf-action-btn pdf-view-btn"
@@ -563,6 +572,7 @@ function ProductDetails({ product }: ProductDetailsProps) {
                         </div>
                     </div>
                 </div>
+                
             )}
         </React.Fragment>
     );
