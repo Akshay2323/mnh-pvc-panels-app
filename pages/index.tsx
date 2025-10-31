@@ -379,7 +379,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
       </motion.section>
 
       {/* Reviews */}
-      {/* <motion.section
+      <motion.section
         className="section-base"
         initial="hidden"
         whileInView="visible"
@@ -422,7 +422,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
             </Swiper>
           </motion.div>
         </div>
-      </motion.section> */}
+      </motion.section>
     </main>
   );
 }
