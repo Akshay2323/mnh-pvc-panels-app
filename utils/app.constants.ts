@@ -13,6 +13,7 @@ export enum SEO_PAGE {
   gallery = "gallery",
   productCatalog = "productCatalog",
   contact = "contact",
+  becomeDealer = "becomeDealer",
 }
 
 export const SOCIAL_ICONS: Record<string, string> = {

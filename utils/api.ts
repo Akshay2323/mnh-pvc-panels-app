@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import {
     AboutUsContent,
     AboutUsContentResp,
+    BecomeDealerParam,
     BlogData,
     BlogDetails,
     BlogDetailsResp,
@@ -149,6 +150,19 @@ export const sendContact = async (param: UserContactParam): Promise<UserContactR
         };
     }
 };
+
+export const sendBecomeDealer = async (param: BecomeDealerParam): Promise<UserContactResp> => {
+    try {
+        const response = await api.post<UserContactResp>('/dealerContact', param);
+        return response.data;
+    } catch (error: any) {
+        return {
+            status: false,
+            message: error?.message || 'Failed to send become dealer details',
+        };
+    }
+};
+
 export const sendQuote = async (param: UserQuoteParam): Promise<UserQuoteResp> => {
     try {
         const response = await api.post<UserQuoteResp>('/quoteContact', param);
