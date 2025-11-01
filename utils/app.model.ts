@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ReactNode } from "react";
 import { SEO_PAGE } from "./app.constants";
 
 export class AboutUs {
@@ -461,6 +462,8 @@ export class ProductDetailResp {
 export class ProductDetailData {
     productDetail: Product = new Product();
     keywords: Keywords = new Keywords();
+    categoryProducts: Product[] = [];
+    specifications: Specification[] = [];
 }
 
 export class Video {

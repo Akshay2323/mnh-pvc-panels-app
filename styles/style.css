@@ -1106,7 +1106,7 @@ body > nav .menu-brand img {
   position: absolute;
   top: 10px;
   left: 50%;
-  content: '';
+  content: "";
   width: 6px;
   height: 6px;
   margin-left: -3px;
@@ -6767,6 +6767,34 @@ html body div.ck-content p {
   padding-bottom: 30px;
 }
 
+.next-previous {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+}
+
+.next-previous button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.next-previous .prev-btn {
+  background-color: #f0f0f0;
+}
+
+.next-previous .next-btn {
+  background-color: #f06522;
+  color: white;
+}
+
+.next-previous button:hover {
+  opacity: 0.8;
+}
+
 .member-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -6812,16 +6840,19 @@ html body div.ck-content p {
 .member-card .caption p {
   margin: 0;
 }
-/*
+
 @media screen and (max-width: 1024px) {
-  .member-grid {
+  .member-grid1 {
     grid-template-columns: repeat(2, 1fr);
   }
-} */
+}
 
 @media screen and (max-width: 768px) {
   .member-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .member-grid1 {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -6830,5 +6861,3 @@ html body div.ck-content p {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-
-
