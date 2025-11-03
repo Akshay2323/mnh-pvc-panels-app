@@ -718,6 +718,10 @@ export default function ProductPage({ initialData }: ProductPageProps) {
             {initialData?.categoryProducts?.length > 1 && (
               <section className="section-base section-color">
                 <div className="container">
+                <div className="title align-center">
+                  <h2>Explore More Products</h2>
+                  <p>Discover our wide range of products</p>
+                </div>
                   <div className="category-slider">
                     <Swiper
                       modules={[Navigation, Autoplay]}

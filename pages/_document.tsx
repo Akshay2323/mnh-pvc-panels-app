@@ -2,9 +2,16 @@
 import { SOCIAL_ICONS } from "@/utils/app.constants";
 import { CommonContent, CommonContentResp } from "@/utils/app.model";
 import { NAV_ITEMS_KEYS } from "@/utils/navigation";
-import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from "next/document";
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 import React, { Fragment } from "react";
 
 interface MyDocumentProps extends DocumentInitialProps {
@@ -13,9 +20,7 @@ interface MyDocumentProps extends DocumentInitialProps {
 }
 
 class MyDocument extends Document<MyDocumentProps> {
-  static async getInitialProps(
-    ctx: DocumentContext
-  ): Promise<MyDocumentProps> {
+  static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
     const initialProps = await Document.getInitialProps(ctx);
 
     let commonContent = new CommonContent();
@@ -43,47 +48,74 @@ class MyDocument extends Document<MyDocumentProps> {
     return (
       <Html lang="en">
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          />
           <link rel="icon" href="/favicon.ico" />
-          <link rel="stylesheet" href="/media/icons/iconsmind/line-icons.min.css" />
+          <link
+            rel="stylesheet"
+            href="/media/icons/iconsmind/line-icons.min.css"
+          />
           <link rel="stylesheet" href="/media/icons/fontawesome/all.css" />
         </Head>
         <body className="page-main">
           {/* <div id="preloader"></div> */}
-          <nav className={`menu-classic menu-fixed ${currentPath === "/" ? "menu-transparent light" : ""} align-right`} data-menu-anima="fade-in">
+          <nav
+            className={`menu-classic menu-fixed ${
+              currentPath === "/" ? "menu-transparent light" : ""
+            } align-right`}
+            data-menu-anima="fade-in"
+          >
             <div className="">
-              <div className="menu-brand" style={{ position: 'relative', width: '200px', height: '100px' ,top:'-12px',}}>
-  <Link href="/">
-    <Image
-      className="logo-default scroll-hide"
-      src="/assets/logo.jpeg"
-      alt="Logo"
-      layout="fill"
-      objectFit="contain"
-    />
-    <Image
-      className="logo-retina scroll-hide"
-      src="/assets/logo.jpeg"
-      alt="Logo"
-      layout="fill"
-      objectFit="contain"
-    />
-    <Image
-      className="logo-default scroll-show"
-      src="/assets/logo.jpeg"
-      alt="Logo"
-      layout="fill"
-      objectFit="contain"
-    />
-    <Image
-      className="logo-retina scroll-show"
-      src="/assets/logo.jpeg"
-      alt="Logo"
-      layout="fill"
-      objectFit="contain"
-    />
-  </Link>
-</div>
+              <div
+                className="menu-brand"
+                style={{
+                  position: "relative",
+                  width: "200px",
+                  height: "100px",
+                  top: "-12px",
+                }}
+              >
+                <Link href="/">
+                  <Image
+                    className="logo-default scroll-hide"
+                    src={
+                      currentPath === "/"
+                        ? "/assets/logo.jpeg"
+                        : "/assets/dark-logo.png"
+                    }
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <Image
+                    className="logo-retina scroll-hide"
+                    src={
+                      currentPath === "/"
+                        ? "/assets/logo.jpeg"
+                        : "/assets/dark-logo.png"
+                    }
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <Image
+                    className="logo-default scroll-show"
+                    src="/assets/logo.jpeg"
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <Image
+                    className="logo-retina scroll-show"
+                    src="/assets/logo.jpeg"
+                    alt="Logo"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </Link>
+              </div>
 
               <i className="menu-btn"></i>
               <div className="menu-cnt">
@@ -96,14 +128,33 @@ class MyDocument extends Document<MyDocumentProps> {
                           <ul>
                             {item.subMenu?.map((subItem) => (
                               <li key={subItem.id}>
-                                <Link href={`/subcategory/${subItem.id}`}>{subItem.name}</Link>
+                                <Link href={`/subcategory/${subItem.id}`}>
+                                  {subItem.name}
+                                </Link>
                               </li>
                             ))}
                           </ul>
                         </li>
+                      ) : item.key === "becomeDealer" ? (
+                        <Link
+                          href={NAV_ITEMS_KEYS?.[item.key]?.path}
+                          className="become-dealer-button"
+                        >
+                          <div className="button-content">
+                            <span className="button-text">{item.name}</span>
+                          </div>
+                          <div className="pulse-ring"></div>
+                        </Link>
                       ) : (
+                        // <li key={item.id}>
+                        //   <Link href={NAV_ITEMS_KEYS?.[item.key]?.path}>
+                        //     {item.name}
+                        //   </Link>
+                        // </li>
                         <li key={item.id}>
-                          <Link href={NAV_ITEMS_KEYS?.[item.key]?.path}>{item.name}</Link>
+                          <Link href={NAV_ITEMS_KEYS?.[item.key]?.path}>
+                            {item.name}
+                          </Link>
                         </li>
                       )}
                     </Fragment>
@@ -121,7 +172,12 @@ class MyDocument extends Document<MyDocumentProps> {
                 <div className="col-lg-4">
                   <h2>MNH PVC Panels</h2>
                   <p style={{ marginTop: "15px" }}>
-                  <div className="ck-content" dangerouslySetInnerHTML={{ __html: commonContent?.aboutUs?.sortContent || '' }} />
+                    <div
+                      className="ck-content"
+                      dangerouslySetInnerHTML={{
+                        __html: commonContent?.aboutUs?.sortContent || "",
+                      }}
+                    />
                   </p>
                 </div>
                 <div className="col-lg-4">
@@ -134,18 +190,17 @@ class MyDocument extends Document<MyDocumentProps> {
                 </div>
                 <div className="col-lg-4">
                   <div className="icon-links icon-social icon-links-grid social-colors">
-                    {
-                      commonContent?.socialLinks?.map((item) => (
-                        <a className={item.key}
-                          target="_blank"
-                          href={item.link}
-                          key={item.id}
-                          rel="noopener noreferrer"
-                        >
-                          <i className={SOCIAL_ICONS[item.key]} />
-                        </a>
-                      ))
-                    }
+                    {commonContent?.socialLinks?.map((item) => (
+                      <a
+                        className={item.key}
+                        target="_blank"
+                        href={item.link}
+                        key={item.id}
+                        rel="noopener noreferrer"
+                      >
+                        <i className={SOCIAL_ICONS[item.key]} />
+                      </a>
+                    ))}
                   </div>
                   <hr className="space-sm" />
                   <p>Follow us on the social channels to stay tuned.</p>
@@ -155,10 +210,12 @@ class MyDocument extends Document<MyDocumentProps> {
             <div className="footer-bar">
               <div className="container">
                 <span>© 2025 MNH PVC PANELS. All rights reserved.</span>
-                <span><Link href="/contact">Contact us</Link> | <Link href="/faq">FAQ</Link></span>
+                <span>
+                  <Link href="/contact">Contact us</Link> |{" "}
+                  <Link href="/faq">FAQ</Link>
+                </span>
               </div>
             </div>
-
           </footer>
         </body>
       </Html>
