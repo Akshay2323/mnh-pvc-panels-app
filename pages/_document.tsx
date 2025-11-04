@@ -52,7 +52,7 @@ class MyDocument extends Document<MyDocumentProps> {
           {/* <div id="preloader"></div> */}
           <nav className={`menu-classic menu-fixed ${currentPath === "/" ? "menu-transparent light" : ""} align-right`} data-menu-anima="fade-in">
             <div className="">
-              <div className="menu-brand" style={{ position: 'relative', width: '200px', height: '100px' ,top:'-12px',}}>
+              <div className="menu-brand" style={{ position: 'relative', width: '164px', height: '68px' ,top:'-6px',}}>
   <Link href="/">
     <Image
       className="logo-default scroll-hide"
