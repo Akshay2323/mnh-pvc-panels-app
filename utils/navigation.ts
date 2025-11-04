@@ -15,9 +15,10 @@ export interface NavKeys {
   blog: NavItem;
   // gallery: NavItem;
   contact: NavItem;
+  becomeDealer: NavItem;
 }
 
-export const NAV_ITEMS: (keyof NavKeys)[] = ['home', 'about', 'catelog', 'product', 'blog', 'contact'];
+export const NAV_ITEMS: (keyof NavKeys)[] = ['home', 'about', 'catelog', 'product', 'blog', 'contact', 'becomeDealer'];
 
 export const NAV_ITEMS_KEYS: any = {
   'home': { key: 'home', label: 'Home', path: '/', activePaths: ['/', '/home'] },
@@ -27,4 +28,5 @@ export const NAV_ITEMS_KEYS: any = {
   'blog': { key: 'blog', label: 'Blog', path: '/blog', activePaths: ['/blog'] },
   // 'gallery': { key: 'gallery', label: 'Gallery', path: '/gallery', activePaths: ['/gallery'] },
   'contact': { key: 'contact', label: 'Contact', path: '/contact', activePaths: ['/contact'] },
+  'becomeDealer': { key: 'becomeDealer', label: 'Become Dealer', path: '/become-dealer', activePaths: ['/become-dealer'] },
 };

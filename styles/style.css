@@ -1106,7 +1106,7 @@ body > nav .menu-brand img {
   position: absolute;
   top: 10px;
   left: 50%;
-  content: '';
+  content: "";
   width: 6px;
   height: 6px;
   margin-left: -3px;
@@ -6767,6 +6767,33 @@ html body div.ck-content p {
   padding-bottom: 30px;
 }
 
+.next-previous {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.next-previous button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.next-previous .prev-btn {
+  background-color: #f0f0f0;
+}
+
+.next-previous .next-btn {
+  background-color: #f06522;
+  color: white;
+}
+
+.next-previous button:hover {
+  opacity: 0.8;
+}
+
 .member-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -6812,16 +6839,19 @@ html body div.ck-content p {
 .member-card .caption p {
   margin: 0;
 }
-/*
+
 @media screen and (max-width: 1024px) {
-  .member-grid {
+  .member-grid1 {
     grid-template-columns: repeat(2, 1fr);
   }
-} */
+}
 
 @media screen and (max-width: 768px) {
   .member-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .member-grid1 {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -6831,4 +6861,45 @@ html body div.ck-content p {
   }
 }
 
+.become-dealer-button {
+  margin: 16px 20px;
+  background: linear-gradient(135deg, #f06522 0%, #e55a1f 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  width: auto;
+  min-width: 120px;
+  height: 42px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(240, 101, 34, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  padding: 0 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
 
+.become-dealer-button:hover {
+  background: linear-gradient(135deg, #e55a1f 0%, #d4501c 100%);
+  transform: translateY(5px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(240, 101, 34, 0.4);
+}
+
+@media screen and (max-width: 991px) {
+  .become-dealer-button {
+    margin-bottom: 30px;
+    font-size: 14px;
+    height: 50px;
+  }
+
+  .become-dealer-button:hover {
+    transform: translateY(-5px) scale(1.05);
+  }
+}
