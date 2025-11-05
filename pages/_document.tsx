@@ -83,7 +83,7 @@ class MyDocument extends Document<MyDocumentProps> {
                     src={
                       currentPath === "/"
                         ? "/assets/logo.jpeg"
-                        : "/assets/dark-logo.png"
+                        : "/assets/logo.jpeg"
                     }
                     alt="Logo"
                     layout="fill"
@@ -94,7 +94,7 @@ class MyDocument extends Document<MyDocumentProps> {
                     src={
                       currentPath === "/"
                         ? "/assets/logo.jpeg"
-                        : "/assets/dark-logo.png"
+                        : "/assets/logo.jpeg"
                     }
                     alt="Logo"
                     layout="fill"
