@@ -2370,6 +2370,11 @@ Medium devices (tablets, less than 992px)
   body > nav.scroll-menu {
     height: 65px;
   }
+  nav.menu-transparent .menu-brand {
+    width: 150px !important;
+    height: 55px !important;
+    top: 0px !important;
+  }
 
   nav.scroll-menu .menu-btn:before,
   nav.light .menu-cnt .dropdown ul a {
