@@ -884,6 +884,7 @@ body > .menu-classic.menu-transparent:not(.scroll-menu) {
     rgba(0, 0, 0, 0.15) 70%,
     rgba(0, 0, 0, 0) 100%
   );
+  height: 65px;
 }
 
 body > nav,
@@ -2308,7 +2309,17 @@ Medium devices (tablets, less than 992px)
 
 @media (max-width: 991.98px) {
   body > nav {
-    height: 96px;
+    height: 65px;
+  }
+
+  body > nav .menu-brand,
+  .menu-icon-top .menu-brand {
+    /* height: 95px; */
+    margin: 5px 10px;
+    /* padding: 15px 0; */
+    width: 150px !important;
+    height: 55px !important;
+    top: 0px !important;
   }
 
   body > nav:before {
