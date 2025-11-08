@@ -86,6 +86,13 @@ export class HomeScreenContentResp {
     message: string = ''
 }
 
+export class HomeVideo {
+    id?: string = "";
+    videoUrl: string = "";
+    thumbnail: string = "";
+    streamVideoUrl: string = "";
+}
+
 export class HomeScreenContent {
     keywords: Keywords = new Keywords();
     categories: ProductCategory[] = [];
@@ -97,6 +104,7 @@ export class HomeScreenContent {
     members: Member[] = [];
     blogs: Blog[] = [];
     reviewsVideos: Video[] = [];
+    homeVideo: HomeVideo = new HomeVideo();
     // manufacturerContent: ManufacturerContent = new ManufacturerContent();
     // pvcWallContent: PvcWallContent = new PvcWallContent();
 }

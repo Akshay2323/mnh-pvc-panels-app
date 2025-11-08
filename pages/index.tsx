@@ -65,34 +65,37 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Hero Video */}
       {/* Hero Video */}
-<motion.section
-  className="video-container"
-  initial="hidden"
-  animate="visible"
-  variants={fadeUp}
->
-  <video autoPlay muted loop playsInline className="responsive-video">
-    <source src="/assets/DJI_0001.MP4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+      <motion.section
+        className="video-container"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="responsive-video"
+          src={homeScreenData?.homeVideo?.streamVideoUrl}
+          poster={homeScreenData?.homeVideo?.thumbnail || "/assets/logo.jpeg"}
+        />
 
-  {/* Scroll Down Button */}
-  <a
-    href="#categories"
-    className="scroll-down"
-    onClick={(e) => {
-      e.preventDefault();
-      document
-        .querySelector("#categories")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }}
-  >
-    <span></span>
-    Scroll
-  </a>
-</motion.section>
-
-
+        {/* Scroll Down Button */}
+        <a
+          href="#categories"
+          className="scroll-down"
+          onClick={(e) => {
+            e.preventDefault();
+            document
+              .querySelector("#categories")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          <span></span>
+          Scroll
+        </a>
+      </motion.section>
 
       {/* Products Categories */}
       <motion.section
@@ -182,11 +185,11 @@ export default function Home(homeScreenData: HomeScreenContent) {
           <div className="">
             <motion.div className="" variants={fadeUpItem}>
               <div
-              className="ck-content"
-              dangerouslySetInnerHTML={{
-                __html: homeScreenData?.aboutUs?.content || "",
-              }}
-            />
+                className="ck-content"
+                dangerouslySetInnerHTML={{
+                  __html: homeScreenData?.aboutUs?.content || "",
+                }}
+              />
             </motion.div>
             {/* <motion.div className="col-lg-8" variants={fadeUpItem}>
               <ul className="accordion-list" data-open="1">
