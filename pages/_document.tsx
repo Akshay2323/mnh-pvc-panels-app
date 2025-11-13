@@ -72,44 +72,36 @@ class MyDocument extends Document<MyDocumentProps> {
                 className="menu-brand"
                 style={{
                   position: "relative",
-                  width: "200px",
-                  height: "100px",
-                  top: "-12px",
+                  width: "150px",
+                  height: "95px",
+                  top: "5px",
                 }}
               >
                 <Link href="/">
                   <Image
                     className="logo-default scroll-hide"
-                    src={
-                      currentPath === "/"
-                        ? "/assets/logo.jpeg"
-                        : "/assets/logo.jpeg"
-                    }
+                    src={"/assets/app-logo.jpg"}
                     alt="Logo"
                     layout="fill"
                     objectFit="contain"
                   />
                   <Image
                     className="logo-retina scroll-hide"
-                    src={
-                      currentPath === "/"
-                        ? "/assets/logo.jpeg"
-                        : "/assets/logo.jpeg"
-                    }
+                    src={"/assets/app-logo.jpg"}
                     alt="Logo"
                     layout="fill"
                     objectFit="contain"
                   />
                   <Image
                     className="logo-default scroll-show"
-                    src="/assets/logo.jpeg"
+                    src="/assets/app-logo.jpg"
                     alt="Logo"
                     layout="fill"
                     objectFit="contain"
                   />
                   <Image
                     className="logo-retina scroll-show"
-                    src="/assets/logo.jpeg"
+                    src="/assets/app-logo.jpg"
                     alt="Logo"
                     layout="fill"
                     objectFit="contain"
