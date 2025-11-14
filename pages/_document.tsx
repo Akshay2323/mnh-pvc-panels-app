@@ -73,7 +73,7 @@ class MyDocument extends Document<MyDocumentProps> {
                 style={{
                   position: "relative",
                   width: "150px",
-                  height: "95px",
+                  height: "44px",
                   top: "5px",
                 }}
               >
