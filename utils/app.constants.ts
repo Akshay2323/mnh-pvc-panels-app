@@ -60,3 +60,7 @@ export const OurStoryDetails = [
   },
 ];
 
+export enum GALLERY_MEDIA_TYPE {
+  IMAGE = "image",
+  VIDEO = "video",
+} 

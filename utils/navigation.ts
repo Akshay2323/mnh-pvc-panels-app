@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Define a type for navigation items
 export interface NavItem {
-  key: string;   // Key for translation lookup
+  key: string; // Key for translation lookup
   label: string; // Default label (fallback)
   path: string;
   activePaths: string[];
@@ -18,15 +18,53 @@ export interface NavKeys {
   becomeDealer: NavItem;
 }
 
-export const NAV_ITEMS: (keyof NavKeys)[] = ['home', 'about', 'catelog', 'product', 'blog', 'contact', 'becomeDealer'];
+export const NAV_ITEMS: (keyof NavKeys)[] = [
+  "home",
+  "about",
+  "catelog",
+  "product",
+  "blog",
+  "contact",
+  "becomeDealer",
+];
 
 export const NAV_ITEMS_KEYS: any = {
-  'home': { key: 'home', label: 'Home', path: '/', activePaths: ['/', '/home'] },
-  'about': { key: 'about', label: 'About', path: '/about', activePaths: ['/about'] },
-  'catalog': { key: 'catalog', label: 'Catalog', path: '/catalog', activePaths: ['/catalog'] },
-  'product': { key: 'product', label: 'Product', path: '/product', activePaths: ['/product'] },
-  'blog': { key: 'blog', label: 'Blog', path: '/blog', activePaths: ['/blog'] },
-  // 'gallery': { key: 'gallery', label: 'Gallery', path: '/gallery', activePaths: ['/gallery'] },
-  'contact': { key: 'contact', label: 'Contact', path: '/contact', activePaths: ['/contact'] },
-  'becomeDealer': { key: 'becomeDealer', label: 'Become Dealer', path: '/become-dealer', activePaths: ['/become-dealer'] },
+  home: { key: "home", label: "Home", path: "/", activePaths: ["/", "/home"] },
+  about: {
+    key: "about",
+    label: "About",
+    path: "/about",
+    activePaths: ["/about"],
+  },
+  catalog: {
+    key: "catalog",
+    label: "Catalog",
+    path: "/catalog",
+    activePaths: ["/catalog"],
+  },
+  product: {
+    key: "product",
+    label: "Product",
+    path: "/product",
+    activePaths: ["/product"],
+  },
+  blog: { key: "blog", label: "Blog", path: "/blog", activePaths: ["/blog"] },
+  gallery: {
+    key: "gallery",
+    label: "Events",
+    path: "/gallery",
+    activePaths: ["/gallery"],
+  },
+  contact: {
+    key: "contact",
+    label: "Contact",
+    path: "/contact",
+    activePaths: ["/contact"],
+  },
+  becomeDealer: {
+    key: "becomeDealer",
+    label: "Become Dealer",
+    path: "/become-dealer",
+    activePaths: ["/become-dealer"],
+  },
 };

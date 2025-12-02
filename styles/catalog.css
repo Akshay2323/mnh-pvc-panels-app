@@ -1,5 +1,6 @@
 /* Catalog Grid Layout */
-.catalog-grid {
+.catalog-grid,
+.gallery-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1.5rem;
@@ -129,12 +130,90 @@
   margin-top: 5px;
 }
 
+/* Card Image Section */
+.catalog-card-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.catalog-image {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.catalog-card:hover .catalog-image {
+  transform: scale(1.02);
+}
+
+/* Overlay for PDF/Eye Icon */
+.catalog-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.catalog-card:hover .catalog-overlay {
+  opacity: 1;
+}
+
+.catalog-pdf-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catalog-pdf-icon i {
+  font-size: 3rem;
+  color: #fff;
+  transition: all 600ms ease;
+  z-index: 2;
+}
+
+.catalog-pdf-icon i:hover {
+  transform: rotate(0deg) scale(1);
+}
+
+/* gallery Card Image Section */
+.gallery-card-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 300px;
+  background: #f8f9fa;
+}
+
+.gallery-image {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-title {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  margin: 10px 0px 0px;
+  line-height: 1.3;
+}
+
 /* Responsive Design - Better utilization of full width */
 /* 1600px+ : 5 cards per row (default) */
 
 /* 1400px - 1599px : 4 cards per row */
 @media (max-width: 1599px) {
-  .catalog-grid {
+  .catalog-grid,
+  .gallery-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
   }
@@ -142,7 +221,8 @@
 
 /* 1024px - 1399px : 3 cards per row */
 @media (max-width: 1399px) {
-  .catalog-grid {
+  .catalog-grid,
+  .gallery-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
   }
@@ -150,7 +230,8 @@
 
 /* 768px - 1023px : 2.5 cards per row (rounded to 3 for grid) */
 @media (max-width: 1023px) {
-  .catalog-grid {
+  .catalog-grid,
+  .gallery-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
@@ -166,7 +247,8 @@
 
 /* 640px - 767px : 2 cards per row */
 @media (max-width: 767px) {
-  .catalog-grid {
+  .catalog-grid,
+  .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
@@ -186,7 +268,8 @@
 
 /* 480px - 639px : 1.5 cards per row (rounded to 2 for grid) */
 @media (max-width: 639px) {
-  .catalog-grid {
+  .catalog-grid,
+  .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
@@ -194,8 +277,9 @@
 
 /* 320px - 479px : 1.2 cards per row (rounded to 1 for grid) */
 @media (max-width: 479px) {
-  .catalog-grid {
-    grid-template-columns: (2,1fr);
+  .catalog-grid,
+  .gallery-grid {
+    grid-template-columns: (2, 1fr);
     gap: 1rem;
   }
 

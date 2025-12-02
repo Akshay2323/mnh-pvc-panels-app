@@ -108,7 +108,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
       >
         <div className="container">
           <div className="title align-center">
-            <h2>Our Products Categories</h2>
+            <h2>Our Product Categories</h2>
             <p>Explore our premium PVC solutions</p>
           </div>
           <motion.div
