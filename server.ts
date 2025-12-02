@@ -1,6 +1,10 @@
 import { createServer } from "http";
 import { parse } from "url";
 import next from "next";
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const port = parseInt(process.env.PORT || "10002", 10);
 const dev = process.env.NODE_ENV !== "production";
