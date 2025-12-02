@@ -6,6 +6,7 @@
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "cross-env NODE_ENV=production node server.js",
+    "prod": "npm install --legacy-peer-deps --include=dev && npm run build && npm run dev",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,16 +15,12 @@
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.11.0",
     "cross-env": "^10.0.0",
-    "d3-geo": "^3.1.1",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
     "framer-motion": "^12.23.24",
-    "leaflet": "^1.9.4",
-    "lucide-react": "^0.548.0",
     "next": "15.4.7",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-leaflet": "^5.0.0",
-    "react-simple-maps": "^3.0.0",
     "react-youtube": "^10.1.0",
     "swiper": "^11.2.10"
   },
