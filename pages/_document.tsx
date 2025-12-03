@@ -189,15 +189,19 @@ class MyDocument extends Document<MyDocumentProps> {
                 <div className="col-lg-4">
                   <div className="icon-links icon-social icon-links-grid social-colors">
                     {commonContent?.socialLinks?.map((item) => (
-                      <a
-                        className={item.key}
-                        target="_blank"
-                        href={item.link}
-                        key={item.id}
-                        rel="noopener noreferrer"
-                      >
-                        <i className={SOCIAL_ICONS[item.key]} />
-                      </a>
+                      <>
+                        {item.link && (
+                          <a
+                            className={item.key}
+                            target="_blank"
+                            href={item.link}
+                            key={item.id}
+                            rel="noopener noreferrer"
+                          >
+                            <i className={SOCIAL_ICONS[item.key]} />
+                          </a>
+                        )}
+                      </>
                     ))}
                   </div>
                   <hr className="space-sm" />

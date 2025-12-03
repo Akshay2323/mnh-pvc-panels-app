@@ -3412,6 +3412,17 @@ ICON LINK - COMPONENT
   transform: translateX(-50%) translateY(calc(-50% + 2px));
 }
 
+.icon-social a svg {
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: absolute;
+  transition: all 0.5s;
+}
+
 /*
 -------------------------------------------------------------------
 SOCIAL LINK - COMPONENT
@@ -3460,12 +3471,25 @@ SOCIAL LINK - COMPONENT
   color: #fff;
 }
 
+.social-colors.icon-links-button .whatsapp:not(:hover),
+.social-colors-hover.icon-links-button .whatsapp:hover,
+.social-colors.icon-links-grid .whatsapp:not(:hover),
+.social-colors-hover.icon-links-grid .whatsapp:hover {
+  background-color: #55bd3b;
+  border-color: #55bd3b;
+  color: #fff;
+}
+
 .social-colors.icon-links-button .youtube:not(:hover),
 .social-colors-hover.icon-links-button .youtube:hover,
 .social-colors.icon-links-grid .youtube:not(:hover),
 .social-colors-hover.icon-links-grid .youtube:hover {
   background-color: #cc181e;
   border-color: #cc181e;
+  color: #fff;
+}
+.btn,
+.icon-links-grid a:hover svg {
   color: #fff;
 }
 
@@ -3513,6 +3537,15 @@ SOCIAL LINK - COMPONENT
   i {
   color: #0077b5;
 }
+/*
+.social-colors:not(.icon-links-button):not(.icon-links-grid)
+  .whatsapp:not(:hover)
+  i,
+.social-colors-hover:not(.icon-links-button):not(.icon-links-grid)
+  .whatsapp:hover
+  i {
+  color: #55bd3b;
+} */
 
 .social-colors:not(.icon-links-button):not(.icon-links-grid)
   .youtube:not(:hover)
@@ -6887,6 +6920,8 @@ html body div.ck-content p {
   overflow: hidden;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  line-height: normal;
 }
 
 .become-dealer-button:hover {
