@@ -2318,8 +2318,8 @@ Medium devices (tablets, less than 992px)
     margin: 5px 10px;
     /* padding: 15px 0; */
     width: 150px !important;
-    height: 55px !important;
-    top: 0px !important;
+    /* height: 55px !important; */
+    /* top: 0px !important; */
   }
 
   body > nav:before {
