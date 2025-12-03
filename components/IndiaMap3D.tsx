@@ -6,7 +6,8 @@ export default function IndiaMap3D() {
       {/* Title */}
 
       <div className="title align-center">
-        <h2>Our Distribution Network</h2>
+        <h2>We Deliver All India</h2>
+        <p>Our Distribution Network</p>
       </div>
       {/* Centered Video */}
       <div className="map-video-container">

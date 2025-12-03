@@ -66,6 +66,7 @@ export default function Contact(contactContentData: ContactContent) {
                             <div className="col-lg-8">
                                 <div className="title">
                                     <h2>Write us</h2>
+                                    <p>Contact us from here</p>
                                 </div>
                                 <form className="form-box form-ajax">
                                     <div className="row">
