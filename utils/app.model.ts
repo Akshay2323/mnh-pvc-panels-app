@@ -377,10 +377,18 @@ export class ProductResp {
 export class ProductGallery {
   id: string = "";
   title: string = "";
-  videoUrl: string = "";
+  description: string = "";
   imageUrl: string = "";
-  type: GALLERY_MEDIA_TYPE = GALLERY_MEDIA_TYPE.IMAGE;
   orderNo: number = 0;
+  medias: ExistingGalleryMedia[] = [];
+}
+
+export interface ExistingGalleryMedia {
+  mediaUrl: string;
+  type: GALLERY_MEDIA_TYPE;
+  shortMediaUrl?: string;
+  thumbnailPath?: string;
+  id: string;
 }
 export class ProductGalleryData {
   gallery: ProductGallery[] = [];
@@ -392,6 +400,17 @@ export class ProductGalleryData {
 export class ProductGalleryResp {
   status: boolean = false;
   data: ProductGalleryData = new ProductGalleryData();
+  message: string = "";
+}
+
+export class ProductGalleryDetailsData {
+  galleryDetails: ProductGallery = new ProductGallery();
+  keywords: Keywords = new Keywords();
+}
+
+export class ProductGalleryDetailsResp {
+  status: boolean = false;
+  data: ProductGalleryDetailsData = new ProductGalleryDetailsData();
   message: string = "";
 }
 

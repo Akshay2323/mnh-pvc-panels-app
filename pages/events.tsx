@@ -14,14 +14,21 @@ import PageHeader from "@/components/PageHeader";
 import { GALLERY_MEDIA_TYPE } from "@/utils/app.constants";
 import VideoCard from "@/components/VideoCard";
 
-const maxLimit = 20; interface ProductPageProps { initialData: { keywords: Keywords; products: ProductGallery[]; totalRecords: number; totalPages: number; currentPage: number; }; }
+const maxLimit = 20;
+interface ProductPageProps {
+  initialData: {
+    keywords: Keywords;
+    events: ProductGallery[];
+    totalRecords: number;
+    totalPages: number;
+    currentPage: number;
+  };
+}
 
 export default function GalleryPage({ initialData }: ProductPageProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);1
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalPdfUrl, setModalPdfUrl] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
-  const [products, setProducts] = useState(initialData.products);
+  const [events, setEvents] = useState(initialData.events);
   const [pagination, setPagination] = useState({
     currentPage: initialData.currentPage,
     totalPages: initialData.totalPages,
@@ -29,14 +36,19 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
   });
   const [isLoading, setIsLoading] = useState(false);
 
- const handlePageChange = async (page: number) => {
-    if (page < 1 || page > pagination.totalPages || page === pagination.currentPage) return;
+  const handlePageChange = async (page: number) => {
+    if (
+      page < 1 ||
+      page > pagination.totalPages ||
+      page === pagination.currentPage
+    )
+      return;
 
     setIsLoading(true);
     try {
       const response = await getProductGallery(page, maxLimit, "");
       if (response.status && response.data) {
-        setProducts(response.data?.gallery || []);
+        setEvents(response.data?.gallery || []);
         setCurrentIndex(0);
         setPagination({
           currentPage: page,
@@ -53,7 +65,7 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
 
   if (router.isFallback) return <Loader />;
 
-  if (!products || products.length === 0) {
+  if (!events || events.length === 0) {
     return (
       <main>
         <section className="section-base mt50">
@@ -67,16 +79,6 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
       </main>
     );
   }
-
-  const nextEvent = () => {
-    if (currentIndex < products.length - 1) setCurrentIndex(currentIndex + 1);
-  };
-
-  const prevEvent = () => {
-    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
-  };
-
-  const currentEvent = products[currentIndex];
 
   return (
     <React.Fragment>
@@ -94,58 +96,55 @@ export default function GalleryPage({ initialData }: ProductPageProps) {
       />
 
       <main>
-        <section className="section-base">
-          <div className="container event-single-view">
-            <div className="event-card-single">
-              {currentEvent.type === GALLERY_MEDIA_TYPE.VIDEO ? (
-                <VideoCard
-                  video={{
-                    id: currentEvent.id,
-                    videoUrl: currentEvent.videoUrl,
-                  }}
-                />
-              ) : (
-                <Image
-                  src={currentEvent.imageUrl}
-                  alt={currentEvent.title}
-                  width={1200}
-                  height={600}
-                  className="event-single-image"
-                />
-              )}
-
-              <h2 className="event-single-title">{currentEvent.title}</h2>
-
-              <div className="event-navigation">
-                <button onClick={prevEvent} disabled={currentIndex === 0}>
-                  Previous
-                </button>
-                <span>
-                  {currentIndex + 1} / {products.length}
-                </span>
-                <button
-                  onClick={nextEvent}
-                  disabled={currentIndex === products.length - 1}
-                >
-                  Next
-                </button>
+        {!events || events.length === 0 ? (
+          <section className="section-base">
+            <div className="container">
+              <div className="error-container">
+                <h1>No Events Found</h1>
+                <p>There are no events available.</p>
               </div>
             </div>
-
-            <Pagination
-              currentPage={pagination.currentPage}
-              totalPages={pagination.totalPages}
-              onPageChange={handlePageChange}
-              isLoading={isLoading}
-              className="mt-5"
-            />
-          </div>
-        </section>
+          </section>
+        ) : (
+          <section className="section-base">
+            <div className="container">
+              <div className="gallery-grid">
+                {events.map((event) => (
+                  <Link
+                    key={event.id}
+                    href={`/events/${event.id}`}
+                    className="gallery-card"
+                  >
+                    <div className="gallery-card-image">
+                      <Image
+                        src={event.imageUrl}
+                        alt={event.title}
+                        width={0}
+                        height={0}
+                        sizes="cover"
+                        className="gallery-image"
+                      />
+                    </div>
+                    <div className="gallery-title">
+                      <h3 className="gallery-card-title">{event.title}</h3>
+                      <p className="gallery-card-description">
+                        {event.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <Pagination
+                currentPage={pagination.currentPage}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+                isLoading={isLoading}
+                className="mt-5"
+              />
+            </div>
+          </section>
+        )}
       </main>
-
-      {modalOpen && (
-        <ModalPdfViewer url={modalPdfUrl} onClose={() => setModalOpen(false)} />
-      )}
     </React.Fragment>
   );
 }
@@ -159,7 +158,7 @@ export const getStaticProps = async () => {
     return {
       props: {
         initialData: {
-          products: response.data.gallery || [],
+          events: response.data.gallery || [],
           keywords: response.data.keywords || {},
           totalRecords: response.data.totalRecord || 0,
           totalPages: response.data.totalPages || 1,
