@@ -18,8 +18,15 @@ export default function BecomeDealer(contactContentData: ContactContent) {
   const [errorSend, setErrorSend] = useState<boolean>(false);
   const [isSending, setIsSending] = useState<boolean>(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Optional: extra manual validation (browser already validates required fields)
+    if (!name || !companyName || !email || !phone || !gstNo || !address || !message) {
+      setErrorSend(true);
+      return;
+    }
+
     try {
       setIsSending(true);
       await sendBecomeDealer({
@@ -31,6 +38,8 @@ export default function BecomeDealer(contactContentData: ContactContent) {
         phoneNo: phone,
         message,
       });
+
+      // Reset form
       setName("");
       setCompanyName("");
       setGstNo("");
@@ -38,6 +47,7 @@ export default function BecomeDealer(contactContentData: ContactContent) {
       setEmail("");
       setPhone("");
       setMessage("");
+
       setSuccess(true);
       setErrorSend(false);
     } catch (error) {
@@ -55,9 +65,7 @@ export default function BecomeDealer(contactContentData: ContactContent) {
   return (
     <React.Fragment>
       <SEO
-        title={
-          contactContentData?.becomeDealerKeywords.title || "Become Dealer"
-        }
+        title={contactContentData?.becomeDealerKeywords.title || "Become Dealer"}
         description={
           contactContentData?.becomeDealerKeywords.description ||
           "Become Dealer Page"
@@ -67,19 +75,19 @@ export default function BecomeDealer(contactContentData: ContactContent) {
         }
         image={contactContentData?.becomeDealerKeywords.imagePath}
       />
+
       <PageHeader
         title={"Become a Dealer"}
         description={"Write us to become a dealer"}
         breadcrumbs={[{ label: "Become Dealer", href: "/become-dealer" }]}
       />
+
       <main>
         <section className="section-base">
           <div className="container">
-            {/* <div className="title">
-              <h2>Write us</h2>
-              <p>Lets get to know you better !</p>
-            </div> */}
-            <form className="form-box form-ajax">
+
+            {/* Form START */}
+            <form className="form-box form-ajax" onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-lg-6">
                   <p>Name</p>
@@ -94,6 +102,7 @@ export default function BecomeDealer(contactContentData: ContactContent) {
                     required
                   />
                 </div>
+
                 <div className="col-lg-6">
                   <p>Company Name</p>
                   <input
@@ -107,6 +116,7 @@ export default function BecomeDealer(contactContentData: ContactContent) {
                     required
                   />
                 </div>
+
                 <div className="col-lg-4">
                   <p>Email</p>
                   <input
@@ -120,6 +130,7 @@ export default function BecomeDealer(contactContentData: ContactContent) {
                     required
                   />
                 </div>
+
                 <div className="col-lg-4">
                   <p>Phone No</p>
                   <input
@@ -133,6 +144,7 @@ export default function BecomeDealer(contactContentData: ContactContent) {
                     required
                   />
                 </div>
+
                 <div className="col-lg-4">
                   <p>GST No</p>
                   <input
@@ -147,6 +159,7 @@ export default function BecomeDealer(contactContentData: ContactContent) {
                   />
                 </div>
               </div>
+
               <p>Address</p>
               <textarea
                 id="address"
@@ -157,25 +170,24 @@ export default function BecomeDealer(contactContentData: ContactContent) {
                 onChange={(e) => setAddress(e.target.value)}
                 required
               ></textarea>
-              <p>Messagge</p>
+
+              <p>Message</p>
               <textarea
-                id="messagge"
-                name="messagge"
+                id="message"
+                name="message"
                 className="input-textarea"
                 placeholder="Write something ..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
               ></textarea>
+
               {isSending && <Loader size="small" />}
-              <button
-                className="btn btn-sm"
-                disabled={isSending}
-                onClick={handleSubmit}
-                type="submit"
-              >
-                Send messagge
+
+              <button className="btn btn-sm" type="submit" disabled={isSending}>
+                Send message
               </button>
+
               <div
                 className="success-box"
                 style={{ display: success ? "block" : "none" }}
@@ -184,6 +196,7 @@ export default function BecomeDealer(contactContentData: ContactContent) {
                   Congratulations. Your message has been sent successfully
                 </div>
               </div>
+
               <div
                 className="error-box"
                 style={{ display: errorSend ? "block" : "none" }}
@@ -193,6 +206,8 @@ export default function BecomeDealer(contactContentData: ContactContent) {
                 </div>
               </div>
             </form>
+            {/* Form END */}
+
           </div>
         </section>
       </main>
@@ -207,7 +222,7 @@ export const getStaticProps: GetStaticProps<ContactContent> = async () => {
 
     return {
       props: JSON.parse(JSON.stringify(data)),
-      revalidate: 60, // Revalidate every 60 seconds
+      revalidate: 60,
     };
   } catch (error) {
     console.error("Error fetching contact data:", error);

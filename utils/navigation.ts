@@ -50,10 +50,10 @@ export const NAV_ITEMS_KEYS: any = {
   },
   blog: { key: "blog", label: "Blog", path: "/blog", activePaths: ["/blog"] },
   gallery: {
-    key: "gallery",
+    key: "events",
     label: "Events",
-    path: "/gallery",
-    activePaths: ["/gallery"],
+    path: "/events",
+    activePaths: ["/events"],
   },
   contact: {
     key: "contact",
