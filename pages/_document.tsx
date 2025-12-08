@@ -118,13 +118,15 @@ class MyDocument extends Document<MyDocumentProps> {
                         <li className="dropdown">
                           <a>{item.name}</a>
                           <ul>
-                            {item.subMenu?.map((subItem) => (
-                              <li key={subItem.id}>
-                                <Link href={`/subcategory/${subItem.id}`}>
-                                  {subItem.name}
-                                </Link>
-                              </li>
-                            ))}
+                            {item.subMenu
+                              ?.sort((a, b) => a.orderNo - b.orderNo)
+                              .map((subItem) => (
+                                <li key={subItem.id}>
+                                  <Link href={`/subcategory/${subItem.id}`}>
+                                    {subItem.name}
+                                  </Link>
+                                </li>
+                              ))}
                           </ul>
                         </li>
                       ) : item.key === "becomeDealer" ? (
