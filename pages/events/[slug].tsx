@@ -1,18 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import PageHeader from "@/components/PageHeader";
-import SEO from "@/components/SEO";
-import { getProductGallery, getProductGalleryById } from "@/utils/api";
-import { GALLERY_MEDIA_TYPE } from "@/utils/app.constants";
+import PageHeader from '@/components/PageHeader';
+import SEO from '@/components/SEO';
+import { getProductGallery, getProductGalleryById } from '@/utils/api';
+import { GALLERY_MEDIA_TYPE } from '@/utils/app.constants';
 import {
   ExistingGalleryMedia,
   Keywords,
   ProductGallery,
-} from "@/utils/app.model";
-import { GetStaticPaths } from "next";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import React, { Fragment, useEffect, useState } from "react";
-import Loader from "../../components/Loader";
+} from '@/utils/app.model';
+import { GetStaticPaths } from 'next';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { Fragment, useEffect, useState } from 'react';
+import Loader from '../../components/Loader';
+import CustomImage from '@/components/CustomImage';
 
 interface EventPageProps {
   initialData: {
@@ -28,13 +29,13 @@ export default function EventPage({ initialData }: EventPageProps) {
 
   // Helper function to normalize media URLs
   const normalizeMediaUrl = (url: string): string => {
-    if (!url) return "/images/placeholder.jpg";
+    if (!url) return '/images/placeholder.jpg';
     // If it's an absolute URL, return as is
-    if (url.startsWith("http://") || url.startsWith("https://")) {
+    if (url.startsWith('http://') || url.startsWith('https://')) {
       return url;
     }
     // If it's a relative URL without leading slash, add it
-    if (!url.startsWith("/")) {
+    if (!url.startsWith('/')) {
       return `/${url}`;
     }
     return url;
@@ -45,28 +46,28 @@ export default function EventPage({ initialData }: EventPageProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!lightboxOpen) return;
 
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         setLightboxOpen(false);
-      } else if (e.key === "ArrowLeft") {
+      } else if (e.key === 'ArrowLeft') {
         handlePrevious();
-      } else if (e.key === "ArrowRight") {
+      } else if (e.key === 'ArrowRight') {
         handleNext();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxOpen, currentMediaIndex]);
 
   // Prevent body scroll when lightbox is open
   useEffect(() => {
     if (lightboxOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   }, [lightboxOpen]);
 
@@ -103,36 +104,36 @@ export default function EventPage({ initialData }: EventPageProps) {
         title={
           initialData?.eventDetail?.title ||
           initialData?.keywords?.title ||
-          "Event"
+          'Event'
         }
         description={
           initialData?.eventDetail?.description ||
           initialData?.keywords?.description ||
-          "Event Page"
+          'Event Page'
         }
-        keywords={initialData?.keywords?.keywords?.split(",") || []}
+        keywords={initialData?.keywords?.keywords?.split(',') || []}
         image={
           initialData?.eventDetail?.imageUrl || initialData?.keywords?.imagePath
         }
       />
       <PageHeader
-        title={initialData?.eventDetail?.title || ""}
+        title={initialData?.eventDetail?.title || ''}
         description={
-          initialData?.eventDetail?.description?.substring(0, 100) || ""
+          initialData?.eventDetail?.description?.substring(0, 100) || ''
         }
         breadcrumbs={[
           {
-            label: "Events",
-            href: "/events",
+            label: 'Events',
+            href: '/events',
           },
-          { label: initialData?.eventDetail?.title || "Event", href: "" },
+          { label: initialData?.eventDetail?.title || 'Event', href: '' },
         ]}
       />
       <main>
         {!initialData?.eventDetail ? (
-          <section className="section-base mt50">
-            <div className="container">
-              <div className="error-container">
+          <section className='section-base mt50'>
+            <div className='container'>
+              <div className='error-container'>
                 <h1>No Event Details Found</h1>
                 <p>There are no event details available for this event.</p>
               </div>
@@ -140,57 +141,57 @@ export default function EventPage({ initialData }: EventPageProps) {
           </section>
         ) : (
           <Fragment>
-            <section className="section-base mt50">
-              <div className="container event-gallery-container">
+            <section className='section-base mt50'>
+              <div className='container event-gallery-container'>
                 {/* Event Gallery Grid */}
-                <div className="event-gallery-grid">
+                <div className='event-gallery-grid'>
                   {initialData.eventDetail.medias.map(
                     (media: ExistingGalleryMedia, index: number) => (
                       <div
                         key={media.id || index}
-                        className="event-gallery-item"
+                        className='event-gallery-item'
                         onClick={() => openLightbox(index)}
-                        role="button"
+                        role='button'
                         tabIndex={0}
                         onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
+                          if (e.key === 'Enter' || e.key === ' ') {
                             openLightbox(index);
                           }
                         }}
                         aria-label={`View ${
                           media.type === GALLERY_MEDIA_TYPE.VIDEO
-                            ? "video"
-                            : "image"
+                            ? 'video'
+                            : 'image'
                         } ${index + 1}`}
                       >
-                        <div className="event-gallery-media">
+                        <div className='event-gallery-media'>
                           {media.type === GALLERY_MEDIA_TYPE.VIDEO ? (
                             // Video Thumbnail
-                            <div className="event-gallery-video-thumbnail">
-                              <Image
+                            <div className='event-gallery-video-thumbnail'>
+                              <CustomImage
                                 src={
                                   media?.thumbnailPath ||
-                                  "/assets/placeholder.png"
+                                  '/assets/placeholder.png'
                                 }
                                 alt={`MNH PVC Panels Video ${index + 1}`}
                                 fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                style={{ objectFit: "cover" }}
+                                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                style={{ objectFit: 'cover' }}
                               />
-                              <div className="event-gallery-play-overlay">
-                                <div className="event-gallery-play-icon"></div>
+                              <div className='event-gallery-play-overlay'>
+                                <div className='event-gallery-play-icon'></div>
                               </div>
                             </div>
                           ) : (
                             // Image
-                            <Image
+                            <CustomImage
                               src={normalizeMediaUrl(media.mediaUrl)}
                               alt={`${initialData.eventDetail.title} - Image ${
                                 index + 1
                               }`}
                               fill
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              style={{ objectFit: "cover" }}
+                              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                              style={{ objectFit: 'cover' }}
                             />
                           )}
                         </div>
@@ -201,11 +202,11 @@ export default function EventPage({ initialData }: EventPageProps) {
 
                 {/* Empty State */}
                 {initialData.eventDetail.medias.length === 0 && (
-                  <div className="event-gallery-empty">
-                    <div className="event-gallery-empty-icon">
-                      <i className="fas fa-images"></i>
+                  <div className='event-gallery-empty'>
+                    <div className='event-gallery-empty-icon'>
+                      <i className='fas fa-images'></i>
                     </div>
-                    <p className="event-gallery-empty-text">
+                    <p className='event-gallery-empty-text'>
                       No media available for this event
                     </p>
                   </div>
@@ -216,21 +217,21 @@ export default function EventPage({ initialData }: EventPageProps) {
             {/* Lightbox Modal */}
             {lightboxOpen && currentMedia && (
               <div
-                className="event-lightbox-overlay"
+                className='event-lightbox-overlay'
                 onClick={closeLightbox}
-                role="dialog"
-                aria-modal="true"
-                aria-label="Media viewer"
+                role='dialog'
+                aria-modal='true'
+                aria-label='Media viewer'
               >
                 <div
-                  className="event-lightbox-content"
+                  className='event-lightbox-content'
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
                   <button
-                    className="event-lightbox-close"
+                    className='event-lightbox-close'
                     onClick={closeLightbox}
-                    aria-label="Close viewer"
+                    aria-label='Close viewer'
                   >
                     ×
                   </button>
@@ -238,11 +239,11 @@ export default function EventPage({ initialData }: EventPageProps) {
                   {/* Media Display */}
                   {currentMedia.type === GALLERY_MEDIA_TYPE.VIDEO ? (
                     <video
-                      className="event-lightbox-video"
+                      className='event-lightbox-video'
                       controls
                       autoPlay
                       poster={
-                        currentMedia.thumbnailPath || "/assets/placeholder.png"
+                        currentMedia.thumbnailPath || '/assets/placeholder.png'
                       }
                       src={normalizeMediaUrl(currentMedia.mediaUrl)}
                       aria-label={`Video ${currentMediaIndex + 1}`}
@@ -251,7 +252,7 @@ export default function EventPage({ initialData }: EventPageProps) {
                     </video>
                   ) : (
                     <img
-                      className="event-lightbox-image"
+                      className='event-lightbox-image'
                       src={normalizeMediaUrl(currentMedia.mediaUrl)}
                       alt={`${initialData.eventDetail.title} - Image ${
                         currentMediaIndex + 1
@@ -262,11 +263,11 @@ export default function EventPage({ initialData }: EventPageProps) {
                   {/* Previous Button */}
                   <button
                     className={`event-lightbox-nav event-lightbox-prev ${
-                      currentMediaIndex === 0 ? "disabled" : ""
+                      currentMediaIndex === 0 ? 'disabled' : ''
                     }`}
                     onClick={handlePrevious}
                     disabled={currentMediaIndex === 0}
-                    aria-label="Previous media"
+                    aria-label='Previous media'
                   >
                     ‹
                   </button>
@@ -276,22 +277,22 @@ export default function EventPage({ initialData }: EventPageProps) {
                     className={`event-lightbox-nav event-lightbox-next ${
                       currentMediaIndex ===
                       initialData.eventDetail.medias.length - 1
-                        ? "disabled"
-                        : ""
+                        ? 'disabled'
+                        : ''
                     }`}
                     onClick={handleNext}
                     disabled={
                       currentMediaIndex ===
                       initialData.eventDetail.medias.length - 1
                     }
-                    aria-label="Next media"
+                    aria-label='Next media'
                   >
                     ›
                   </button>
 
                   {/* Counter */}
-                  <div className="event-lightbox-counter">
-                    {currentMediaIndex + 1} /{" "}
+                  <div className='event-lightbox-counter'>
+                    {currentMediaIndex + 1} /{' '}
                     {initialData.eventDetail.medias.length}
                   </div>
                 </div>
@@ -306,7 +307,7 @@ export default function EventPage({ initialData }: EventPageProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const response = await getProductGallery(1, 10, "");
+    const response = await getProductGallery(1, 10, '');
     const events = response.status ? response.data?.gallery || [] : [];
 
     const paths = events.map((event) => ({
@@ -318,7 +319,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       fallback: true,
     };
   } catch (error) {
-    console.error("Error fetching event paths:", error);
+    console.error('Error fetching event paths:', error);
     return {
       paths: [],
       fallback: true,
@@ -350,7 +351,7 @@ export const getStaticProps = async ({
       revalidate: 60,
     };
   } catch (error) {
-    console.error("Error in getStaticProps:", error);
+    console.error('Error in getStaticProps:', error);
     return {
       notFound: true,
     };

@@ -1,62 +1,72 @@
 import PageHeader from '@/components/PageHeader';
 import SEO from '@/components/SEO';
-import { getProductsByCategory, getProductSubCatagory } from "@/utils/api";
+import { getProductsByCategory, getProductSubCatagory } from '@/utils/api';
 import { Keywords, Product, ProductCategory } from '@/utils/app.model';
-import { GetStaticPaths } from "next";
-import Image from 'next/image';
+import { GetStaticPaths } from 'next';
+import CustomImage from '@/components/CustomImage';
 import Link from 'next/link';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 import React, { Fragment } from 'react';
-import Loader from "../../components/Loader";
+import Loader from '../../components/Loader';
 
 interface SubCategoryPageProps {
-    initialData: {
-        products: Product[];
-        keywords: Keywords;
-        category: ProductCategory;
-    };
+  initialData: {
+    products: Product[];
+    keywords: Keywords;
+    category: ProductCategory;
+  };
 }
 
 export default function SubCategoryPage({ initialData }: SubCategoryPageProps) {
-    const router = useRouter();
+  const router = useRouter();
 
-    if (router.isFallback) {
-        return <Loader />;
-    }
+  if (router.isFallback) {
+    return <Loader />;
+  }
 
-    return (
-        <React.Fragment>
-            <SEO
-                title={
-                    initialData?.category?.name || initialData?.keywords?.title || "Products"}
-                description={initialData?.category?.description || initialData?.keywords?.description || "Products Page"}
-                keywords={initialData?.keywords?.keywords?.split(",") || []}
-                image={initialData?.category?.imagePath || initialData?.keywords?.imagePath}
-            />
-            <PageHeader
-                title={initialData?.category?.name || ''}
-                description={`High-quality ${initialData?.category?.name} for your home and office.`}
-                breadcrumbs={[
-                    { label: initialData?.category?.productCategory?.name, href: '/subcategory/' + initialData?.category?.productCategory?.id },
-                    { label: initialData?.category?.name || 'Product', href: '' }
-                ]}
-            />
-            <main>
-                {
-                    (!initialData?.products || initialData?.products?.length === 0) ? (
-                        <section className="section-base">
-                            <div className="container">
-                                <div className="error-container">
-                                    <h1>No Products Found</h1>
-                                    <p>There are no products available in this category.</p>
-                                </div>
-                            </div>
-                        </section>
-                    ) : (
-                        <Fragment>
-                            <section className="section-base mt50">
-                                <div className="container">
-                                    {/* <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
+  return (
+    <React.Fragment>
+      <SEO
+        title={
+          initialData?.category?.name ||
+          initialData?.keywords?.title ||
+          'Products'
+        }
+        description={
+          initialData?.category?.description ||
+          initialData?.keywords?.description ||
+          'Products Page'
+        }
+        image={
+          initialData?.category?.imagePath || initialData?.keywords?.imagePath
+        }
+      />
+      <PageHeader
+        title={initialData?.category?.name || ''}
+        description={`High-quality ${initialData?.category?.name} for your home and office.`}
+        breadcrumbs={[
+          {
+            label: initialData?.category?.productCategory?.name,
+            href: '/subcategory/' + initialData?.category?.productCategory?.id,
+          },
+          { label: initialData?.category?.name || 'Product', href: '' },
+        ]}
+      />
+      <main>
+        {!initialData?.products || initialData?.products?.length === 0 ? (
+          <section className='section-base'>
+            <div className='container'>
+              <div className='error-container'>
+                <h1>No Products Found</h1>
+                <p>There are no products available in this category.</p>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <Fragment>
+            <section className='section-base mt50'>
+              <div className='container'>
+                {/* <div className="album" data-album-anima="fade-bottom" data-columns-md="2" data-columns-sm="1">
                                         <div className="album-list">
                                             {initialData?.products.map((product) => (
                                                 <div key={product.id} className="album-box">
@@ -76,90 +86,94 @@ export default function SubCategoryPage({ initialData }: SubCategoryPageProps) {
                                             ))}
                                         </div>
                                     </div> */}
-                                    <div className="catalog-grid">
-                                        {initialData?.products.map((product) => (
-                                            <Link
-                                                key={product.id}
-                                                href={`/product/${product.id}`}
-                                                rel="noopener noreferrer"
-                                                className="catalog-card"
-                                            >
-                                                <div className="catalog-card-image">
-                                                    <Image
-                                                        src={product.thumbImage}
-                                                        alt={product.name}
-                                                        width={0}
-                                                        height={0}
-                                                        sizes="100vw"
-                                                        className="catalog-image"
-                                                    />
-                                                    <div className="catalog-overlay">
-                                                        <div className="catalog-pdf-icon">
-                                                            <i className="fas fa-eye"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="catalog-card-content">
-                                                    <h3 className="catalog-title">{product.name}</h3>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            </section>
-                        </Fragment>
-                    )}
-            </main>
-        </React.Fragment>
-    );
+                <div className='catalog-grid'>
+                  {initialData?.products.map((product) => (
+                    <Link
+                      key={product.id}
+                      href={`/product/${product.id}`}
+                      rel='noopener noreferrer'
+                      className='catalog-card'
+                    >
+                      <div className='catalog-card-image'>
+                        <CustomImage
+                          src={product.thumbImage}
+                          alt={product.name}
+                          width={0}
+                          height={0}
+                          sizes='100vw'
+                          className='catalog-image'
+                        />
+                        <div className='catalog-overlay'>
+                          <div className='catalog-pdf-icon'>
+                            <i className='fas fa-eye'></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='catalog-card-content'>
+                        <h3 className='catalog-title'>{product.name}</h3>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </Fragment>
+        )}
+      </main>
+    </React.Fragment>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    try {
-        const response = await getProductSubCatagory();
-        const categories = response.status ? response.data || [] : [];
+  try {
+    const response = await getProductSubCatagory();
+    const categories = response.status ? response.data || [] : [];
 
-        const paths = categories.map((category) => ({
-            params: { slug: category.id },
-        }));
+    const paths = categories.map((category) => ({
+      params: { slug: category.id },
+    }));
 
-        return {
-            paths,
-            fallback: true,
-        };
-    } catch (error) {
-        console.error('Error fetching product category paths:', error);
-        return {
-            paths: [],
-            fallback: true,
-        };
-    }
+    return {
+      paths,
+      fallback: true,
+    };
+  } catch (error) {
+    console.error('Error fetching product category paths:', error);
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
 };
 
-export const getStaticProps = async ({ params }: { params: { slug: string } }) => {
-    try {
-        const response = await getProductsByCategory(params.slug);
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
+  try {
+    const response = await getProductsByCategory(params.slug);
 
-        if (!response.status || !response.data) {
-            return {
-                notFound: true,
-            };
-        }
-
-        return {
-            props: {
-                initialData: {
-                    products: response.data.products || [],
-                    keywords: response.data.keywords || {},
-                    category: response.data.category || {},
-                },
-            },
-            revalidate: 60,
-        };
-    } catch (error) {
-        console.error('Error in getStaticProps:', error);
-        return {
-            notFound: true,
-        };
+    if (!response.status || !response.data) {
+      return {
+        notFound: true,
+      };
     }
+
+    return {
+      props: {
+        initialData: {
+          products: response.data.products || [],
+          keywords: response.data.keywords || {},
+          category: response.data.category || {},
+        },
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+    return {
+      notFound: true,
+    };
+  }
 };

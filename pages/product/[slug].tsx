@@ -1,35 +1,36 @@
 /* eslint-disable @next/next/no-img-element */
-import PageHeader from "@/components/PageHeader";
-import SEO from "@/components/SEO";
-import { getAllTopProductDetails, getProductDetailsById } from "@/utils/api";
+import PageHeader from '@/components/PageHeader';
+import SEO from '@/components/SEO';
+import { getAllTopProductDetails, getProductDetailsById } from '@/utils/api';
 import {
   Keywords,
   Product,
   PRODUCT_MEDIA_TYPE,
   Specification,
-} from "@/utils/app.model";
-import { GetStaticPaths } from "next";
-import Image from "next/image";
-import { useRouter } from "next/router";
+} from '@/utils/app.model';
+import { GetStaticPaths } from 'next';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, {
   Fragment,
   useCallback,
   useEffect,
   useRef,
   useState,
-} from "react";
-import type { Swiper as SwiperType } from "swiper";
-import { Autoplay, Navigation, Pagination, Thumbs, Zoom } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Loader from "../../components/Loader";
+} from 'react';
+import type { Swiper as SwiperType } from 'swiper';
+import { Autoplay, Navigation, Pagination, Thumbs, Zoom } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Loader from '../../components/Loader';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/thumbs";
-import "swiper/css/zoom";
-import Link from "next/link";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/thumbs';
+import 'swiper/css/zoom';
+import Link from 'next/link';
+import CustomImage from '@/components/CustomImage';
 
 interface ProductPageProps {
   initialData: {
@@ -239,16 +240,16 @@ function ProductDetails({ product }: ProductDetailsProps) {
 
   // Handle PDF view in new tab
   const handlePdfView = (pdfUrl: string) => {
-    window.open(pdfUrl, "_blank", "noopener,noreferrer");
+    window.open(pdfUrl, '_blank', 'noopener,noreferrer');
   };
 
   // Handle zoom navigation
   const handleZoomNavigation = useCallback(
-    (direction: "prev" | "next") => {
+    (direction: 'prev' | 'next') => {
       if (allImages.length <= 1) return;
 
       let newIndex: number;
-      if (direction === "prev") {
+      if (direction === 'prev') {
         newIndex =
           selectedImageIndex > 0
             ? selectedImageIndex - 1
@@ -282,51 +283,51 @@ function ProductDetails({ product }: ProductDetailsProps) {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (isZoomed) {
         switch (e.key) {
-          case "Escape":
+          case 'Escape':
             closeZoom();
             break;
-          case "ArrowLeft":
-            handleZoomNavigation("prev");
+          case 'ArrowLeft':
+            handleZoomNavigation('prev');
             break;
-          case "ArrowRight":
-            handleZoomNavigation("next");
+          case 'ArrowRight':
+            handleZoomNavigation('next');
             break;
         }
       }
     };
 
     if (isZoomed) {
-      document.addEventListener("keydown", handleKeyPress);
-      document.body.style.overflow = "hidden";
+      document.addEventListener('keydown', handleKeyPress);
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
 
     return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-      document.body.style.overflow = "unset";
+      document.removeEventListener('keydown', handleKeyPress);
+      document.body.style.overflow = 'unset';
     };
   }, [isZoomed, handleZoomNavigation]);
 
   return (
     <React.Fragment>
-      <div className="simple-product-details">
-        <div className="container">
-          <div className="row">
+      <div className='simple-product-details'>
+        <div className='container'>
+          <div className='row'>
             {/* Left Side - Image Gallery */}
-            <div className="col-lg-6 col-md-12">
-              <div className="product-image-section">
+            <div className='col-lg-6 col-md-12'>
+              <div className='product-image-section'>
                 {/* Main Swiper */}
                 {allImages.length > 0 ? (
-                  <div className="product-swiper-container">
+                  <div className='product-swiper-container'>
                     <Swiper
                       onSwiper={(swiper) => {
                         mainSwiperRef.current = swiper;
                       }}
                       modules={[Navigation, Pagination, Autoplay, Thumbs, Zoom]}
                       navigation={{
-                        nextEl: ".swiper-button-next-custom",
-                        prevEl: ".swiper-button-prev-custom",
+                        nextEl: '.swiper-button-next-custom',
+                        prevEl: '.swiper-button-prev-custom',
                       }}
                       pagination={{
                         clickable: true,
@@ -343,28 +344,28 @@ function ProductDetails({ product }: ProductDetailsProps) {
                         minRatio: 1,
                       }}
                       loop={allImages.length > 1}
-                      className="product-main-swiper"
+                      className='product-main-swiper'
                       onSlideChange={(swiper) =>
                         setSelectedImageIndex(swiper.realIndex)
                       }
                     >
                       {allImages.map((image, index) => (
                         <SwiperSlide key={index}>
-                          <div className="swiper-zoom-container">
+                          <div className='swiper-zoom-container'>
                             <div
-                              className="product-image-wrapper"
+                              className='product-image-wrapper'
                               onClick={() =>
                                 handleImageZoom(image.mediaUrl, index)
                               }
                             >
-                              <Image
+                              <CustomImage
                                 src={image.mediaUrl}
                                 alt={`${product.name} - ${index + 1}`}
                                 fill
-                                style={{ objectFit: "contain" }}
+                                style={{ objectFit: 'contain' }}
                               />
-                              <div className="zoom-hint">
-                                <i className="fas fa-search-plus"></i>
+                              <div className='zoom-hint'>
+                                <i className='fas fa-search-plus'></i>
                                 <span>Click to zoom</span>
                               </div>
                             </div>
@@ -376,11 +377,11 @@ function ProductDetails({ product }: ProductDetailsProps) {
                     {/* Custom Navigation Buttons */}
                     {allImages.length > 1 && (
                       <>
-                        <div className="swiper-button-prev-custom product-nav-btn">
-                          <i className="fas fa-chevron-left"></i>
+                        <div className='swiper-button-prev-custom product-nav-btn'>
+                          <i className='fas fa-chevron-left'></i>
                         </div>
-                        <div className="swiper-button-next-custom product-nav-btn">
-                          <i className="fas fa-chevron-right"></i>
+                        <div className='swiper-button-next-custom product-nav-btn'>
+                          <i className='fas fa-chevron-right'></i>
                         </div>
                       </>
                     )}
@@ -394,7 +395,7 @@ function ProductDetails({ product }: ProductDetailsProps) {
                         slidesPerView={4}
                         freeMode={true}
                         watchSlidesProgress={true}
-                        className="product-thumbs-swiper"
+                        className='product-thumbs-swiper'
                         breakpoints={{
                           320: {
                             slidesPerView: 3,
@@ -412,12 +413,12 @@ function ProductDetails({ product }: ProductDetailsProps) {
                       >
                         {allImages.map((image, index) => (
                           <SwiperSlide key={index}>
-                            <div className="product-thumb">
-                              <Image
+                            <div className='product-thumb'>
+                              <CustomImage
                                 src={image.mediaUrl}
                                 alt={`${product.name} thumbnail ${index + 1}`}
                                 fill
-                                style={{ objectFit: "cover" }}
+                                style={{ objectFit: 'cover' }}
                               />
                             </div>
                           </SwiperSlide>
@@ -426,38 +427,38 @@ function ProductDetails({ product }: ProductDetailsProps) {
                     )}
                   </div>
                 ) : (
-                  <div className="product-image-placeholder">
-                    <i className="fas fa-image"></i>
+                  <div className='product-image-placeholder'>
+                    <i className='fas fa-image'></i>
                     <span>No images available</span>
                   </div>
                 )}
 
                 {/* PDF Resources Section */}
                 {pdfFiles.length > 0 && (
-                  <div className="product-pdf-section">
+                  <div className='product-pdf-section'>
                     <h4>Download Brochure</h4>
-                    <div className="pdf-downloads">
+                    <div className='pdf-downloads'>
                       {pdfFiles.map((pdf, index) => (
-                        <div key={index} className="pdf-item">
-                          <div className="pdf-info">
-                            <i className="fas fa-file-pdf pdf-icon"></i>
-                            <span className="pdf-name">
+                        <div key={index} className='pdf-item'>
+                          <div className='pdf-info'>
+                            <i className='fas fa-file-pdf pdf-icon'></i>
+                            <span className='pdf-name'>
                               {decodeURIComponent(
                                 pdf.mediaUrl
-                                  ?.split("/")
+                                  ?.split('/')
                                   .pop() // get file name from URL
-                                  ?.replace(/\.[^/.]+$/, "") // remove .pdf extension
-                                  ?.replace(/^\d+(\.\d+)?-/, "") // remove numeric prefix like 1761837769657.8638-
-                                  ?.trim() || "" // remove extra spaces
+                                  ?.replace(/\.[^/.]+$/, '') // remove .pdf extension
+                                  ?.replace(/^\d+(\.\d+)?-/, '') // remove numeric prefix like 1761837769657.8638-
+                                  ?.trim() || '' // remove extra spaces
                               )}
                             </span>
                           </div>
                           <button
-                            className="pdf-action-btn pdf-view-btn"
+                            className='pdf-action-btn pdf-view-btn'
                             onClick={() => handlePdfView(pdf.mediaUrl)}
-                            title="View PDF in new tab"
+                            title='View PDF in new tab'
                           >
-                            <i className="fas fa-eye"></i>
+                            <i className='fas fa-eye'></i>
                             <span>View</span>
                           </button>
                         </div>
@@ -469,13 +470,13 @@ function ProductDetails({ product }: ProductDetailsProps) {
             </div>
 
             {/* Right Side - Product Info */}
-            <div className="col-lg-6 col-md-12">
-              <div className="product-info-section">
+            <div className='col-lg-6 col-md-12'>
+              <div className='product-info-section'>
                 {/* Product Title */}
-                <h1 className="product-name">{product.name}</h1>
+                <h1 className='product-name'>{product.name}</h1>
 
                 {/* Product Description */}
-                <div className="product-description">
+                <div className='product-description'>
                   {product.description ? (
                     <div
                       dangerouslySetInnerHTML={{ __html: product.description }}
@@ -488,11 +489,11 @@ function ProductDetails({ product }: ProductDetailsProps) {
                 {/* Product Specifications */}
                 {product.specifications &&
                   product.specifications.length > 0 && (
-                    <div className="row product-specifications">
+                    <div className='row product-specifications'>
                       {product.specifications.map((spec, index) => (
-                        <div key={index} className="col-6 detail-info">
-                          <div className="spec-label">{spec.title}:</div>
-                          <div className="spec-value">{spec.value}</div>
+                        <div key={index} className='col-6 detail-info'>
+                          <div className='spec-label'>{spec.title}:</div>
+                          <div className='spec-value'>{spec.value}</div>
                         </div>
                       ))}
                     </div>
@@ -505,50 +506,50 @@ function ProductDetails({ product }: ProductDetailsProps) {
 
       {/* Enhanced Image Zoom Modal */}
       {isZoomed && zoomedImage && (
-        <div className="image-zoom-modal" onClick={closeZoom}>
+        <div className='image-zoom-modal' onClick={closeZoom}>
           <div
-            className="zoom-modal-content"
+            className='zoom-modal-content'
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="zoom-close-btn" onClick={closeZoom}>
-              <i className="fas fa-times"></i>
+            <button className='zoom-close-btn' onClick={closeZoom}>
+              <i className='fas fa-times'></i>
             </button>
 
             {/* Zoom Controls Toolbar */}
-            <div className="zoom-toolbar">
-              <div className="zoom-level-controls">
+            <div className='zoom-toolbar'>
+              <div className='zoom-level-controls'>
                 <button
-                  className="zoom-control-btn"
+                  className='zoom-control-btn'
                   onClick={handleZoomOut}
                   disabled={zoomLevel <= 1}
-                  title="Zoom Out"
+                  title='Zoom Out'
                 >
-                  <i className="fas fa-search-minus"></i>
+                  <i className='fas fa-search-minus'></i>
                 </button>
-                <span className="zoom-level-display">
+                <span className='zoom-level-display'>
                   {Math.round(zoomLevel * 100)}%
                 </span>
                 <button
-                  className="zoom-control-btn"
+                  className='zoom-control-btn'
                   onClick={handleZoomIn}
                   disabled={zoomLevel >= 4}
-                  title="Zoom In"
+                  title='Zoom In'
                 >
-                  <i className="fas fa-search-plus"></i>
+                  <i className='fas fa-search-plus'></i>
                 </button>
                 <button
-                  className="zoom-control-btn"
+                  className='zoom-control-btn'
                   onClick={resetZoom}
                   disabled={zoomLevel === 1}
-                  title="Reset Zoom"
+                  title='Reset Zoom'
                 >
-                  <i className="fas fa-expand-arrows-alt"></i>
+                  <i className='fas fa-expand-arrows-alt'></i>
                 </button>
               </div>
             </div>
 
             <div
-              className="zoomed-image-container"
+              className='zoomed-image-container'
               ref={zoomImageRef}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
@@ -562,56 +563,56 @@ function ProductDetails({ product }: ProductDetailsProps) {
                 cursor:
                   zoomLevel > 1
                     ? isDragging
-                      ? "grabbing"
-                      : "grab"
-                    : "zoom-in",
-                touchAction: "none",
+                      ? 'grabbing'
+                      : 'grab'
+                    : 'zoom-in',
+                touchAction: 'none',
               }}
             >
               <div
-                className="zoomable-image"
+                className='zoomable-image'
                 style={{
                   transform: `scale(${zoomLevel}) translate(${
                     panPosition.x / zoomLevel
                   }px, ${panPosition.y / zoomLevel}px)`,
-                  transition: isDragging ? "none" : "transform 0.2s ease-out",
+                  transition: isDragging ? 'none' : 'transform 0.2s ease-out',
                 }}
               >
-                <Image
+                <CustomImage
                   src={zoomedImage}
                   alt={`${product.name} - Zoomed view`}
                   fill
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
             </div>
 
-            <div className="zoom-controls">
+            <div className='zoom-controls'>
               <button
-                className="zoom-nav-btn"
-                onClick={() => handleZoomNavigation("prev")}
+                className='zoom-nav-btn'
+                onClick={() => handleZoomNavigation('prev')}
                 disabled={allImages.length <= 1}
               >
-                <i className="fas fa-chevron-left"></i>
+                <i className='fas fa-chevron-left'></i>
               </button>
-              <span className="zoom-counter">
+              <span className='zoom-counter'>
                 {selectedImageIndex + 1} / {allImages.length}
               </span>
               <button
-                className="zoom-nav-btn"
-                onClick={() => handleZoomNavigation("next")}
+                className='zoom-nav-btn'
+                onClick={() => handleZoomNavigation('next')}
                 disabled={allImages.length <= 1}
               >
-                <i className="fas fa-chevron-right"></i>
+                <i className='fas fa-chevron-right'></i>
               </button>
             </div>
 
             {/* Zoom Instructions */}
-            <div className="zoom-instructions">
-              <span className="desktop-instructions">
+            <div className='zoom-instructions'>
+              <span className='desktop-instructions'>
                 Use mouse wheel to zoom • Click and drag to pan • ESC to close
               </span>
-              <span className="mobile-instructions">
+              <span className='mobile-instructions'>
                 Pinch to zoom • Drag to pan • Tap outside to close
               </span>
             </div>
@@ -660,41 +661,41 @@ export default function ProductPage({ initialData }: ProductPageProps) {
         title={
           initialData?.productDetail?.name ||
           initialData?.keywords?.title ||
-          "Products"
+          'Products'
         }
         description={
           initialData?.productDetail?.description ||
           initialData?.keywords?.description ||
-          "Products Page"
+          'Products Page'
         }
-        keywords={initialData?.keywords?.keywords?.split(",") || []}
+        keywords={initialData?.keywords?.keywords?.split(',') || []}
         image={
           initialData?.productDetail?.thumbImage ||
           initialData?.keywords?.imagePath
         }
       />
       <PageHeader
-        title={initialData?.productDetail?.name || ""}
+        title={initialData?.productDetail?.name || ''}
         description={`High-quality ${initialData?.productDetail?.name} for your home and office.`}
         breadcrumbs={[
           {
             label: initialData?.productDetail?.productCategory?.name,
             href:
-              "/subcategory/" + initialData?.productDetail?.productCategory?.id,
+              '/subcategory/' + initialData?.productDetail?.productCategory?.id,
           },
           {
             label: initialData?.productDetail?.productSubCategory?.name,
             href:
-              "/products/" + initialData?.productDetail?.productSubCategory?.id,
+              '/products/' + initialData?.productDetail?.productSubCategory?.id,
           },
-          { label: initialData?.productDetail?.name || "Product", href: "" },
+          { label: initialData?.productDetail?.name || 'Product', href: '' },
         ]}
       />
       <main>
         {!initialData?.productDetail ? (
-          <section className="section-base mt50">
-            <div className="container">
-              <div className="error-container">
+          <section className='section-base mt50'>
+            <div className='container'>
+              <div className='error-container'>
                 <h1>No Products Found</h1>
                 <p>There are no products available in this category.</p>
               </div>
@@ -702,31 +703,31 @@ export default function ProductPage({ initialData }: ProductPageProps) {
           </section>
         ) : (
           <Fragment>
-            <section className="section-base mt50">
+            <section className='section-base mt50'>
               <ProductDetails product={initialData?.productDetail} />
               {initialData?.categoryProducts?.length > 1 && (
-                <div className="next-previous">
-                  <button className="prev-btn" onClick={handlePrevious}>
+                <div className='next-previous'>
+                  <button className='prev-btn' onClick={handlePrevious}>
                     Previous
                   </button>
-                  <button className="next-btn" onClick={handleNext}>
+                  <button className='next-btn' onClick={handleNext}>
                     Next
                   </button>
                 </div>
               )}
             </section>
             {initialData?.categoryProducts?.length > 1 && (
-              <section className="section-base section-color">
-                <div className="container">
-                <div className="title align-center">
-                  <h2>Explore More Products</h2>
-                  <p>Discover our wide range of products</p>
-                </div>
-                  <div className="category-slider">
+              <section className='section-base section-color'>
+                <div className='container'>
+                  <div className='title align-center'>
+                    <h2>Explore More Products</h2>
+                    <p>Discover our wide range of products</p>
+                  </div>
+                  <div className='category-slider'>
                     <Swiper
                       modules={[Navigation, Autoplay]}
                       spaceBetween={15}
-                      slidesPerView={"auto"}
+                      slidesPerView={'auto'}
                       centeredSlides={true}
                       navigation
                       breakpoints={{
@@ -766,26 +767,26 @@ export default function ProductPage({ initialData }: ProductPageProps) {
                           <SwiperSlide key={product.id}>
                             <Link
                               href={`/product/${product.id}`}
-                              rel="noopener noreferrer"
-                              className="catalog-card"
+                              rel='noopener noreferrer'
+                              className='catalog-card'
                             >
-                              <div className="catalog-card-image">
-                                <Image
+                              <div className='catalog-card-image'>
+                                <CustomImage
                                   src={product.thumbImage}
                                   alt={product.name}
                                   width={0}
                                   height={0}
-                                  sizes="100vw"
-                                  className="catalog-image"
+                                  sizes='100vw'
+                                  className='catalog-image'
                                 />
-                                <div className="catalog-overlay">
-                                  <div className="catalog-pdf-icon">
-                                    <i className="fas fa-eye"></i>
+                                <div className='catalog-overlay'>
+                                  <div className='catalog-pdf-icon'>
+                                    <i className='fas fa-eye'></i>
                                   </div>
                                 </div>
                               </div>
-                              <div className="catalog-card-content">
-                                <h3 className="catalog-title">
+                              <div className='catalog-card-content'>
+                                <h3 className='catalog-title'>
                                   {product.name}
                                 </h3>
                               </div>
@@ -797,20 +798,24 @@ export default function ProductPage({ initialData }: ProductPageProps) {
                 </div>
               </section>
             )}
-            <section className={`section-base ${initialData?.categoryProducts?.length > 1? '' : 'section-color'}`}>
-              <div className="container">
-                <div className="title align-center">
+            <section
+              className={`section-base ${
+                initialData?.categoryProducts?.length > 1 ? '' : 'section-color'
+              }`}
+            >
+              <div className='container'>
+                <div className='title align-center'>
                   <h2>Why you should use our products</h2>
                   <p>We provide the best quality products</p>
                 </div>
-                <table className="table table-grid table-border table-6-md">
+                <table className='table table-grid table-border table-6-md'>
                   <tbody>
                     <tr>
                       {initialData?.specifications?.map((item) => (
                         <td key={item.id}>
-                          <div className="icon-box icon-box-top align-center">
+                          <div className='icon-box icon-box-top align-center'>
                             <i className={item.iconName}></i>
-                            <div className="caption">
+                            <div className='caption'>
                               <h3>{item.name}</h3>
                               <p>{item.description}</p>
                             </div>
@@ -843,7 +848,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       fallback: true,
     };
   } catch (error) {
-    console.error("Error fetching product category paths:", error);
+    console.error('Error fetching product category paths:', error);
     return {
       paths: [],
       fallback: true,
@@ -877,7 +882,7 @@ export const getStaticProps = async ({
       revalidate: 60,
     };
   } catch (error) {
-    console.error("Error in getStaticProps:", error);
+    console.error('Error in getStaticProps:', error);
     return {
       notFound: true,
     };
