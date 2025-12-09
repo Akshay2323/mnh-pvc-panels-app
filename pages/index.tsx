@@ -1,29 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { Autoplay, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { GetStaticProps } from "next";
-import { BLOG_MEDIA_TYPE, HomeScreenContent } from "@/utils/app.model";
-import { getHomeDetails } from "@/utils/api";
-import { extractYouTubeId } from "@/utils/common";
-import SEO from "@/components/SEO";
-import YouTube, { YouTubePlayer } from "react-youtube";
-import { useRef } from "react";
-import { format } from "date-fns";
-import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-import VideoCard from "@/components/VideoCard";
+import Link from 'next/link';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { GetStaticProps } from 'next';
+import { BLOG_MEDIA_TYPE, HomeScreenContent } from '@/utils/app.model';
+import { getHomeDetails } from '@/utils/api';
+import { extractYouTubeId } from '@/utils/common';
+import SEO from '@/components/SEO';
+import YouTube, { YouTubePlayer } from 'react-youtube';
+import { useRef } from 'react';
+import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+import VideoCard from '@/components/VideoCard';
+import GoogleReviewButton from '@/components/GoogleReviewButton';
 
-const IndiaMap3D = dynamic(() => import("../components/IndiaMap3D"), {
+const IndiaMap3D = dynamic(() => import('../components/IndiaMap3D'), {
   ssr: false,
 });
 
 const youtubeOptions = {
-  width: "100%",
-  height: "240px",
+  width: '100%',
+  height: '240px',
   playerVars: {
     autoplay: 0,
     controls: 0,
@@ -42,7 +43,7 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, when: "beforeChildren" },
+    transition: { staggerChildren: 0.15, when: 'beforeChildren' },
   },
 };
 
@@ -57,18 +58,18 @@ export default function Home(homeScreenData: HomeScreenContent) {
   return (
     <main>
       <SEO
-        title={homeScreenData?.keywords.title || "Home"}
-        description={homeScreenData?.keywords.description || "Home Page"}
-        keywords={homeScreenData?.keywords.keywords?.split(",") || []}
+        title={homeScreenData?.keywords.title || 'Home'}
+        description={homeScreenData?.keywords.description || 'Home Page'}
+        keywords={homeScreenData?.keywords.keywords?.split(',') || []}
         image={homeScreenData?.keywords.imagePath}
       />
 
       {/* Hero Video */}
       {/* Hero Video */}
       <motion.section
-        className="video-container"
-        initial="hidden"
-        animate="visible"
+        className='video-container'
+        initial='hidden'
+        animate='visible'
         variants={fadeUp}
       >
         <video
@@ -76,20 +77,20 @@ export default function Home(homeScreenData: HomeScreenContent) {
           muted
           loop
           playsInline
-          className="responsive-video"
+          className='responsive-video'
           src={homeScreenData?.homeVideo?.streamVideoUrl}
-          poster={homeScreenData?.homeVideo?.thumbnail || "/assets/logo.jpeg"}
+          poster={homeScreenData?.homeVideo?.thumbnail || '/assets/logo.jpeg'}
         />
 
         {/* Scroll Down Button */}
         <a
-          href="#categories"
-          className="scroll-down"
+          href='#categories'
+          className='scroll-down'
           onClick={(e) => {
             e.preventDefault();
             document
-              .querySelector("#categories")
-              ?.scrollIntoView({ behavior: "smooth" });
+              .querySelector('#categories')
+              ?.scrollIntoView({ behavior: 'smooth' });
           }}
         >
           <span></span>
@@ -99,28 +100,28 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Products Categories */}
       <motion.section
-        id="categories"
-        className="section-base"
-        initial="hidden"
-        whileInView="visible"
+        id='categories'
+        className='section-base'
+        initial='hidden'
+        whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <div className="container">
-          <div className="title align-center">
+        <div className='container'>
+          <div className='title align-center'>
             <h2>Our Product Categories</h2>
             <p>Explore our premium PVC solutions</p>
           </div>
           <motion.div
-            className="category-slider"
+            className='category-slider'
             variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
           >
             <Swiper
               modules={[Navigation, Autoplay]}
               spaceBetween={15}
-              slidesPerView={"auto"}
+              slidesPerView={'auto'}
               centeredSlides={true}
               loop={false}
               navigation
@@ -141,29 +142,31 @@ export default function Home(homeScreenData: HomeScreenContent) {
                 1280: { slidesPerView: 4, centeredSlides: false },
               }}
             >
-              {homeScreenData?.categories?.map((item, index) => (
-                <SwiperSlide key={item.id}>
-                  <motion.div variants={fadeUpItem}>
-                    <Link
-                      href={`/subcategory/${item.id}`}
-                      className="category-box"
-                    >
-                      <img
-                        src={item.imagePath || "/assets/logo.jpeg"}
-                        alt={item.name}
-                        className="category-image"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = "/assets/logo.jpeg";
-                        }}
-                      />
-                      <div className="category-content">
-                        <h3 className="title">{item.name}</h3>
-                      </div>
-                    </Link>
-                  </motion.div>
-                </SwiperSlide>
-              ))}
+              {homeScreenData?.categories
+                ?.sort((a, b) => a.orderNo - b.orderNo)
+                .map((item, index) => (
+                  <SwiperSlide key={item.id}>
+                    <motion.div variants={fadeUpItem}>
+                      <Link
+                        href={`/subcategory/${item.id}`}
+                        className='category-box'
+                      >
+                        <img
+                          src={item.imagePath || '/assets/logo.jpeg'}
+                          alt={item.name}
+                          className='category-image'
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = '/assets/logo.jpeg';
+                          }}
+                        />
+                        <div className='category-content'>
+                          <h3 className='title'>{item.name}</h3>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
             </Swiper>
           </motion.div>
         </div>
@@ -171,23 +174,23 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* About Us & FAQs */}
       <motion.section
-        className="section-base section-color"
-        initial="hidden"
-        whileInView="visible"
+        className='section-base section-color'
+        initial='hidden'
+        whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <div className="container">
-          <div className="title align-center align-left-md">
+        <div className='container'>
+          <div className='title align-center align-left-md'>
             <h2>About us</h2>
             <p>Our Company Profile</p>
           </div>
-          <div className="">
-            <motion.div className="" variants={fadeUpItem}>
+          <div className=''>
+            <motion.div className='' variants={fadeUpItem}>
               <div
-                className="ck-content"
+                className='ck-content'
                 dangerouslySetInnerHTML={{
-                  __html: homeScreenData?.aboutUs?.content || "",
+                  __html: homeScreenData?.aboutUs?.content || '',
                 }}
               />
             </motion.div>
@@ -209,39 +212,39 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Founders & Leadership */}
       <motion.section
-        className="section-base py-16 founders-list"
-        initial="hidden"
-        whileInView="visible"
+        className='section-base py-16 founders-list'
+        initial='hidden'
+        whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
         variants={staggerContainer}
       >
-        <div className="container mx-auto px-4">
-          <div className="title align-center">
+        <div className='container mx-auto px-4'>
+          <div className='title align-center'>
             <h2>Founders & Executive Leadership</h2>
           </div>
           {homeScreenData?.members?.map((item, index) => (
             <motion.div
               key={item.id}
-              className={`founder ${index % 2 === 1 ? "reverse" : ""}`}
+              className={`founder ${index % 2 === 1 ? 'reverse' : ''}`}
               variants={fadeUpItem}
             >
-              <div className="founder-image">
+              <div className='founder-image'>
                 <img
-                  src={item.imagePath || "/assets/logo.jpeg"}
+                  src={item.imagePath || '/assets/logo.jpeg'}
                   alt={item.name}
-                  className="rounded-2xl shadow-lg"
+                  className='rounded-2xl shadow-lg'
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = "/assets/logo.jpeg";
+                    target.src = '/assets/logo.jpeg';
                   }}
                 />
               </div>
-              <div className="founder-text">
-                <h3 className="text-2xl font-semibold mb-4">{item.name}</h3>
-                <p className="text-gray-600 leading-relaxed">
+              <div className='founder-text'>
+                <h3 className='text-2xl font-semibold mb-4'>{item.name}</h3>
+                <p className='text-gray-600 leading-relaxed'>
                   {item.description}
                 </p>
-                <Link className="btn btn-sm" href="/about">
+                <Link className='btn btn-sm' href='/about'>
                   Learn More
                 </Link>
               </div>
@@ -252,22 +255,22 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Blogs */}
       <motion.section
-        className="section-base section-color home-blog-section"
-        initial="hidden"
-        whileInView="visible"
+        className='section-base section-color home-blog-section'
+        initial='hidden'
+        whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
         variants={staggerContainer}
       >
-        <div className="container">
-          <div className="title align-center">
+        <div className='container'>
+          <div className='title align-center'>
             <h2>Blogs</h2>
           </div>
           <Swiper
             modules={[Navigation, Autoplay]}
             spaceBetween={15}
-            slidesPerView={"auto"}
+            slidesPerView={'auto'}
             centeredSlides={true}
-            className="blog-swiper"
+            className='blog-swiper'
             loop={false}
             navigation
             autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -280,51 +283,51 @@ export default function Home(homeScreenData: HomeScreenContent) {
             {homeScreenData?.blogs?.map((item) => (
               <SwiperSlide key={item.id}>
                 <motion.div variants={fadeUpItem}>
-                  <div className="blog-card">
-                    <Link href={`/blog/${item.id}`} className="blog-card-image">
+                  <div className='blog-card'>
+                    <Link href={`/blog/${item.id}`} className='blog-card-image'>
                       {item.type == BLOG_MEDIA_TYPE.VIDEO ? (
                         <>
                           <YouTube
                             ref={(ref) => {
                               if (ref) videoRefs.current[item.id] = ref;
                             }}
-                            videoId={extractYouTubeId(item.media) ?? ""}
+                            videoId={extractYouTubeId(item.media) ?? ''}
                             opts={youtubeOptions}
                             style={{
-                              height: "auto",
-                              width: "100%",
-                              position: "relative",
+                              height: 'auto',
+                              width: '100%',
+                              position: 'relative',
                             }}
                             onReady={(event) => event.target.pauseVideo()}
                           />
                           <motion.div
-                            className="blog-video-icon"
+                            className='blog-video-icon'
                             animate={{
                               scale: [1, 1.2, 1],
                               opacity: [0.8, 1, 0.8],
                             }}
                             transition={{ repeat: Infinity, duration: 1.2 }}
                           >
-                            <i className="fas fa-play"></i>
+                            <i className='fas fa-play'></i>
                           </motion.div>
                         </>
                       ) : (
                         <img
-                          src={item.media || "/assets/logo.jpeg"}
-                          alt={item.title || ""}
+                          src={item.media || '/assets/logo.jpeg'}
+                          alt={item.title || ''}
                         />
                       )}
                     </Link>
-                    <div className="blog-card-content">
-                      <h3 className="blog-card-title">{item.title}</h3>
-                      <p className="blog-card-description">
+                    <div className='blog-card-content'>
+                      <h3 className='blog-card-title'>{item.title}</h3>
+                      <p className='blog-card-description'>
                         {item.sortDescription}
                       </p>
-                      <div className="blog-card-meta">
-                        <div className="blog-card-date">
-                          <i className="far fa-calendar-alt"></i>
+                      <div className='blog-card-meta'>
+                        <div className='blog-card-date'>
+                          <i className='far fa-calendar-alt'></i>
                           <span>
-                            {format(item.createdAt, "dd / MM / yyyy")}
+                            {format(item.createdAt, 'dd / MM / yyyy')}
                           </span>
                         </div>
                       </div>
@@ -339,9 +342,9 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Branches */}
       <motion.section
-        className="section-base"
-        initial="hidden"
-        whileInView="visible"
+        className='section-base'
+        initial='hidden'
+        whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
@@ -350,25 +353,25 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Specifications */}
       <motion.section
-        className="section-base section-color"
-        initial="hidden"
-        whileInView="visible"
+        className='section-base section-color'
+        initial='hidden'
+        whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <div className="container">
-          <div className="title align-center">
+        <div className='container'>
+          <div className='title align-center'>
             <h2>Why you should use our products</h2>
             <p>We provide the best quality products</p>
           </div>
-          <table className="table table-grid table-border table-6-md">
+          <table className='table table-grid table-border table-6-md'>
             <tbody>
               <tr>
                 {homeScreenData?.specifications?.map((item) => (
                   <motion.td key={item.id} variants={fadeUpItem}>
-                    <div className="icon-box icon-box-top align-center">
+                    <div className='icon-box icon-box-top align-center'>
                       <i className={item.iconName}></i>
-                      <div className="caption">
+                      <div className='caption'>
                         <h3>{item.name}</h3>
                         <p>{item.description}</p>
                       </div>
@@ -383,22 +386,22 @@ export default function Home(homeScreenData: HomeScreenContent) {
 
       {/* Reviews */}
       <motion.section
-        className="section-base"
-        initial="hidden"
-        whileInView="visible"
+        className='section-base'
+        initial='hidden'
+        whileInView='visible'
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <div className="container">
-          <div className="title align-center">
+        <div className='container'>
+          <div className='title align-center'>
             <h2>Check Our Latest Video</h2>
             <p>Video</p>
           </div>
 
           <motion.div
             variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
           >
             <Swiper
               modules={[Navigation, Autoplay]}
@@ -413,7 +416,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
               loop={false}
               navigation
               autoplay={{ delay: 4000, disableOnInteraction: false }}
-              className="video-swiper"
+              className='video-swiper'
             >
               {homeScreenData?.reviewsVideos?.map((item, index) => (
                 <SwiperSlide key={item.id}>
@@ -426,6 +429,7 @@ export default function Home(homeScreenData: HomeScreenContent) {
           </motion.div>
         </div>
       </motion.section>
+      <GoogleReviewButton />
     </main>
   );
 }
@@ -440,7 +444,7 @@ export const getStaticProps: GetStaticProps<HomeScreenContent> = async () => {
       revalidate: 60, // Revalidate every 60 seconds
     };
   } catch (error) {
-    console.error("Error fetching home screen data:", error);
+    console.error('Error fetching home screen data:', error);
     return {
       props: JSON.parse(JSON.stringify(new HomeScreenContent())),
     };
