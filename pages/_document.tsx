@@ -68,14 +68,16 @@ class MyDocument extends Document<MyDocumentProps> {
             } align-right`}
             data-menu-anima='fade-in'
           >
-            <div className=''>
+            <div className="" style={{
+                 height: "120px"
+                }} >
               <div
                 className='menu-brand'
                 style={{
-                  position: 'relative',
-                  width: '150px',
-                  height: '44px',
-                  top: '5px',
+                  position: "relative",
+                  width: "220px",
+                  height: "80px",
+                  top: "5px",
                 }}
               >
                 <Link href='/'>
