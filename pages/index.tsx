@@ -429,7 +429,6 @@ export default function Home(homeScreenData: HomeScreenContent) {
           </motion.div>
         </div>
       </motion.section>
-      <GoogleReviewButton />
     </main>
   );
 }

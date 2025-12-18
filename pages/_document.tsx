@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-css-tags */
-import { SOCIAL_ICONS } from "@/utils/app.constants";
-import { CommonContent, CommonContentResp } from "@/utils/app.model";
-import { NAV_ITEMS_KEYS } from "@/utils/navigation";
+import { SOCIAL_ICONS } from '@/utils/app.constants';
+import { CommonContent, CommonContentResp } from '@/utils/app.model';
+import { NAV_ITEMS_KEYS } from '@/utils/navigation';
 import Document, {
   Html,
   Head,
@@ -9,10 +9,11 @@ import Document, {
   NextScript,
   DocumentContext,
   DocumentInitialProps,
-} from "next/document";
-import Image from "next/image";
-import Link from "next/link";
-import React, { Fragment } from "react";
+} from 'next/document';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { Fragment } from 'react';
+import Google from './icons/Google';
 
 interface MyDocumentProps extends DocumentInitialProps {
   commonContent: CommonContent;
@@ -32,7 +33,7 @@ class MyDocument extends Document<MyDocumentProps> {
       const data: CommonContentResp = await res.json();
       commonContent = data.data || new CommonContent();
     } catch (err) {
-      console.error("Error fetching common content:", err);
+      console.error('Error fetching common content:', err);
     }
     const currentPath = ctx.asPath || ctx.pathname;
 
@@ -46,76 +47,76 @@ class MyDocument extends Document<MyDocumentProps> {
   render() {
     const { commonContent, currentPath } = this.props as MyDocumentProps;
     return (
-      <Html lang="en">
+      <Html lang='en'>
         <Head>
           <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+            name='viewport'
+            content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
           />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel='icon' href='/favicon.ico' />
           <link
-            rel="stylesheet"
-            href="/media/icons/iconsmind/line-icons.min.css"
+            rel='stylesheet'
+            href='/media/icons/iconsmind/line-icons.min.css'
           />
-          <link rel="stylesheet" href="/media/icons/fontawesome/all.css" />
+          <link rel='stylesheet' href='/media/icons/fontawesome/all.css' />
         </Head>
-        <body className="page-main">
+        <body className='page-main'>
           {/* <div id="preloader"></div> */}
           <nav
             className={`menu-classic menu-fixed ${
-              currentPath === "/" ? "menu-transparent light" : ""
+              currentPath === '/' ? 'menu-transparent light' : ''
             } align-right`}
-            data-menu-anima="fade-in"
+            data-menu-anima='fade-in'
           >
-            <div className="">
+            <div className=''>
               <div
-                className="menu-brand"
+                className='menu-brand'
                 style={{
-                  position: "relative",
-                  width: "150px",
-                  height: "44px",
-                  top: "5px",
+                  position: 'relative',
+                  width: '150px',
+                  height: '44px',
+                  top: '5px',
                 }}
               >
-                <Link href="/">
+                <Link href='/'>
                   <Image
-                    className="logo-default scroll-hide"
-                    src={"/assets/dark-logo.png"}
-                    alt="Logo"
-                    layout="fill"
-                    objectFit="contain"
+                    className='logo-default scroll-hide'
+                    src={'/assets/dark-logo.png'}
+                    alt='Logo'
+                    layout='fill'
+                    objectFit='contain'
                   />
                   <Image
-                    className="logo-retina scroll-hide"
-                    src={"/assets/dark-logo.png"}
-                    alt="Logo"
-                    layout="fill"
-                    objectFit="contain"
+                    className='logo-retina scroll-hide'
+                    src={'/assets/dark-logo.png'}
+                    alt='Logo'
+                    layout='fill'
+                    objectFit='contain'
                   />
                   <Image
-                    className="logo-default scroll-show"
-                    src="/assets/app-logo.png"
-                    alt="Logo"
-                    layout="fill"
-                    objectFit="contain"
+                    className='logo-default scroll-show'
+                    src='/assets/app-logo.png'
+                    alt='Logo'
+                    layout='fill'
+                    objectFit='contain'
                   />
                   <Image
-                    className="logo-retina scroll-show"
-                    src="/assets/app-logo.png"
-                    alt="Logo"
-                    layout="fill"
-                    objectFit="contain"
+                    className='logo-retina scroll-show'
+                    src='/assets/app-logo.png'
+                    alt='Logo'
+                    layout='fill'
+                    objectFit='contain'
                   />
                 </Link>
               </div>
 
-              <i className="menu-btn"></i>
-              <div className="menu-cnt">
-                <ul id="main-menu">
+              <i className='menu-btn'></i>
+              <div className='menu-cnt'>
+                <ul id='main-menu'>
                   {commonContent?.menu?.map((item) => (
                     <Fragment key={item.id}>
                       {item.subMenu?.length > 0 ? (
-                        <li className="dropdown">
+                        <li className='dropdown'>
                           <a>{item.name}</a>
                           <ul>
                             {item.subMenu
@@ -129,25 +130,25 @@ class MyDocument extends Document<MyDocumentProps> {
                               ))}
                           </ul>
                         </li>
-                      ) : item.key === "becomeDealer" ? (
+                      ) : item.key === 'becomeDealer' ? (
                         <>
                           <Link
                             href={NAV_ITEMS_KEYS?.[item.key]?.path}
-                            className="become-dealer-button scroll-hide"
+                            className='become-dealer-button scroll-hide'
                           >
-                            <div className="button-content">
-                              <span className="button-text">{item.name}</span>
+                            <div className='button-content'>
+                              <span className='button-text'>{item.name}</span>
                             </div>
-                            <div className="pulse-ring"></div>
+                            <div className='pulse-ring'></div>
                           </Link>
                           <Link
                             href={NAV_ITEMS_KEYS?.[item.key]?.path}
-                            className="become-dealer-button white-btn scroll-show"
+                            className='become-dealer-button white-btn scroll-show'
                           >
-                            <div className="button-content">
-                              <span className="button-text">{item.name}</span>
+                            <div className='button-content'>
+                              <span className='button-text'>{item.name}</span>
                             </div>
-                            <div className="pulse-ring"></div>
+                            <div className='pulse-ring'></div>
                           </Link>
                         </>
                       ) : (
@@ -166,39 +167,39 @@ class MyDocument extends Document<MyDocumentProps> {
           <Main />
           <NextScript />
           {/* <i className="scroll-top-btn scroll-top show" style={{ opacity: 1 }}></i> */}
-          <footer className="light">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-4">
+          <footer className='light'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-lg-4'>
                   <h2>MNH PVC Panels</h2>
-                  <p style={{ marginTop: "15px" }}>
+                  <p style={{ marginTop: '15px' }}>
                     <div
-                      className="ck-content"
+                      className='ck-content'
                       dangerouslySetInnerHTML={{
-                        __html: commonContent?.aboutUs?.sortContent || "",
+                        __html: commonContent?.aboutUs?.sortContent || '',
                       }}
                     />
                   </p>
                 </div>
-                <div className="col-lg-4">
+                <div className='col-lg-4'>
                   <h2>Contacts</h2>
-                  <ul className="icon-list icon-line">
+                  <ul className='icon-list icon-line'>
                     <li>{commonContent?.contact?.address}</li>
                     <li>{commonContent?.contact?.email}</li>
                     <li>{commonContent?.contact?.phoneNo}</li>
                   </ul>
                 </div>
-                <div className="col-lg-4">
-                  <div className="icon-links icon-social icon-links-grid social-colors">
+                <div className='col-lg-4'>
+                  <div className='icon-links icon-social icon-links-grid social-colors'>
                     {commonContent?.socialLinks?.map((item) => (
                       <>
                         {item.link && (
                           <a
                             className={item.key}
-                            target="_blank"
+                            target='_blank'
                             href={item.link}
                             key={item.id}
-                            rel="noopener noreferrer"
+                            rel='noopener noreferrer'
                           >
                             <i className={SOCIAL_ICONS[item.key]} />
                           </a>
@@ -206,17 +207,30 @@ class MyDocument extends Document<MyDocumentProps> {
                       </>
                     ))}
                   </div>
-                  <hr className="space-sm" />
+                  <hr className='space-sm' />
                   <p>Follow us on the social channels to stay tuned.</p>
+                  <a
+                    href='https://share.google/DxjNTtueBAT3k1sBR'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='google-review-btn'
+                    aria-label='View MNH Business Profile Google Reviews'
+                  >
+                    <Google height='32' width='32' />
+                    <div className='review-labels'>
+                      <div className='review-title'>MNH Business Profile</div>
+                      <div className='review-stars'>★★★★★</div>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
-            <div className="footer-bar">
-              <div className="container">
+            <div className='footer-bar'>
+              <div className='container'>
                 <span>© 2025 MNH PVC PANELS. All rights reserved.</span>
                 <span>
-                  <Link href="/contact">Contact us</Link> |{" "}
-                  <Link href="/faq">FAQ</Link>
+                  <Link href='/contact'>Contact us</Link> |{' '}
+                  <Link href='/faq'>FAQ</Link>
                 </span>
               </div>
             </div>
